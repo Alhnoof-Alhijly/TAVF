@@ -1,0 +1,720 @@
+﻿task_id,task_type,Bug ID,Product,input,Steps to Reproduce,Expected_Res,Actual_Res,expected_output,word_count
+BRC01,bug_report_refinement,1895711,Application Services,"### steps to reproduce
+
+1. browse to a site in fenix nightly
+2. select share from the options menu
+3. select a device from send to device
+
+### expected behavior
+the site should open on the device you selected
+
+### actual behavior
+an error is displayed `unable to send`
+### device information
+
+* firefox version: 127.0a1
+* android device model: samsung s24+
+* android os version: android 14
+
+### any additional information?
+this is not reproducible in 125 release or 126 beta","Here are the steps to reproduce:
+
+1. Browse to a site in Fenix Nightly.
+2. Select ""Share"" from the Options menu.
+3. Select a device from ""Send to Device"".","The ""Expected Results"" section is:
+
+### Expected Results
+the site should open on the device you selected","Here is the extracted section titled ""Actual Results"":
+
+### Actual Behavior
+an error is displayed `unable to send`",,82
+BRC03,bug_report_refinement,1296831,Bugzilla,"user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/601.7.7 (khtml, like gecko) version/9.1.2 safari/601.7.7
+
+steps to reproduce:
+
+create a answer file and include the following line
+$answer{'use_email_as_login'} = '1';
+
+run ./checksetup.pl ./answers
+
+
+actual results:
+
+you get the following output:
+initializing ""product/component changes"" email_setting ...
+initializing ""dependency tree changes"" email_setting ...
+deriving regex group memberships...
+login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+
+and in data/params.json you find the line
+   ""use_email_as_login"" : 0,
+
+
+
+expected results:
+
+creation without an error and data/params.json with the following line
+   ""use_email_as_login"" : 1,","Here is the extracted ""Steps to Reproduce"" section:
+
+**Steps to Reproduce**
+
+1. Create an answer file and include the following line:
+```
+$answer{'use_email_as_login'} = '1';
+```
+2. Run `./checksetup.pl ./answers`
+
+Let me know if you need anything else!","The section titled ""Expected Results"" is:
+
+Creation without an error and data/params.json with the following line:
+""use_email_as_login"": 1,","Here is the extracted section titled ""Actual Results"":
+
+you get the following output:
+initializing ""product/component changes"" email_setting ...
+initializing ""dependency tree changes"" email_setting ...
+deriving regex group memberships...
+login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+and in data/params.json you find the line
+    ""use_email_as_login"" : 0,",,102
+BRC06,bug_report_refinement,1792078,Calendar,"steps to reproduce:
+
+after moving to the new recent 100.x series (i think it was then), thunderbird switched to some newfangled rich text editor for calendar events. every time i save an event and come back, newlines are added all over the place leaving everything a confusing mess.
+
+i type some nice paragraph such as the following (not the exact text):
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+
+
+actual results:
+
+thunderbird decided to randomly add line breaks, such as:
+
+blah blah foo
+bar (and more foo bar); this 
+
+is foo; this is bar
+foo and
+
+
+bar
+bar and foo
+
+currently i have no way to predict where thunderbird is going to throw in line breaks.
+
+
+expected results:
+
+i should have got back:
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+(we're not even talking about rich formatting!!)
+
+why does everyone try to re-implement a word process and break things royally? if you'd just provide plain text and not screw up the lines, that would be 10 times better than this.
+
+or you could allow us to enter raw markdown and then show it rendered in the view (using a common library), like stack overflow does.
+
+why oh why are you adding line breaks all over the place every time i edit a calendar event?","Here is the section titled ""Steps to Reproduce"":
+
+(after moving to the new recent 100.x series, Thunderbird switched to some newfangled rich text editor for calendar events.)
+
+... (no specific steps mentioned)
+
+Note that there are no specific steps provided in this section, only a general description of what happened.","Here is the section titled ""Expected Results"":
+
+Expected results:
+i should have got back:
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+(we're not even talking about rich formatting!!)","Here is the extracted ""Actual Results"" section:
+
+thunderbird decided to randomly add line breaks, such as:
+blah blah foo
+bar (and more foo bar); this 
+is foo; this is bar
+foo and 
+
+bar
+bar and foo",,239
+BRC07,bug_report_refinement,1657797,Chat Core,"user agent: mozilla/5.0 (x11; linux x86_64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+0. open the chat tab
+1. connect to your matrix account (e.g. @username:matrix.org)
+2. click on ""join chat"" button
+3. enter a room name from a different homeserver (e.g. #maildev:mozilla.org)
+
+
+actual results:
+
+the chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)
+
+
+expected results:
+
+if a server name is specified, join chat shouldn't append the account server name.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+0. Open the chat tab
+1. Connect to your Matrix account (e.g. @username:matrix.org)
+2. Click on ""Join Chat"" button
+3. Enter a room name from a different homeserver (e.g. #maildev:mozilla.org)","Here are the ""Expected Results"" extracted from the text:
+
+**Expected Results**
+If a server name is specified, join chat shouldn't append the account server name.","Here is the extracted section titled ""Actual Results"":
+
+Actual Results:
+the chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)",,69
+BRC08,bug_report_refinement,1568643,Conduit,"steps to reproduce:
+
+1) load a phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)
+2) click on ""edit related revisions"" in the toolbox on the right.
+3) click on ""edit child revisions"".
+4) select ""all objects"" in the dropdown that starts out with ""created by me"" (just to make sure the list is not empty).
+5) click the label of the first thing in the list.  this is the part that says ""dnnnnn: bug mmmmm - something""
+
+expected results: the revision you clicked is added to the ""current child revisions"" bit at the bottom of the dialog.
+
+actual results: the dialog just closes.  only clicking the ""select"" button works to add things to ""current child revisions"".
+
+this used to work; per https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430 it no longer working is due to a change in phabricator, not in firefox.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+1) Load a Phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)
+2) Click on ""Edit related revisions"" in the toolbox on the right.
+3) Click on ""Edit child revisions"".
+4) Select ""All objects"" in the dropdown that starts out with ""Created by me"" (just to make sure the list is not empty).
+5) Click the label of the first thing in the list. (This is the part that says ""dnnnnn: Bug mmmmm - something"")","Here are the ""Expected Results"" extracted from the text:
+
+**Expected Results**: the revision you clicked is added to the ""current child revisions"" bit at the bottom of the dialog.","Here is the extracted ""Actual Results"" section:
+
+Actual results: the dialog just closes. Only clicking the ""select"" button works to add things to ""current child revisions"".",,132
+BRC10,bug_report_refinement,1611651,Core,"created attachment 9123077
+trr.debug.log
+
+user agent: mozilla/5.0 (macintosh; intel mac os x 10.14; rv:72.0) gecko/20100101 firefox/72.0
+
+steps to reproduce:
+
+enable trr with default configuration and go to https://1.1.1.1/help
+
+
+actual results:
+
+the site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.
+
+
+expected results:
+
+if it's a problem with javascript, i'd expect it to go away after closing a tab, but nothing shows up in the performance console.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+**Steps to Reproduce:**
+
+1. Enable TRR (Trusted Recursive Resolver) with default configuration.
+2. Go to `https://1.1.1.1/help`.","The ""Expected Results"" section is:
+
+If it's a problem with JavaScript, I'd expect it to go away after closing a tab, but nothing shows up in the Performance Console.","Here is the extracted section titled ""Actual Results"":
+
+actual results:
+the site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.",,85
+BRC13,bug_report_refinement,1657758,Data Platform and Tools,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+update from android gradle plugin 3.5 to 4.0 and try to compile an app using glean to generate code.
+
+see https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.
+
+
+actual results:
+
+glean code is not generated
+
+
+expected results:
+
+glean code should be generated","Here is the extracted section:
+
+**Steps to Reproduce**
+
+1. Update from Android Gradle Plugin 3.5 to 4.0.
+2. Try to compile an app using Glean to generate code.
+
+**See:** https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.","The ""Expected Results"" section is:
+
+```
+Expected Results:
+Glean code should be generated
+```","Here is the extracted section:
+
+Actual Results:
+Glean code is not generated",,61
+BRC14,bug_report_refinement,1579366,DevTools,"**steps to reproduce**
+1. go to `about:config` and turn off `devtools.webconsole.input.autocomplete`
+1. open the console
+1. type `deb`
+1. hit ctrl+space to display the completion text  (should be `ugger`)
+1. type `u`
+1. hit `tab`
+
+
+**expected results**
+
+the input get completed to `debugger`
+
+**actual results**
+
+the input get completed to `debuugger`
+
+---
+
+this is because the completion text wasn't updated","Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Go to `about:config` and turn off `devtools.webconsole.input.autocomplete`.
+2. Open the console.
+3. Type `deb`.
+4. Hit Ctrl+Space to display the completion text (should be `ugger`).
+5. Type `u`.
+6. Hit Tab.
+
+Let me know if you need anything else!","The ""Expected Results"" section is:
+
+* the input get completed to `debugger`","Here is the extracted section:
+
+**Actual Results**
+the input get completed to `debuugger`",,60
+BRC16,bug_report_refinement,1770098,External Software Affecting Firefox,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:99.0) gecko/20100101 firefox/99.0
+
+steps to reproduce:
+
+launch firefox 100.0.1 x64 on windows 11 build 22000.613 (april release) or 22000.675 (may release)
+
+
+actual results:
+
+browser window comes up, but browser is unresponsive.  trying to visit any site fails, browser hangs
+
+
+expected results:
+
+able to view site","Here are the ""Steps to Reproduce"" extracted from the text:
+
+**Steps to Reproduce:**
+
+1. Launch Firefox 100.0.1 x64 on Windows 11 build 22000.613 (April release) or 22000.675 (May release).","The extracted ""Expected Results"" section is:
+
+**Expected Results**
+Able to view a site","Here is the extracted section titled ""Actual Results"":
+
+""Browser window comes up, but browser is unresponsive. Trying to visit any site fails, browser hangs.""",,53
+BRC18,bug_report_refinement,1832105,Firefox,"**[affected versions]:**
+- firefox nightly 115.0a1 (build id: 20230508214159)
+- firefox nightly 114.0b1 (build id: 20230508175934)
+
+**[affected platforms]:**
+- windows 10 x64
+- linux ubuntu 20.04 x64
+- macos 12.4
+
+**[prerequisites]:**
+- have a vpn client connected to a us server ( make sure the `browser.search.region` pref is set accordingly).
+- have the firefox nightly 115.0a1 build installed.
+- set the following prefs:
+`browser.urlbar.weather.featuregate` = `true`
+(windows only) `browser.urlbar.weather.ignorevpn` = `true`
+
+**[steps to reproduce]:**
+1. open the browser from the prerequisites.
+2. type the “weather” string in the address bar.
+3. click the feedback button.
+4. click any of the first 2 options (“report inaccurate location” or “show less frequently”).
+5. click the feedback button again.
+6. click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).
+7. observe the behavior.
+
+**[expected result]:**
+- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.
+
+**[actual result]:**
+- nothing happens, the weather result remains displayed.
+
+**[notes]:**
+- we noticed that even though the dismiss buttons don’t work, the telemetry is incremented with each click for `firefox-suggest-weather-command-not-relevant` and `firefox-suggest-weather-command-not-interested` (depending on which one is clicked).
+- here is the [screen recording](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing) of the issue.","Here are the steps to reproduce:
+
+**Steps to Reproduce:**
+
+1. Open the browser from the prerequisites.
+2. Type the “weather” string in the address bar.
+3. Click the feedback button.
+4. Click any of the first 2 options (“report inaccurate location” or “show less frequently”).
+5. Click the feedback button again.
+6. Click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).
+7. Observe the behavior.","Here is the section titled ""Expected Results"":
+
+**[expected result]:**
+- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.","Here is the ""Actual Results"" section:
+
+**[actual result]:**
+- nothing happens, the weather result remains displayed.",,208
+BRC21,bug_report_refinement,1333754,Firefox for iOS,"build: 51abcc7ca
+device: ipad pro
+ios: 9.2.1
+
+steps to reproduce:
+1. launch fennec
+2. open 12 new tabs by tapping the '+' symbol
+3. select the last tab
+4. double tap on the home button and close fennec
+5. open fennec
+
+actual results:
+- the last tab which is selected is not in view. the scroll is positioned at the first tab.
+
+expected results:
+- the selected tab should be in view.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Launch Fennec.
+2. Open 12 new tabs by tapping the '+' symbol.
+3. Select the last tab.
+4. Double tap on the home button and close Fennec.
+5. Open Fennec again.","Here is the extracted ""Expected Results"" section:
+
+* The selected tab should be in view.","Here is the extracted section:
+
+**Actual Results**
+
+* The last tab which is selected is not in view. The scroll is positioned at the first tab.",,72
+BRC24,bug_report_refinement,1806652,Focus,"created attachment 9309175
+android13.mp4
+
+### steps to reproduce
+1. install focus nightly 110.0a1 on an android 13 device
+2. open youtube.com, or vimeo.com.
+3. start a video, then access the fullscreen option.
+
+### expected behavior
+the video is displayed in fullscreen without issues.
+
+### actual behavior
+the video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.
+not reproducible on the latest fenix nightly 110.0a1.
+
+### device information
+* focus version: all (110.0a1 nightly from 12/20, beta 109.0b2, rc 108.1.0 - builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks 
+* android device: google pixel 6 (android 13)
+* not reproducible on: oppo reno 6 (android 12)
+* works fine on the rc 108.1.0 build from playstore","Here is the extracted section titled ""Steps to Reproduce"":
+
+### Steps to Reproduce
+1. install focus nightly 110.0a1 on an Android 13 device
+2. open youtube.com, or vimeo.com.
+3. start a video, then access the fullscreen option.","Here is the extracted section titled ""Expected Results"":
+
+### expected behavior
+the video is displayed in fullscreen without issues.","The ""Actual Results"" section is:
+
+### actual behavior
+the video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.",,139
+BRC26,bug_report_refinement,1593683,GeckoView,"created attachment 9106176
+device-2019-11-04-152302.mp4
+
+user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:70.0) gecko/20100101 firefox/70.0
+
+steps to reproduce:
+
+enter some text in an input field on a website (search field at https://startpage.com for example). try to go back a few characters by using the arrow keys at the bottom of the screen (i believe this is a cyanogenmode/lineageos specific feature. that feature works as expected in every other app, including the on-board (webview-based) browser app.)
+
+phone: nexus 5x
+os: lineageos 15.1 (aka android 8.1)
+keyboard: aosp keyboard
+
+
+actual results:
+
+the cursor keeps jumping back to the end of the current word. holding down the left arrow key i can finally get it to skip to a prior word.
+using the right arrow key it skips to the end of the current word again, not just a single character.
+
+this behaviour doesn't occur when i disable all next word suggestions/autocorrection in the aosp keyboard. this is not a usable workaround though.
+
+
+expected results:
+
+the arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.
+
+this works in every other android app except firefox.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+* Enter some text in an input field on a website (e.g., search field at https://startpage.com).
+* Try to go back a few characters by using the arrow keys at the bottom of the screen.","The ""Expected Results"" section is:
+
+""The arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.
+This works in every other Android app except Firefox.""","Here are the ""Actual Results"" extracted from the text:
+
+The cursor keeps jumping back to the end of the current word. Holding down the left arrow key, I can finally get it to skip to a prior word.
+Using the right arrow key, it skips to the end of the current word again, not just a single character.",,189
+BRC28,bug_report_refinement,1686984,MailNews Core,"user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:84.0) gecko/20100101 firefox/84.0
+
+steps to reproduce:
+
+pgp encrypted email encrypted for my key is in my inbox, and will not display on new versions of thunderbird. previous versions with enigmail are unaffected. i've tested this on thunderbird 78 on windows, thunderbird 78 on linux, and a debug build on linux from trunk.
+
+
+actual results:
+
+the message fails to display. openpgp icon shows ""message cannot be decrypted: there are unknown problems with this decrypted message."" the debug console shows ""rnp_op_verify_execute returned unexpected: 285212674"".
+
+the debug output is as follows:
+[mem_dst_write() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-common.cpp:991] attempt to alloc more then allowed
+[process_pgp_source() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-parse.cpp:2483] failed to output data
+console.debug: ""rnp_op_verify_execute returned unexpected: 285212674""
+
+
+expected results:
+
+the message should successfully decrypt and its content should be displayed.","Here are the ""Steps to Reproduce"":
+
+PGP encrypted email encrypted for my key is in my inbox, and will not display on new versions of Thunderbird. Previous versions with Enigmail are unaffected. I've tested this on Thunderbird 78 on Windows, Thunderbird 78 on Linux, and a debug build on Linux from trunk.","The expected results are:
+
+* The message should successfully decrypt.
+* Its content should be displayed.","Here is the extracted section:
+
+**Actual Results**
+
+The message fails to display. OpenPGP icon shows ""Message cannot be decrypted: there are unknown problems with this decrypted message."" The debug console shows:
+
+* ""rnp_op_verify_execute returned unexpected: 285212674"".
+* `[mem_dst_write() ...] attempt to alloc more then allowed`
+* `[process_pgp_source() ...] failed to output data`
+
+Let me know if you need anything else!",,127
+BRC30,bug_report_refinement,1728595,Mozilla Localizations,"created attachment 9238939
+firefox suggest label.png
+
+**[affected versions]:**
+- firefox nightly 93.0a1 (build id: 20210901091701) 
+
+**[affected platforms]:**
+- windows 10 x64
+- macos 10.15.7
+- linux mint 20
+
+**[prerequisites]:**
+- have [nightly ro](https://ftp.mozilla.org/pub/firefox/nightly/2021/08/2021-08-21-21-21-31-mozilla-central-l10n/) build downloaded or installed.
+
+**[steps to reproduce]:**
+1. open the nightly ro l10n build.
+2. open a new tab page, type any keyword that will trigger a history result.
+3. observe the ""firefox suggest"" string.
+
+**[expected results]:**
+- the ""firefox suggest"" string is correctly displayed.
+    
+**[actual results]:**
+- the ""-firefox-suggest-brand-name"" string is displayed.
+
+**[notes]:**
+- so far i have managed to reproduce the issue only on ro build. not sure if the issue is also reproducible on other l10n builds.
+- on other l10n builds, the ""firefox suggest"" string is correctly displayed if the string is not yet localized.
+- attached is a screenshot of the issue.","Here are the steps to reproduce:
+
+**[steps to reproduce]:**
+
+1. Open the nightly RO L10n build.
+2. Open a new tab page, type any keyword that will trigger a history result.
+3. Observe the ""firefox suggest"" string.","Here is the section titled ""Expected Results"":
+
+**[expected results]:**
+- the ""firefox suggest"" string is correctly displayed.","Here are the **Actual Results** extracted from the text:
+
+**[actual results]:**
+- the ""-firefox-suggest-brand-name"" string is displayed.",,140
+BRC36,bug_report_refinement,1792088,Remote Protocol,"steps to reproduce:
+
+see detailed steps and logging in this cypress.io github bug: https://github.com/cypress-io/cypress/issues/23897
+
+close cypress
+update to firefox 105 (latest at the time i write this)
+open cypress
+choose e2e
+select firefox v105
+click start e2e testing in firefox
+observe ff physically opens but the page is empty
+
+
+actual results:
+
+ff physically opens but the page is empty
+
+
+expected results:
+
+ff physically opens, cypress is connected and cypress ui is presented","Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Close Cypress.
+2. Update to Firefox 105 (latest at the time I write this).
+3. Open Cypress.
+4. Choose E2E.
+5. Select Firefox v105.
+6. Click ""Start E2E testing in Firefox"".
+7. Observe FF physically opens but the page is empty.","The ""Expected Results"" section is:
+
+* FF physically opens, Cypress is connected and Cypress UI is presented.","Here is the extracted section:
+
+Actual Results:
+FF physically opens but the page is empty",,72
+BRC40,bug_report_refinement,1683665,Tecken,"user agent: mozilla/5.0 (x11; linux x86_64; rv:86.0) gecko/20100101 firefox/86.0
+
+steps to reproduce:
+
+i started a local test instance (make build, make setup, make run). connected to it with a superuser. clicked on the ""go to user management"" link which links to ""/users"".
+
+
+actual results:
+
+got a 404. logs only show this:
+
+> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483
+
+
+expected results:
+
+i expected to end up on some user management page.","Here is the extracted section:
+
+**Steps to Reproduce**
+
+I started a local test instance (make build, make setup, make run). Connected to it with a superuser. Clicked on the ""Go to User Management"" link which links to ""/users"".","The ""Expected Results"" section is:
+
+I expected to end up on some user management page.","Here is the extracted section:
+
+**Actual Results**
+
+Got a 404. Logs only show this:
+
+> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483",,73
+BRC44,bug_report_refinement,1661229,Thunderbird,"created attachment 9172109
+zipped example screenshots
+
+user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/84.0.4147.135 safari/537.36 edg/84.0.522.63
+
+steps to reproduce:
+
+1. enable high-contrast mode in windows 10, by doing the following:
+1.1. open windows settings (windows+i).
+1.2. go to ease of access -> high-contrast.
+1.3. turn on the high-contrast mode, using the respective toggle.
+1.4. from the ""high-contrast theme"" combo-box, select ""high-contrast black"".
+2. install and launch thunderbird 78.2.
+
+
+actual results:
+
+observe how some dialogs and windows of thunderbird do not obey the colors defined by the currently active high-contrast black theme. mostly, where the background should be black, it is gray instead. i'll attach some example screenshots in a zip archive.
+
+examples of such windows include, but may not be limited to, the following:
+- the main window of thunderbird.
+- the dialogs for subscribing to imap folders and rss feeds.
+- the dialogs for the properties of rss and mail folders.
+- the dialog for customizing the toolbars in thunderbird.
+- the dialog for creating a new folder.
+- the dialog/window for adding an account to thunderbird.
+
+
+expected results:
+
+in such dialogs and windows as in the examples above, the background color should be black, instead of being gray as it is now.","Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Enable high-contrast mode in Windows 10 by doing the following:
+   1.1. Open Windows settings (Windows+i).
+   1.2. Go to Ease of Access -> High Contrast.
+   1.3. Turn on the high-contrast mode using the respective toggle.
+   1.4. From the ""High-Contrast Theme"" combo-box, select ""High-Contrast Black"".
+2. Install and launch Thunderbird 78.2.","Here are the expected results:
+
+* In such dialogs and windows (e.g. main window, subscription dialogs, folder properties dialogs, toolbar customization dialog, new folder creation dialog, account addition dialog), the background color should be black, instead of being gray.","Here is the extracted section:
+
+**Actual Results**
+
+Observe how some dialogs and windows of Thunderbird do not obey the colors defined by the currently active high-contrast black theme. Mostly, where the background should be black, it is gray instead. I'll attach some example screenshots in a zip archive.
+
+Examples of such windows include, but may not be limited to, the following:
+
+* The main window of Thunderbird.
+* The dialogs for subscribing to IMAP folders and RSS feeds.
+* The dialogs for the properties of RSS and mail folders.
+* The dialog for customizing the toolbars in Thunderbird.
+* The dialog for creating a new folder.
+* The dialog/window for adding an account to Thunderbird.",,209
+BRC46,bug_report_refinement,1884308,Toolkit,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:123.0) gecko/20100101 firefox/123.0
+
+steps to reproduce:
+
+i after refreshing firefox, i could not import any compressed backup bookmarks. i created new a new profiles and and could not import a compressed bookmark that was valid. i created a new profile and could not import a valid html backup bookmark. community support has not responded to offer any further steps to take after i tried to import a valid html file yet so i am am reporting it here. i really need to get this issue fixed and firefox support is greatly lacking in timely, accurate resolution. i have not tried booting windows in safe mode.
+
+
+actual results:
+
+see above and need to add in addition, that when importing valid compressed backup bookmarks, i get the message, ""unable to process backup file"". when i import a valid backup bookmark html file, nothing happens---and no error message appears.
+
+
+expected results:
+
+as expected, any valid bookmark file should be imported.","Here is the extracted ""Steps to Reproduce"" section:
+
+I after refreshing Firefox, I could not import any compressed backup bookmarks. I created a new profile and couldn't import a compressed bookmark that was valid. I created a new profile and couldn't import a valid HTML backup bookmark. I have not tried booting Windows in safe mode.","Here is the section titled ""Expected Results"":
+
+Expected results:
+As expected, any valid bookmark file should be imported.","Here is the extracted section:
+
+**Actual Results**
+
+See above and need to add in addition, that when importing valid compressed backup bookmarks, I get the message, ""unable to process backup file"". When I import a valid backup bookmark HTML file, nothing happens---and no error message appears.",,165
+BRC53,bug_report_refinement,1202230,support.mozilla.org,"steps to reproduce:
+1. launch the buddy up app.
+2. tap on the ""gear"" button at the right top corner of the screen.
+3. tap on the ""create account or sign in"" button
+4. tap on ""don't have an account? register"" button.
+5. type a valid email address, username and password
+6. tap on ""create account"" button.
+
+expected result:
+""confirm account"" page appears with a ""cancel sign up"" button.
+actual result:
+blank page appears
+
+note:
+user can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.
+
+console errors:
+    typeerror: cancel_button is null email_confirmation_controller.js:47:7
+    error: (main/email_confirmation.html) [line 2, column 10]
+    error: unable to call `_`, which is undefined or falsey
+
+regression searching results:
+https://github.com/mozilla/buddyup/commit/9acf86651442106df4e1ba9a90cdbe6aac7b3795 (no bug, works fine)
+(some commits that can not be tested)
+https://github.com/mozilla/buddyup/commit/6f191663ac6b1f5cc999193ef83576d64c71e51d (first testable commit with the bug)","Here is the extracted section titled ""Steps to Reproduce"":
+
+**Steps to Reproduce**
+
+1. Launch the Buddy Up app.
+2. Tap on the ""gear"" button at the right top corner of the screen.
+3. Tap on the ""create account or sign in"" button
+4. Tap on ""don't have an account? register"" button.
+5. Type a valid email address, username and password.
+6. Tap on ""create account"" button.
+
+Expected result: The ""confirm account"" page appears with a ""cancel sign up"" button.
+
+Actual result: A blank page appears.","Here is the section titled ""Expected Results"":
+
+""confirm account"" page appears with a ""cancel sign up"" button.","Here is the section titled ""Actual Results"":
+
+actual result:
+blank page appears
+note: 
+user can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.",,152

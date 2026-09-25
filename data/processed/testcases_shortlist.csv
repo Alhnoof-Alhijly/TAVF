@@ -1,0 +1,1834 @@
+﻿candidate_id,task_num,task_title,difficulty,func_name,description,python_solution,blocks,target_lines
+TCC01,2932,Maximum Strong Pair XOR I,1,maximumStrongPairXor,"You are given a 0-indexed integer array `nums`. A pair of integers `x` and `y`
+is called a strong pair if it satisfies the condition:
+
+* `|x - y| <= min(x, y)`
+
+You need to select two integers from `nums` such that they form a strong pair
+and their bitwise `XOR` is the maximum among all strong pairs in the array.
+
+Return the maximum `XOR` value out of all possible strong pairs in the array
+`nums`.
+
+Note that you can pick the same integer twice to form a pair.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator, Optional
+
+class TrieNode:
+  def __init__(self):
+    self.children: List[Optional[TrieNode]] = [None] * 2
+    self.min = math.inf
+    self.max = -math.inf
+
+
+class BitTrie:
+  def __init__(self, maxBit: int):
+    self.maxBit = maxBit
+    self.root = TrieNode()
+
+  def insert(self, num: int) -> None:
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = num >> i & 1
+      if not node.children[bit]:
+        node.children[bit] = TrieNode()
+      node = node.children[bit]
+      node.min = min(node.min, num)
+      node.max = max(node.max, num)
+
+  def getMaxXor(self, x: int) -> int:
+    maxXor = 0
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = x >> i & 1
+      toggleBit = bit ^ 1
+      if node.children[toggleBit] and node.children[toggleBit].max > x and node.children[toggleBit].min <= 2 * x:
+        maxXor = maxXor | 1 << i
+        node = node.children[toggleBit]
+      elif node.children[bit]:
+        node = node.children[bit]
+      else:
+        return 0
+    return maxXor
+
+
+class Solution:
+  def maximumStrongPairXor(self, nums: List[int]) -> int:
+    maxNum = max(nums)
+    maxBit = int(math.log2(maxNum))
+    bitTrie = BitTrie(maxBit)
+
+    for num in nums:
+      bitTrie.insert(num)
+
+    return max(bitTrie.getMaxXor(num) for num in nums)
+","[{'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 39, 'end': 41, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 42, 'end': 43, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 44, 'end': 45, 'difficulty': 2, 'eg_cov_prob': 0.0}]","[28, 40, 41, 43, 45]"
+TCC02,1417,Reformat The String,1,reformat,"You are given an alphanumeric string `s`. (Alphanumeric string is a string
+consisting of lowercase English letters and digits).
+
+You have to find a permutation of the string where no letter is followed by
+another letter and no digit is followed by another digit. That is, no two
+adjacent characters have the same type.
+
+Return the reformatted string or return an empty string if it is impossible to
+reformat the string.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def reformat(self, s: str) -> str:
+    A=[]
+    for c in s:
+      if c.isalpha():
+        A.append(c)
+    B=[]
+    for c in s:
+      if c.isdigit():
+        B.append(c)
+
+    if len(A) < len(B):
+      A, B = B, A
+    if len(A) - len(B) > 1:
+      return ''
+
+    ans = []
+
+    for i in range(len(B)):
+      ans.append(A[i])
+      ans.append(B[i])
+
+    if len(A) == len(B) + 1:
+      ans.append(A[-1])
+    return ''.join(ans)
+","[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 0.99}]","[16, 20, 23, 25, 34]"
+TCC03,2299,Strong Password Checker II,1,strongPasswordCheckerII,"A password is said to be strong if it satisfies all the following criteria:
+
+* It has at least `8` characters.
+* It contains at least one lowercase letter.
+* It contains at least one uppercase letter.
+* It contains at least one digit.
+* It contains at least one special character. The special characters are the characters in the following string: `""!@#$%^&*()-+""`.
+* It does not contain `2` of the same character in adjacent positions (i.e., `""aab""` violates this condition, but `""aba""` does not).
+
+Given a string `password`, return `true` if it is a strong password.
+Otherwise, return `false`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def strongPasswordCheckerII(self, password: str) -> bool:
+    if len(password) < 8:
+      return False
+    if not any(c.islower() for c in password):
+      return False
+    if not any(c.isupper() for c in password):
+      return False
+    if not any(c.isdigit() for c in password):
+      return False
+    if not any(""!@#$%^&*()-+"".find(c) != -1 for c in password):
+      return False
+    return all(a != b for a, b in zip(password, password[1:]))
+","[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.05660377358490566}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 17, 'end': 18, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 2, 'eg_cov_prob': 0.018867924528301886}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 2, 'eg_cov_prob': 0.0}]","[14, 16, 18, 20, 22]"
+TCC04,999,Available Captures for Rook,1,numRookCaptures,"On an `8 x 8` chessboard, there is exactly one white rook `'R'` and some
+number of white bishops `'B'`, black pawns `'p'`, and empty squares `'.'`.
+
+When the rook moves, it chooses one of four cardinal directions (north, east,
+south, or west), then moves in that direction until it chooses to stop,
+reaches the edge of the board, captures a black pawn, or is blocked by a white
+bishop. A rook is considered attacking a pawn if the rook can capture the pawn
+on the rook's turn. The number of available captures for the white rook is the
+number of pawns that the rook is attacking.
+
+Return the number of available captures for the white rook.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def numRookCaptures(self, board: List[List[str]]) -> int:
+    ans = 0
+
+    for i in range(8):
+      for j in range(8):
+        if board[i][j] == 'R':
+          i0 = i
+          j0 = j
+
+    for d in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+      i = i0 + d[0]
+      j = j0 + d[1]
+      while 0 <= i < 8 and 0 <= j < 8:
+        if board[i][j] == 'p':
+          ans += 1
+        if board[i][j] != '.':
+          break
+        i += d[0]
+        j += d[1]
+
+    return ans
+","[{'type': 'if', 'start': 17, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 25, 'end': 26, 'difficulty': 1, 'eg_cov_prob': 0.82}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[18, 19, 26, 28]"
+TCC05,3095,Shortest Subarray With OR at Least K I,1,minimumSubarrayLength,"You are given an array `nums` of non-negative integers and an integer `k`.
+
+An array is called special if the bitwise `OR` of all of its elements is at
+least `k`.
+
+Return the length of the shortest special non-empty subarray of `nums`, or
+return `-1` if no special subarray exists.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumSubarrayLength(self, nums: List[int], k: int) -> int:
+    ans = len(nums) + 1
+    ors = 0
+    count = collections.Counter()
+
+    l = 0
+    for r, num in enumerate(nums):
+      ors = self._orNum(ors, num, count)
+      while ors >= k and l <= r:
+        ans = min(ans, r - l + 1)
+        ors = self._undoOrNum(ors, nums[l], count)
+        l += 1
+
+    return -1 if ans == len(nums) + 1 else ans
+
+  def _orNum(self, ors: int, num: int, count: Dict[int, int]) -> int:
+    for i in range(30):
+      if num >> i & 1:
+        count[i] += 1
+        if count[i] == 1:
+          ors += 1 << i
+    return ors
+
+  def _undoOrNum(self, ors: int, num: int, count: Dict[int, int]) -> int:
+    for i in range(30):
+      if num >> i & 1:
+        count[i] -= 1
+        if count[i] == 0:
+          ors -= 1 << i
+    return ors
+","[{'type': 'if', 'start': 29, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 37, 'end': 40, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[30, 31, 32, 38, 39, 40]"
+TCC06,1582,Special Positions in a Binary Matrix,1,numSpecial,"Given an `m x n` binary matrix `mat`, return the number of special positions
+in `mat`.
+
+A position `(i, j)` is called special if `mat[i][j] == 1` and all other
+elements in row `i` and column `j` are `0` (rows and columns are 0-indexed).
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def numSpecial(self, mat: List[List[int]]) -> int:
+    m = len(mat)
+    n = len(mat[0])
+    ans = 0
+    rowOnes = [0] * m
+    colOnes = [0] * n
+
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j] == 1:
+          rowOnes[i] += 1
+          colOnes[j] += 1
+
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j] == 1 and rowOnes[i] == 1 and colOnes[j] == 1:
+          ans += 1
+
+    return ans
+","[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 2, 'eg_cov_prob': 0.0}]","[22, 23, 28]"
+TCC07,2685,Count the Number of Complete Components,2,countCompleteComponents,"You are given an integer `n`. There is an undirected graph with `n` vertices,
+numbered from `0` to `n - 1`. You are given a 2D integer array `edges` where
+`edges[i] = [ai, bi]` denotes that there exists an undirected edge connecting
+vertices `ai` and `bi`.
+
+Return the number of complete connected components of the graph.
+
+A connected component is a subgraph of a graph in which there exists a path
+between any two vertices, and no vertex of the subgraph shares an edge with a
+vertex outside of the subgraph.
+
+A connected component is said to be complete if there exists an edge between
+every pair of its vertices.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class UnionFind:
+  def __init__(self, n: int):
+    self.id = list(range(n))
+    self.rank = [0] * n
+    self.nodeCount = [1] * n
+    self.edgeCount = [0] * n
+
+  def unionByRank(self, u: int, v: int) -> None:
+    i = self.find(u)
+    j = self.find(v)
+    self.edgeCount[i] += 1
+    if i == j:
+      return
+    if self.rank[i] < self.rank[j]:
+      self.id[i] = j
+      self.edgeCount[j] += self.edgeCount[i]
+      self.nodeCount[j] += self.nodeCount[i]
+    elif self.rank[i] > self.rank[j]:
+      self.id[j] = i
+      self.edgeCount[i] += self.edgeCount[j]
+      self.nodeCount[i] += self.nodeCount[j]
+    else:
+      self.id[i] = j
+      self.edgeCount[j] += self.edgeCount[i]
+      self.nodeCount[j] += self.nodeCount[i]
+      self.rank[j] += 1
+
+  def find(self, u: int) -> int:
+    if self.id[u] != u:
+      self.id[u] = self.find(self.id[u])
+    return self.id[u]
+
+  def isComplete(self, u):
+    return self.nodeCount[u] * (self.nodeCount[u] - 1) // 2 == self.edgeCount[u]
+
+
+class Solution:
+  def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+    ans = 0
+    uf = UnionFind(n)
+    parents = set()
+
+    for u, v in edges:
+      uf.unionByRank(u, v)
+
+    for i in range(n):
+      parent = uf.find(i)
+      if parent not in parents and uf.isComplete(parent):
+        ans += 1
+        parents.add(parent)
+
+    return ans
+","[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 24, 'end': 27, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 28, 'end': 31, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'else', 'start': 32, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 58, 'end': 60, 'difficulty': 2, 'eg_cov_prob': 0.20754716981132076}]","[23, 25, 26, 27, 29, 30, 31, 33, 34, 35, 36, 40, 59, 60]"
+TCC08,1631,Path With Minimum Effort,2,minimumEffortPath,"You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D
+array of size `rows x columns`, where `heights[row][col]` represents the
+height of cell `(row, col)`. You are situated in the top-left cell, `(0, 0)`,
+and you hope to travel to the bottom-right cell, `(rows-1, columns-1)` (i.e.,
+0-indexed). You can move up, down, left, or right, and you wish to find a
+route that requires the minimum effort.
+
+A route's effort is the maximum absolute difference in heights between two
+consecutive cells of the route.
+
+Return the minimum effort required to travel from the top-left cell to the
+bottom-right cell.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumEffortPath(self, heights: List[List[int]]) -> int:
+    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))
+    m = len(heights)
+    n = len(heights[0])
+    diff = [[math.inf] * n for _ in range(m)]
+    seen = set()
+
+    minHeap = [(0, 0, 0)]
+    diff[0][0] = 0
+
+    while minHeap:
+      d, i, j = heapq.heappop(minHeap)
+      if i == m - 1 and j == n - 1:
+        return d
+      seen.add((i, j))
+      for dx, dy in dirs:
+        x = i + dx
+        y = j + dy
+        if x < 0 or x == m or y < 0 or y == n:
+          continue
+        if (x, y) in seen:
+          continue
+        newDiff = abs(heights[i][j] - heights[x][y])
+        maxDiff = max(diff[i][j], newDiff)
+        if diff[x][y] > maxDiff:
+          diff[x][y] = maxDiff
+          heapq.heappush(minHeap, (diff[x][y], x, y))
+","[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[25, 31, 33, 37, 38]"
+TCC09,2245,Maximum Trailing Zeros in a Cornered Path,2,maxTrailingZeros,"You are given a 2D integer array `grid` of size `m x n`, where each cell
+contains a positive integer.
+
+A cornered path is defined as a set of adjacent cells with at most one turn.
+More specifically, the path should exclusively move either horizontally or
+vertically up to the turn (if there is one), without returning to a previously
+visited cell. After the turn, the path will then move exclusively in the
+alternate direction: move vertically if it moved horizontally, and vice versa,
+also without returning to a previously visited cell.
+
+The product of a path is defined as the product of all the values in the path.
+
+Return the maximum number of trailing zeros in the product of a cornered path
+found in `grid`.
+
+Note:
+
+* Horizontal movement means moving in either the left or right direction.
+* Vertical movement means moving in either the up or down direction.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def maxTrailingZeros(self, grid: List[List[int]]) -> int:
+    m = len(grid)
+    n = len(grid[0])
+    leftPrefix2 = [[0] * n for _ in range(m)]
+    leftPrefix5 = [[0] * n for _ in range(m)]
+    topPrefix2 = [[0] * n for _ in range(m)]
+    topPrefix5 = [[0] * n for _ in range(m)]
+
+    def getCount(num: int, factor: int) -> int:
+      count = 0
+      while num % factor == 0:
+        num //= factor
+        count += 1
+      return count
+
+    for i in range(m):
+      for j in range(n):
+        leftPrefix2[i][j] = getCount(grid[i][j], 2)
+        leftPrefix5[i][j] = getCount(grid[i][j], 5)
+        if j:
+          leftPrefix2[i][j] += leftPrefix2[i][j - 1]
+          leftPrefix5[i][j] += leftPrefix5[i][j - 1]
+
+    for j in range(n):
+      for i in range(m):
+        topPrefix2[i][j] = getCount(grid[i][j], 2)
+        topPrefix5[i][j] = getCount(grid[i][j], 5)
+        if i:
+          topPrefix2[i][j] += topPrefix2[i - 1][j]
+          topPrefix5[i][j] += topPrefix5[i - 1][j]
+
+    ans = 0
+    for i in range(m):
+      for j in range(n):
+        curr2 = getCount(grid[i][j], 2)
+        curr5 = getCount(grid[i][j], 5)
+        l2 = leftPrefix2[i][j]
+        l5 = leftPrefix5[i][j]
+        r2 = leftPrefix2[i][n - 1] - (0 if j == 0 else leftPrefix2[i][j - 1])
+        r5 = leftPrefix5[i][n - 1] - (0 if j == 0 else leftPrefix5[i][j - 1])
+        t2 = topPrefix2[i][j]
+        t5 = topPrefix5[i][j]
+        d2 = topPrefix2[m - 1][j] - (0 if i == 0 else topPrefix2[i - 1][j])
+        d5 = topPrefix5[m - 1][j] - (0 if i == 0 else topPrefix5[i - 1][j])
+        ans = max(ans, min(l2 + t2 - curr2, l5 + t5 - curr5), min(r2 + t2 - curr2, r5 + t5 - curr5), min(l2 + d2 - curr2, l5 + d5 - curr5), min(r2 + d2 - curr2, r5 + d5 - curr5))
+
+    return ans
+","[{'type': 'if', 'start': 31, 'end': 33, 'difficulty': 1, 'eg_cov_prob': 0.9811320754716981}, {'type': 'if', 'start': 39, 'end': 41, 'difficulty': 1, 'eg_cov_prob': 0.9811320754716981}]","[32, 33, 40, 41]"
+TCC10,1334,Find the City With the Smallest Number of Neighbors at a Threshold Distance,2,findTheCity,"There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where
+`edges[i] = [fromi, toi, weighti]` represents a bidirectional and weighted
+edge between cities `fromi` and `toi`, and given the integer
+`distanceThreshold`.
+
+Return the city with the smallest number of cities that are reachable through
+some path and whose distance is at most `distanceThreshold`, If there are
+multiple such cities, return the city with the greatest number.
+
+Notice that the distance of a path connecting cities i and j is equal to the
+sum of the edges' weights along that path.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+    ans = -1
+    minCitiesCount = n
+    dist = self._floydWarshall(n, edges, distanceThreshold)
+
+    for i in range(n):
+      citiesCount = sum(dist[i][j] <= distanceThreshold for j in range(n))
+      if citiesCount <= minCitiesCount:
+        ans = i
+        minCitiesCount = citiesCount
+
+    return ans
+
+  def _floydWarshall(self, n: int, edges: List[List[int]], distanceThreshold: int) -> List[List[int]]:
+    dist = [[distanceThreshold + 1] * n for _ in range(n)]
+
+    for i in range(n):
+      dist[i][i] = 0
+
+    for u, v, w in edges:
+      dist[u][v] = w
+      dist[v][u] = w
+
+    for k in range(n):
+      for i in range(n):
+        for j in range(n):
+          dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+    return dist
+","[{'type': 'if', 'start': 19, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[20, 21]"
+TCC11,1267,Count Servers that Communicate,2,countServers,"You are given a map of a server center, represented as a `m * n` integer
+matrix `grid`, where 1 means that on that cell there is a server and 0 means
+that it is no server. Two servers are said to communicate if they are on the
+same row or on the same column.  
+
+Return the number of servers that communicate with any other server.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def countServers(self, grid: List[List[int]]) -> int:
+    m = len(grid)
+    n = len(grid[0])
+    ans = 0
+    rows = [0] * m
+    cols = [0] * n
+
+    for i in range(m):
+      for j in range(n):
+        if grid[i][j] == 1:
+          rows[i] += 1
+          cols[j] += 1
+
+    for i in range(m):
+      for j in range(n):
+        if grid[i][j] == 1 and (rows[i] > 1 or cols[j] > 1):
+          ans += 1
+
+    return ans
+","[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[22, 23, 28]"
+TCC12,1139,Largest 1-Bordered Square,2,largest1BorderedSquare,"Given a 2D `grid` of `0`s and `1`s, return the number of elements in the
+largest square subgrid that has all `1`s on its border, or `0` if such a
+subgrid doesn't exist in the `grid`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def largest1BorderedSquare(self, grid: List[List[int]]) -> int:
+    m = len(grid)
+    n = len(grid[0])
+
+    leftOnes = [[0] * n for _ in range(m)]
+    topOnes = [[0] * n for _ in range(m)]
+
+    for i in range(m):
+      for j in range(n):
+        if grid[i][j] == 1:
+          if j==0:
+            leftOnes[i][j]=1
+          else:
+            leftOnes[i][j]=1+leftOnes[i][j-1]
+          if i==0:
+            topOnes[i][j]=1
+          else:
+            topOnes[i][j]=1+topOnes[i-1][j]
+
+    for sz in range(min(m, n), 0, -1):
+      for i in range(m - sz + 1):
+        for j in range(n - sz + 1):
+          x = i + sz - 1
+          y = j + sz - 1
+          if min(leftOnes[i][y], leftOnes[x][y], topOnes[x][j], topOnes[x][y]) >= sz:
+            return sz * sz
+
+    return 0
+","[{'type': 'if', 'start': 21, 'end': 29, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 24, 'end': 25, 'difficulty': 1, 'eg_cov_prob': 0.98}, {'type': 'if', 'start': 26, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'else', 'start': 28, 'end': 29, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 36, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[22, 23, 25, 26, 27, 29, 37]"
+TCC13,743,Network Delay Time,2,networkDelayTime,"You are given a network of `n` nodes, labeled from `1` to `n`. You are also
+given `times`, a list of travel times as directed edges `times[i] = (ui, vi,
+wi)`, where `ui` is the source node, `vi` is the target node, and `wi` is the
+time it takes for a signal to travel from source to target.
+
+We will send a signal from a given node `k`. Return the minimum time it takes
+for all the `n` nodes to receive the signal. If it is impossible for all the
+`n` nodes to receive the signal, return `-1`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+    graph = [[] for _ in range(n)]
+
+    for u, v, w in times:
+      graph[u - 1].append((v - 1, w))
+
+    return self._dijkstra(graph, k - 1)
+
+  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> int:
+    dist = [math.inf] * len(graph)
+
+    dist[src] = 0
+    minHeap = [(dist[src], src)]
+
+    while minHeap:
+      d, u = heapq.heappop(minHeap)
+      if d > dist[u]:
+        continue
+      for v, w in graph[u]:
+        if d + w < dist[v]:
+          dist[v] = d + w
+          heapq.heappush(minHeap, (dist[v], v))
+
+    maxDist = max(dist)
+    return maxDist if maxDist != math.inf else -1
+","[{'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.95}, {'type': 'if', 'start': 31, 'end': 33, 'difficulty': 1, 'eg_cov_prob': 0.97}]","[29, 32, 33]"
+TCC14,2662,Minimum Cost of a Path With Special Roads,2,minimumCost,"You are given an array `start` where `start = [startX, startY]` represents
+your initial position `(startX, startY)` in a 2D space. You are also given the
+array `target` where `target = [targetX, targetY]` represents your target
+position `(targetX, targetY)`.
+
+The cost of going from a position `(x1, y1)` to any other position in the
+space `(x2, y2)` is `|x2 - x1| + |y2 - y1|`.
+
+There are also some special roads. You are given a 2D array `specialRoads`
+where `specialRoads[i] = [x1i, y1i, x2i, y2i, costi]` indicates that the `ith`
+special road can take you from `(x1i, y1i)` to `(x2i, y2i)` with a cost equal
+to `costi`. You can use each special road any number of times.
+
+Return the minimum cost required to go from `(startX, startY)` to `(targetX,
+targetY)`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumCost(self, start: List[int], target: List[int], specialRoads: List[List[int]]) -> int:
+    return self.dijkstra(specialRoads, *start, *target)
+
+  def dijkstra(self, specialRoads: List[List[int]], srcX: int, srcY: int, dstX: int, dstY: int) -> int:
+    n = len(specialRoads)
+    dist = [math.inf] * n
+    minHeap = []
+
+    for u, (x1, y1, _, _, cost) in enumerate(specialRoads):
+      d = abs(x1 - srcX) + abs(y1 - srcY) + cost
+      dist[u] = d
+      heapq.heappush(minHeap, (dist[u], u))
+
+    while minHeap:
+      d, u = heapq.heappop(minHeap)
+      if d > dist[u]:
+        continue
+      _, _, ux2, uy2, _ = specialRoads[u]
+      for v in range(n):
+        if v == u:
+          continue
+        vx1, vy1, _, _, vcost = specialRoads[v]
+        newDist = d + abs(vx1 - ux2) + abs(vy1 - uy2) + vcost
+        if newDist < dist[v]:
+          dist[v] = newDist
+          heapq.heappush(minHeap, (dist[v], v))
+
+    ans = abs(dstX - srcX) + abs(dstY - srcY)
+    for u in range(n):
+      _, _, x2, y2, _ = specialRoads[u]
+      ans = min(ans, dist[u] + abs(dstX - x2) + abs(dstY - y2))
+
+    return ans
+","[{'type': 'if', 'start': 27, 'end': 28, 'difficulty': 1, 'eg_cov_prob': 0.9056603773584906}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 37, 'difficulty': 1, 'eg_cov_prob': 0.9056603773584906}]","[28, 32, 36, 37]"
+TCC15,423,Reconstruct Original Digits from English,2,originalDigits,"Given a string `s` containing an out-of-order English representation of digits
+`0-9`, return the digits in ascending order.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def originalDigits(self, s: str) -> str:
+    count = [0] * 10
+
+    for c in s:
+      if c == 'z':
+        count[0] += 1
+      if c == 'o':
+        count[1] += 1
+      if c == 'w':
+        count[2] += 1
+      if c == 'h':
+        count[3] += 1
+      if c == 'u':
+        count[4] += 1
+      if c == 'f':
+        count[5] += 1
+      if c == 'x':
+        count[6] += 1
+      if c == 's':
+        count[7] += 1
+      if c == 'g':
+        count[8] += 1
+      if c == 'i':
+        count[9] += 1
+
+    count[1] -= count[0] + count[2] + count[4]
+    count[3] -= count[8]
+    count[5] -= count[4]
+    count[7] -= count[6]
+    count[9] -= count[5] + count[6] + count[8]
+
+    return ''.join(chr(i + ord('0')) for i, c in enumerate(count) for j in range(c))
+","[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 18, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 26, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[17, 19, 21, 23, 25, 27, 29, 31, 33, 35]"
+TCC16,15,3Sum,2,threeSum,"Given an integer array nums, return all the triplets `[nums[i], nums[j],
+nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] +
+nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def threeSum(self, nums: List[int]) -> List[List[int]]:
+    if len(nums) < 3:
+      return []
+
+    ans = []
+
+    nums.sort()
+
+    for i in range(len(nums) - 2):
+      if i > 0 and nums[i] == nums[i - 1]:
+        continue
+
+      l = i + 1
+      r = len(nums) - 1
+      while l < r:
+        summ = nums[i] + nums[l] + nums[r]
+        if summ == 0:
+          ans.append((nums[i], nums[l], nums[r]))
+          l += 1
+          r -= 1
+          while nums[l] == nums[l - 1] and l < r:
+            l += 1
+          while nums[r] == nums[r + 1] and l < r:
+            r -= 1
+        elif summ < 0:
+          l += 1
+        else:
+          r -= 1
+
+    return ans
+","[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 1, 'eg_cov_prob': 0.83}, {'type': 'if', 'start': 28, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 36, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[14, 22, 29, 30, 31, 32, 33, 34, 35, 37, 39]"
+TCC17,684,Redundant Connection,2,findRedundantConnection,"In this problem, a tree is an undirected graph that is connected and has no
+cycles.
+
+You are given a graph that started as a tree with `n` nodes labeled from `1`
+to `n`, with one additional edge added. The added edge has two different
+vertices chosen from `1` to `n`, and was not an edge that already existed. The
+graph is represented as an array `edges` of length `n` where `edges[i] = [ai,
+bi]` indicates that there is an edge between nodes `ai` and `bi` in the graph.
+
+Return an edge that can be removed so that the resulting graph is a tree of
+`n` nodes. If there are multiple answers, return the answer that occurs last
+in the input.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class UnionFind:
+  def __init__(self, n: int):
+    self.id = list(range(n))
+    self.rank = [0] * n
+
+  def unionByRank(self, u: int, v: int) -> bool:
+    i = self._find(u)
+    j = self._find(v)
+    if i == j:
+      return False
+    if self.rank[i] < self.rank[j]:
+      self.id[i] = j
+    elif self.rank[i] > self.rank[j]:
+      self.id[j] = i
+    else:
+      self.id[i] = j
+      self.rank[j] += 1
+    return True
+
+  def _find(self, u: int) -> int:
+    if self.id[u] != u:
+      self.id[u] = self._find(self.id[u])
+    return self.id[u]
+
+
+class Solution:
+  def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+    uf = UnionFind(len(edges) + 1)
+
+    for edge in edges:
+      u, v = edge
+      if not uf.unionByRank(u, v):
+        return edge
+","[{'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 23, 'end': 24, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 25, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 42, 'end': 43, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[20, 22, 24, 26, 27, 32, 43]"
+TCC18,866,Prime Palindrome,2,primePalindrome,"Given an integer n, return the smallest prime palindrome greater than or equal
+to `n`.
+
+An integer is prime if it has exactly two divisors: `1` and itself. Note that
+`1` is not a prime number.
+
+* For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.
+
+An integer is a palindrome if it reads the same from left to right as it does
+from right to left.
+
+* For example, `101` and `12321` are palindromes.
+
+The test cases are generated so that the answer always exists and is in the
+range `[2, 2 * 108]`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def primePalindrome(self, n: int) -> int:
+    def getPalindromes(n: int):
+      length = n // 2
+      for i in range(10**(length - 1), 10**length):
+        s = str(i)
+        for j in range(10):
+          yield int(s + str(j) + s[::-1])
+
+    def isPrime(num: int) -> bool:
+      for i in range(2, int(num**0.5 + 1)):
+        if num % i == 0:
+          return False
+      return True
+
+    if n <= 2:
+      return 2
+    if n == 3:
+      return 3
+    if n <= 5:
+      return 5
+    if n <= 7:
+      return 7
+    if n <= 11:
+      return 11
+
+    nLength = len(str(n))
+
+    while True:
+      for num in getPalindromes(nLength):
+        if num >= n and isPrime(num):
+          return num
+      nLength += 1
+","[{'type': 'if', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 41, 'end': 42, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[23, 27, 29, 31, 33, 35, 42]"
+TCC19,2751,Robot Collisions,3,survivedRobotsHealths,"There are `n` 1-indexed robots, each having a position on a line, health, and
+movement direction.
+
+You are given 0-indexed integer arrays `positions`, `healths`, and a string
+`directions` (`directions[i]` is either 'L' for left or 'R' for right). All
+integers in `positions` are unique.
+
+All robots start moving on the line simultaneously at the same speed in their
+given directions. If two robots ever share the same position while moving,
+they will collide.
+
+If two robots collide, the robot with lower health is removed from the line,
+and the health of the other robot decreases by one. The surviving robot
+continues in the same direction it was going. If both robots have the same
+health, they are both removed from the line.
+
+Your task is to determine the health of the robots that survive the
+collisions, in the same order that the robots were given, i.e. final heath of
+robot 1 (if survived), final health of robot 2 (if survived), and so on. If
+there are no survivors, return an empty array.
+
+Return an array containing the health of the remaining robots (in the order
+they were given in the input), after no further collisions can occur.
+
+Note: The positions may be unsorted.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+from dataclasses import dataclass
+
+@dataclass
+class Robot:
+  index: int
+  position: int
+  health: int
+  direction: str
+
+
+class Solution:
+  def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
+    robots = sorted([Robot(index, position, health, direction) for index, (position, health, direction) in enumerate(zip(positions, healths, directions))], key=lambda robot: robot.position)
+    stack: List[Robot] = []
+
+    for robot in robots:
+      if robot.direction == 'R':
+        stack.append(robot)
+        continue
+      while stack and stack[-1].direction == 'R' and robot.health > 0:
+        if stack[-1].health == robot.health:
+          stack.pop()
+          robot.health = 0
+        elif stack[-1].health < robot.health:
+          stack.pop()
+          robot.health -= 1
+        else:
+          stack[-1].health -= 1
+          robot.health = 0
+      if robot.health > 0:
+        stack.append(robot)
+
+    stack.sort(key=lambda robot: robot.index)
+    return [robot.health for robot in stack]
+","[{'type': 'if', 'start': 26, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 32, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 33, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[27, 28, 31, 32, 34, 35, 37, 38, 40]"
+TCC20,1977,Number of Ways to Separate Numbers,3,numberOfCombinations,"You wrote down many positive integers in a string called `num`. However, you
+realized that you forgot to add commas to seperate the different numbers. You
+remember that the list of integers was non-decreasing and that no integer had
+leading zeros.
+
+Return the number of possible lists of integers that you could have written
+down to get the string `num`. Since the answer may be large, return it modulo
+`109 + 7`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def numberOfCombinations(self, num: str) -> int:
+    if num[0] == '0':
+      return 0
+
+    kMod = 1_000_000_007
+    n = len(num)
+    dp = [[0] * (n + 1) for _ in range(n)]
+    lcs = [[0] * (n + 1) for _ in range(n + 1)]
+
+    for i in range(n - 1, -1, -1):
+      for j in range(i + 1, n):
+        if num[i] == num[j]:
+          lcs[i][j] = lcs[i + 1][j + 1] + 1
+
+    for i in range(n):
+      for k in range(1, i + 2):
+        dp[i][k] += dp[i][k - 1]
+        dp[i][k] %= kMod
+        s = i - k + 1
+        if num[s] == '0':
+          continue
+        if s == 0:
+          dp[i][k] += 1
+          continue
+        if s < k:
+          dp[i][k] += dp[s - 1][s]
+          continue
+        l = lcs[s - k][s]
+        if l >= k or num[s - k + l] <= num[s + l]:
+          dp[i][k] += dp[s - 1][k]
+        else:
+          dp[i][k] += dp[s - 1][k - 1]
+
+    return dp[n - 1][n] % kMod
+","[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.10204081632653061}, {'type': 'if', 'start': 23, 'end': 24, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}, {'type': 'if', 'start': 33, 'end': 35, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}, {'type': 'if', 'start': 36, 'end': 38, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}, {'type': 'if', 'start': 40, 'end': 41, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}, {'type': 'else', 'start': 42, 'end': 43, 'difficulty': 1, 'eg_cov_prob': 0.8979591836734694}]","[14, 24, 32, 34, 35, 37, 38, 41, 43]"
+TCC21,2157,Groups of Strings,3,groupStrings,"You are given a 0-indexed array of strings `words`. Each string consists of
+lowercase English letters only. No letter occurs more than once in any string
+of `words`.
+
+Two strings `s1` and `s2` are said to be connected if the set of letters of
+`s2` can be obtained from the set of letters of `s1` by any one of the
+following operations:
+
+* Adding exactly one letter to the set of the letters of `s1`.
+* Deleting exactly one letter from the set of the letters of `s1`.
+* Replacing exactly one letter from the set of the letters of `s1` with any letter, including itself.
+
+The array `words` can be divided into one or more non-intersecting groups. A
+string belongs to a group if any one of the following is true:
+
+* It is connected to at least one other string of the group.
+* It is the only string present in the group.
+
+Note that the strings in `words` should be grouped in such a manner that a
+string belonging to a group cannot be connected to a string present in any
+other group. It can be proved that such an arrangement is always unique.
+
+Return an array `ans` of size `2` where:
+
+* `ans[0]` is the maximum number of groups `words` can be divided into, and
+* `ans[1]` is the size of the largest group.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class UnionFind:
+  def __init__(self, n: int):
+    self.count = n
+    self.id = list(range(n))
+    self.sz = [1] * n
+
+  def unionBySize(self, u: int, v: int) -> None:
+    i = self._find(u)
+    j = self._find(v)
+    if i == j:
+      return
+    if self.sz[i] < self.sz[j]:
+      self.sz[j] += self.sz[i]
+      self.id[i] = j
+    else:
+      self.sz[i] += self.sz[j]
+      self.id[j] = i
+    self.count -= 1
+
+  def _find(self, u: int) -> int:
+    if self.id[u] != u:
+      self.id[u] = self._find(self.id[u])
+    return self.id[u]
+
+
+class Solution:
+  def groupStrings(self, words: List[str]) -> List[int]:
+    uf = UnionFind(len(words))
+
+    def getMask(s: str) -> int:
+      mask = 0
+      for c in s:
+        mask |= 1 << ord(c) - ord('a')
+      return mask
+
+    def getAddedMasks(mask: int):
+      for i in range(26):
+        if not (mask >> i & 1):
+          yield mask | 1 << i
+
+    def getDeletedMasks(mask: int):
+      for i in range(26):
+        if mask >> i & 1:
+          yield mask ^ 1 << i
+
+    maskToIndex = {getMask(word): i for i, word in enumerate(words)}
+    deletedMaskToIndex = {}
+
+    for i, word in enumerate(words):
+      mask = getMask(word)
+      for m in getAddedMasks(mask):
+        if m in maskToIndex:
+          uf.unionBySize(i, maskToIndex[m])
+      for m in getDeletedMasks(mask):
+        if m in maskToIndex:
+          uf.unionBySize(i, maskToIndex[m])
+        if m in deletedMaskToIndex:
+          uf.unionBySize(i, deletedMaskToIndex[m])
+        else:
+          deletedMaskToIndex[m] = i
+
+    return [uf.count, max(uf.sz)]
+","[{'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 24, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 25, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 48, 'end': 49, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 53, 'end': 54, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 62, 'end': 63, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 65, 'end': 66, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 67, 'end': 68, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 69, 'end': 70, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[21, 23, 24, 26, 27, 32, 49, 54, 63, 66, 68, 70]"
+TCC22,2203,Minimum Weighted Subgraph With the Required Paths,3,minimumWeight,"You are given an integer `n` denoting the number of nodes of a weighted
+directed graph. The nodes are numbered from `0` to `n - 1`.
+
+You are also given a 2D integer array `edges` where `edges[i] = [fromi, toi,
+weighti]` denotes that there exists a directed edge from `fromi` to `toi` with
+weight `weighti`.
+
+Lastly, you are given three distinct integers `src1`, `src2`, and `dest`
+denoting three distinct nodes of the graph.
+
+Return the minimum weight of a subgraph of the graph such that it is possible
+to reach `dest` from both `src1` and `src2` via a set of edges of this
+subgraph. In case such a subgraph does not exist, return `-1`.
+
+A subgraph is a graph whose vertices and edges are subsets of the original
+graph. The weight of a subgraph is the sum of weights of its constituent
+edges.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumWeight(self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int) -> int:
+    graph = [[] for _ in range(n)]
+    reversedGraph = [[] for _ in range(n)]
+
+    for u, v, w in edges:
+      graph[u].append((v, w))
+      reversedGraph[v].append((u, w))
+
+    fromSrc1 = self._dijkstra(graph, src1)
+    fromSrc2 = self._dijkstra(graph, src2)
+    fromDest = self._dijkstra(reversedGraph, dest)
+    minWeight = min(a + b + c for a, b, c in zip(fromSrc1, fromSrc2, fromDest))
+    if minWeight == math.inf:
+      return -1
+    else:
+      return minWeight
+
+  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> List[int]:
+    dist = [math.inf] * len(graph)
+
+    dist[src] = 0
+    minHeap = [(dist[src], src)]
+
+    while minHeap:
+      d, u = heapq.heappop(minHeap)
+      if d > dist[u]:
+        continue
+      for v, w in graph[u]:
+        if d + w < dist[v]:
+          dist[v] = d + w
+          heapq.heappush(minHeap, (dist[v], v))
+
+    return dist
+","[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 1, 'eg_cov_prob': 0.7735849056603774}, {'type': 'else', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.22641509433962265}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 2, 'eg_cov_prob': 0.37735849056603776}, {'type': 'if', 'start': 40, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.8490566037735849}]","[25, 27, 38, 41, 42]"
+TCC23,1707,Maximum XOR With an Element From Array,3,maximizeXor,"You are given an array `nums` consisting of non-negative integers. You are
+also given a `queries` array, where `queries[i] = [xi, mi]`.
+
+The answer to the `ith` query is the maximum bitwise `XOR` value of `xi` and
+any element of `nums` that does not exceed `mi`. In other words, the answer is
+`max(nums[j] XOR xi)` for all `j` such that `nums[j] <= mi`. If all elements
+in `nums` are larger than `mi`, then the answer is `-1`.
+
+Return an integer array `answer` where `answer.length == queries.length` and
+`answer[i]` is the answer to the `ith` query.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator, Optional
+
+class TrieNode:
+  def __init__(self):
+    self.children: List[Optional[TrieNode]] = [None] * 2
+
+
+class BitTrie:
+  def __init__(self, maxBit: int):
+    self.maxBit = maxBit
+    self.root = TrieNode()
+
+  def insert(self, num: int) -> None:
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = num >> i & 1
+      if not node.children[bit]:
+        node.children[bit] = TrieNode()
+      node = node.children[bit]
+
+  def getMaxXor(self, num: int) -> int:
+    maxXor = 0
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = num >> i & 1
+      toggleBit = bit ^ 1
+      if node.children[toggleBit]:
+        maxXor = maxXor | 1 << i
+        node = node.children[toggleBit]
+      elif node.children[bit]:
+        node = node.children[bit]
+      else:
+        return 0
+    return maxXor
+
+
+class IndexedQuery:
+  def __init__(self, queryIndex: int, x: int, m: int):
+    self.queryIndex = queryIndex
+    self.x = x
+    self.m = m
+
+  def __iter__(self):
+    yield self.queryIndex
+    yield self.x
+    yield self.m
+
+
+class Solution:
+  def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+    ans = [-1] * len(queries)
+    maxBit = int(math.log2(max(max(nums), max(x for x, _ in queries))))
+    bitTrie = BitTrie(maxBit)
+
+    nums.sort()
+
+    i = 0
+    for queryIndex, x, m in sorted([IndexedQuery(i, x, m) for i, (x, m) in enumerate(queries)], key=lambda iq: iq.m):
+      while i < len(nums) and nums[i] <= m:
+        bitTrie.insert(nums[i])
+        i += 1
+      if i > 0 and nums[i - 1] <= m:
+        ans[queryIndex] = bitTrie.getMaxXor(x)
+
+    return ans
+","[{'type': 'if', 'start': 25, 'end': 26, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 70, 'end': 71, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 40, 'end': 41, 'difficulty': 2, 'eg_cov_prob': 0.0}]","[26, 36, 37, 39, 41, 71]"
+TCC24,1617,Count Subtrees With Max Distance Between Cities,3,countSubgraphsForEachDiameter,"There are `n` cities numbered from `1` to `n`. You are given an array `edges`
+of size `n-1`, where `edges[i] = [ui, vi]` represents a bidirectional edge
+between cities `ui` and `vi`. There exists a unique path between each pair of
+cities. In other words, the cities form a tree.
+
+A subtree is a subset of cities where every city is reachable from every other
+city in the subset, where the path between each pair passes through only the
+cities from the subset. Two subtrees are different if there is a city in one
+subtree that is not present in the other.
+
+For each `d` from `1` to `n-1`, find the number of subtrees in which the
+maximum distance between any two cities in the subtree is equal to `d`.
+
+Return an array of size `n-1` where the `dth` element (1-indexed) is the
+number of subtrees in which the maximum distance between any two cities is
+equal to `d`.
+
+Notice that the distance between the two cities is the number of edges in the
+path between them.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def countSubgraphsForEachDiameter(self, n: int, edges: List[List[int]]) -> List[int]:
+    maxMask = 1 << n
+    dist = self._floydWarshall(n, edges)
+    ans = [0] * (n - 1)
+
+    for mask in range(maxMask):
+      maxDist = self._getMaxDist(mask, dist, n)
+      if maxDist > 0:
+        ans[maxDist - 1] += 1
+
+    return ans
+
+  def _floydWarshall(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+    dist = [[n] * n for _ in range(n)]
+
+    for i in range(n):
+      dist[i][i] = 0
+
+    for u, v in edges:
+      dist[u - 1][v - 1] = 1
+      dist[v - 1][u - 1] = 1
+
+    for k in range(n):
+      for i in range(n):
+        for j in range(n):
+          dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+    return dist
+
+  def _getMaxDist(self, mask: int, dist: List[List[int]], n: int) -> int:
+    maxDist = 0
+    edgeCount = 0
+    cityCount = 0
+    for u in range(n):
+      if (mask >> u) & 1 == 0:
+        continue
+      cityCount += 1
+      for v in range(u + 1, n):
+        if (mask >> v) & 1 == 0:
+          continue
+        if dist[u][v] == 1:
+          edgeCount += 1
+        maxDist = max(maxDist, dist[u][v])
+
+    if edgeCount == cityCount - 1:
+      return maxDist
+    else:
+      return 0
+","[{'type': 'if', 'start': 56, 'end': 57, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 58, 'end': 59, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 46, 'end': 47, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 50, 'end': 51, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 52, 'end': 53, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[20, 47, 51, 53, 57, 59]"
+TCC25,854,K-Similar Strings,3,kSimilarity,"Strings `s1` and `s2` are `k`-similar (for some non-negative integer `k`) if
+we can swap the positions of two letters in `s1` exactly `k` times so that the
+resulting string equals `s2`.
+
+Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and
+`s2` are `k`-similar.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def kSimilarity(self, s1: str, s2: str) -> int:
+    ans = 0
+    q = collections.deque([s1])
+    seen = {s1}
+
+    while q:
+      for _ in range(len(q)):
+        curr = q.popleft()
+        if curr == s2:
+          return ans
+        for child in self._getChildren(curr, s2):
+          if child in seen:
+            continue
+          q.append(child)
+          seen.add(child)
+      ans += 1
+
+    return -1
+
+  def _getChildren(self, curr: str, target: str) -> List[str]:
+    children = []
+    s = list(curr)
+    i = 0
+    while curr[i] == target[i]:
+      i += 1
+
+    for j in range(i + 1, len(s)):
+      if s[j] == target[i]:
+        s[i], s[j] = s[j], s[i]
+        children.append(''.join(s))
+        s[i], s[j] = s[j], s[i]
+
+    return children
+","[{'type': 'if', 'start': 39, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.9}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 23, 'end': 24, 'difficulty': 1, 'eg_cov_prob': 0.73}]","[21, 24, 40, 41, 42]"
+TCC26,1687,Delivering Boxes from Storage to Ports,3,boxDelivering,"You have the task of delivering some boxes from storage to their ports using
+only one ship. However, this ship has a limit on the number of boxes and the
+total weight that it can carry.
+
+You are given an array `boxes`, where `boxes[i] = [ports​​i​, weighti]`, and
+three integers `portsCount`, `maxBoxes`, and `maxWeight`.
+
+* `ports​​i` is the port where you need to deliver the `ith` box and `weightsi` is the weight of the `ith` box.
+* `portsCount` is the number of ports.
+* `maxBoxes` and `maxWeight` are the respective box and weight limits of the ship.
+
+The boxes need to be delivered in the order they are given. The ship will
+follow these steps:
+
+* The ship will take some number of boxes from the `boxes` queue, not violating the `maxBoxes` and `maxWeight` constraints.
+* For each loaded box in order, the ship will make a trip to the port the box needs to be delivered to and deliver it. If the ship is already at the correct port, no trip is needed, and the box can immediately be delivered.
+* The ship then makes a return trip to storage to take more boxes from the queue.
+
+The ship must end at storage after all the boxes have been delivered.
+
+Return the minimum number of trips the ship needs to make to deliver all boxes
+to their respective ports.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def boxDelivering(self, boxes: List[List[int]], portsCount: int, maxBoxes: int, maxWeight: int) -> int:
+    n = len(boxes)
+    dp = [0] * (n + 1)
+    trips = 2
+    weight = 0
+
+    l = 0
+    for r in range(n):
+      weight += boxes[r][1]
+
+      if r > 0 and boxes[r][0] != boxes[r - 1][0]:
+        trips += 1
+
+      while r - l + 1 > maxBoxes or weight > maxWeight or (l < r and dp[l + 1] == dp[l]):
+        weight -= boxes[l][1]
+        if boxes[l][0] != boxes[l + 1][0]:
+          trips -= 1
+        l += 1
+
+      dp[r + 1] = dp[l] + trips
+
+    return dp[n]
+","[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[23, 28]"
+TCC27,391,Perfect Rectangle,3,isRectangleCover,"Given an array `rectangles` where `rectangles[i] = [xi, yi, ai, bi]`
+represents an axis-aligned rectangle. The bottom-left point of the rectangle
+is `(xi, yi)` and the top-right point of it is `(ai, bi)`.
+
+Return `true` if all the rectangles together form an exact cover of a
+rectangular region.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator, Set
+
+class Solution:
+  def isRectangleCover(self, rectangles: List[List[int]]) -> bool:
+    area = 0
+    x1 = math.inf
+    y1 = math.inf
+    x2 = -math.inf
+    y2 = -math.inf
+    corners: Set[Tuple[int, int]] = set()
+
+    for x, y, a, b in rectangles:
+      area += (a - x) * (b - y)
+      x1 = min(x1, x)
+      y1 = min(y1, y)
+      x2 = max(x2, a)
+      y2 = max(y2, b)
+
+      for point in [(x, y), (x, b), (a, y), (a, b)]:
+        if point in corners:
+          corners.remove(point)
+        else:
+          corners.add(point)
+
+    if len(corners) != 4:
+      return False
+    if (x1, y1) not in corners or (x1, y2) not in corners or (x2, y1) not in corners or (x2, y2) not in corners:
+      return False
+    return area == (x2 - x1) * (y2 - y1)
+","[{'type': 'if', 'start': 33, 'end': 34, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 36, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.47}, {'type': 'else', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}]","[29, 31, 34, 36]"
+TCC28,4,Median of Two Sorted Arrays,3,findMedianSortedArrays,"Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively,
+return the median of the two sorted arrays.
+
+The overall run time complexity should be `O(log (m+n))`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+    n1 = len(nums1)
+    n2 = len(nums2)
+    if n1 > n2:
+      return self.findMedianSortedArrays(nums2, nums1)
+
+    l = 0
+    r = n1
+
+    while l <= r:
+      partition1 = (l + r) // 2
+      partition2 = (n1 + n2 + 1) // 2 - partition1
+      maxLeft1 = -2**31 if partition1 == 0 else nums1[partition1 - 1]
+      maxLeft2 = -2**31 if partition2 == 0 else nums2[partition2 - 1]
+      minRight1 = 2**31 - 1 if partition1 == n1 else nums1[partition1]
+      minRight2 = 2**31 - 1 if partition2 == n2 else nums2[partition2]
+      if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:
+        if (n1 + n2) % 2 == 0:
+          return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) * 0.5
+        else:
+          return max(maxLeft1, maxLeft2)
+      elif maxLeft1 > minRight2:
+        r = partition1 - 1
+      else:
+        l = partition1 + 1
+","[{'type': 'if', 'start': 15, 'end': 16, 'difficulty': 1, 'eg_cov_prob': 0.53}, {'type': 'if', 'start': 28, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 29, 'end': 30, 'difficulty': 1, 'eg_cov_prob': 0.51}, {'type': 'else', 'start': 31, 'end': 32, 'difficulty': 1, 'eg_cov_prob': 0.49}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 1, 'eg_cov_prob': 0.92}, {'type': 'else', 'start': 35, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.91}]","[16, 29, 30, 32, 34, 36]"
+TCC29,770,Basic Calculator IV,3,basicCalculatorIV,"Given an expression such as `expression = ""e + 8 - a + 5""` and an evaluation
+map such as `{""e"": 1}` (given in terms of `evalvars = [""e""]` and `evalints =
+[1]`), return a list of tokens representing the simplified expression, such as
+`[""-1*a"",""14""]`
+
+* An expression alternates chunks and symbols, with a space separating each chunk and symbol.
+* A chunk is either an expression in parentheses, a variable, or a non-negative integer.
+* A variable is a string of lowercase letters (not including digits.) Note that variables can be multiple letters, and note that variables never have a leading coefficient or unary operator like `""2x""` or `""-x""`.
+
+Expressions are evaluated in the usual order: brackets first, then
+multiplication, then addition and subtraction.
+
+* For example, `expression = ""1 + 2 * 3""` has an answer of `[""7""]`.
+
+The format of the output is as follows:
+
+* For each term of free variables with a non-zero coefficient, we write the free variables within a term in sorted order lexicographically. 
+* For example, we would never write a term like `""b*a*c""`, only `""a*b*c""`.
+* Terms have degrees equal to the number of free variables being multiplied, counting multiplicity. We write the largest degree terms of our answer first, breaking ties by lexicographic order ignoring the leading coefficient of the term. 
+* For example, `""a*a*b*c""` has degree `4`.
+* The leading coefficient of the term is placed directly to the left with an asterisk separating it from the variables (if they exist.) A leading coefficient of 1 is still printed.
+* An example of a well-formatted answer is `[""-2*a*a*a"", ""3*a*a*b"", ""3*b*b"", ""4*a"", ""5*c"", ""-6""]`.
+* Terms (including constant terms) with coefficient `0` are not included. 
+* For example, an expression of `""0""` has an output of `[]`.
+
+Note: You may assume that the given expression is always valid. All
+intermediate results will be in the range of `[-231, 231 - 1]`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Poly:
+  def __init__(self, term: str = None, coef: int = None):
+    if term and coef:
+      self.terms = collections.Counter({term: coef})
+    else:
+      self.terms = collections.Counter()
+
+  def __add__(self, other):
+    for term, coef in other.terms.items():
+      self.terms[term] += coef
+    return self
+
+  def __sub__(self, other):
+    for term, coef in other.terms.items():
+      self.terms[term] -= coef
+    return self
+
+  def __mul__(self, other):
+    res = Poly()
+    for a, aCoef in self.terms.items():
+      for b, bCoef in other.terms.items():
+        res.terms[self._merge(a, b)] += aCoef * bCoef
+    return res
+
+  def toList(self) -> List[str]:
+    for term in list(self.terms.keys()):
+      if not self.terms[term]:
+        del self.terms[term]
+
+    def cmp(term: str) -> tuple:
+      if term == '1':
+        return (0,)
+      var = term.split('*')
+      return (-len(var), term)
+
+    def concat(term: str) -> str:
+      if term == '1':
+        return str(self.terms[term])
+      return str(self.terms[term]) + '*' + term
+
+    terms = list(self.terms.keys())
+    terms.sort(key=cmp)
+    return [concat(term) for term in terms]
+
+  def _merge(self, a: str, b: str) -> str:
+    if a == '1':
+      return b
+    if b == '1':
+      return a
+    res = []
+    A = a.split('*')
+    B = b.split('*')
+    i = 0
+    j = 0
+    while i < len(A) and j < len(B):
+      if A[i] < B[j]:
+        res.append(A[i])
+        i += 1
+      else:
+        res.append(B[j])
+        j += 1
+    return '*'.join(res + A[i:] + B[j:])
+
+
+class Solution:
+  def basicCalculatorIV(self, expression: str, evalvars: List[str], evalints: List[int]) -> List[str]:
+    tokens = list(self._getTokens(expression))
+    evalMap = {a: b for a, b in zip(evalvars, evalints)}
+
+    for i, token in enumerate(tokens):
+      if token in evalMap:
+        tokens[i] = str(evalMap[token])
+
+    postfix = self._infixToPostfix(tokens)
+    return self._evaluate(postfix).toList()
+
+  def _getTokens(self, s: str) -> Iterator[str]:
+    i = 0
+    for j, c in enumerate(s):
+      if c == ' ':
+        if i < j:
+          yield s[i:j]
+        i = j + 1
+      elif c in '()+-*':
+        if i < j:
+          yield s[i:j]
+        yield c
+        i = j + 1
+    if i < len(s):
+      yield s[i:]
+
+  def _infixToPostfix(self, tokens: List[str]) -> List[str]:
+    postfix = []
+    ops = []
+
+    def precedes(prevOp: str, currOp: str) -> bool:
+      if prevOp == '(':
+        return False
+      return prevOp == '*' or currOp in '+-'
+
+    for token in tokens:
+      if token == '(':
+        ops.append(token)
+      elif token == ')':
+        while ops[-1] != '(':
+          postfix.append(ops.pop())
+        ops.pop()
+      elif token in '+-*':
+        while ops and precedes(ops[-1], token):
+          postfix.append(ops.pop())
+        ops.append(token)
+      else:
+        postfix.append(token)
+    return postfix + ops[::-1]
+
+  def _evaluate(self, postfix: List[str]) -> Poly:
+    polys: List[Poly] = []
+    for token in postfix:
+      if token in '+-*':
+        b = polys.pop()
+        a = polys.pop()
+        if token == '+':
+          polys.append(a + b)
+        elif token == '-':
+          polys.append(a - b)
+        else:
+          polys.append(a * b)
+      elif token.lstrip('-').isnumeric():
+        polys.append(Poly(""1"", int(token)))
+      else:
+        polys.append(Poly(token, 1))
+    return polys[0]
+","[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 15, 'end': 16, 'difficulty': 1, 'eg_cov_prob': 0.96}, {'type': 'if', 'start': 56, 'end': 57, 'difficulty': 1, 'eg_cov_prob': 0.95}, {'type': 'if', 'start': 58, 'end': 59, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 99, 'end': 100, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 41, 'end': 42, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 47, 'end': 48, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 66, 'end': 68, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'else', 'start': 69, 'end': 71, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 81, 'end': 82, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 90, 'end': 93, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 107, 'end': 108, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 112, 'end': 113, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 129, 'end': 137, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 91, 'end': 92, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 94, 'end': 98, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 114, 'end': 117, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 132, 'end': 133, 'difficulty': 1, 'eg_cov_prob': 0.97}, {'type': 'if', 'start': 138, 'end': 139, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 140, 'end': 141, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 95, 'end': 96, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 118, 'end': 121, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'else', 'start': 122, 'end': 123, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 134, 'end': 135, 'difficulty': 1, 'eg_cov_prob': 0.96}, {'type': 'else', 'start': 136, 'end': 137, 'difficulty': 1, 'eg_cov_prob': 0.96}]","[14, 16, 38, 42, 48, 57, 59, 67, 68, 70, 71, 82, 91, 92, 93, 95, 96, 97, 98, 100, 108, 113, 115, 116, 117, 119, 120, 121, 123, 130, 131, 132, 133, 134, 135, 137, 139, 141]"
+TCC30,1284,Minimum Number of Flips to Convert Binary Matrix to Zero Matrix,3,minFlips,"Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and
+flip it and all the four neighbors of it if they exist (Flip is changing `1`
+to `0` and `0` to `1`). A pair of cells are called neighbors if they share one
+edge.
+
+Return the minimum number of steps required to convert `mat` to a zero matrix
+or `-1` if you cannot.
+
+A binary matrix is a matrix with all cells equal to `0` or `1` only.
+
+A zero matrix is a matrix with all cells equal to `0`.
+
+","import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minFlips(self, mat: List[List[int]]) -> int:
+    m = len(mat)
+    n = len(mat[0])
+    hash = self._getHash(mat, m, n)
+    if hash == 0:
+      return 0
+
+    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))
+    step = 0
+    q = collections.deque([hash])
+    seen = {hash}
+
+    while q:
+      step += 1
+      for _ in range(len(q)):
+        curr = q.popleft()
+        for i in range(m):
+          for j in range(n):
+            next = curr ^ 1 << (i * n + j)
+            for dx, dy in dirs:
+              x = i + dx
+              y = j + dy
+              if x < 0 or x == m or y < 0 or y == n:
+                continue
+              next ^= 1 << (x * n + y)
+            if next == 0:
+              return step
+            if next in seen:
+              continue
+            q.append(next)
+            seen.add(next)
+
+    return -1
+
+  def _getHash(self, mat: List[List[int]], m: int, n: int) -> int:
+    hash = 0
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j]:
+          hash |= 1 << (i * n + j)
+    return hash
+","[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 2, 'eg_cov_prob': 0.09}, {'type': 'if', 'start': 50, 'end': 51, 'difficulty': 1, 'eg_cov_prob': 0.91}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 1, 'eg_cov_prob': 0.64}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.61}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 1, 'eg_cov_prob': 0.91}]","[17, 35, 38, 40, 51]"

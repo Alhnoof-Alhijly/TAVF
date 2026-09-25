@@ -1,0 +1,21 @@
+﻿task_id,task_type,source_file,line_number,input,expected_output,word_count
+USC03,user_story_refinement,g03-loudoun.txt,41,"As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project.",,33
+USC05,user_story_refinement,g04-recycling.txt,48,"As a user, I want to be able to browse through the list of facolities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint.",,39
+USC07,user_story_refinement,g05-openspending.txt,71,"As an API User, I want to be able to normalise measures by GDP, so I work with datasets in reference to their contextual constraints.",,25
+USC10,user_story_refinement,g08-frictionless.txt,29,"As a ResearcherGovernment Publisher, I want to add reference data on inflation to my spending dataset, so that the spending lines in my dataset is more understandable.",,27
+USC11,user_story_refinement,g10-scrumalliance.txt,79,"As a site visitor, I want to view a section of the website that teaches me the basics of what Scrum is, so that I can learn that quickly.",,29
+USC12,user_story_refinement,g10-scrumalliance.txt,5,"As a Trainer, I want to include additional details in my profile page about me, so that others can learn about me and decide if I am the right trainer for them.",,32
+USC14,user_story_refinement,g11-nsf.txt,73,"As a team member, I want to understand how work moves between UX/content > visual design > front end dev for a sprint cycle.",,24
+USC19,user_story_refinement,g14-datahub.txt,52,"As a Consumer, I want to see a publisher's profile, so that that I can discover their packages and get a sense of how active and good they are.",,29
+USC20,user_story_refinement,g14-datahub.txt,31,"As a Consumer, I want to download the data package in one file, so that that I don't have to download descriptor and each resource by hand.",,27
+USC21,user_story_refinement,g16-mis.txt,7,"As a developer, I want to determine if we can use the in-built Fedora 4 event audit services.",,18
+USC22,user_story_refinement,g16-mis.txt,66,"As a collection curator, I want to view the permission on my objects all together.",,15
+USC25,user_story_refinement,g18-neurohub.txt,20,"As a supervisor, I want to view what my researchers were doing on a given date or period of time.",,20
+USC26,user_story_refinement,g18-neurohub.txt,7,"As a lab administrator, I want to theme the Web interface graphics/colours.",,12
+USC27,user_story_refinement,g19-alfred.txt,16,"As an OlderPerson, I want to buy ALFRED in a senior shop with special client support.",,16
+USC29,user_story_refinement,g21-badcamp.txt,20,"As a administrator, I want to refund sponsorship money that was processed via stripe, so that people get their monies back.",,21
+USC32,user_story_refinement,g22-rdadmp.txt,20,"As an archivemanager, I want to know in advance the conservation period of data, so that I can better organize the service by adapting the preservation actions.",,27
+USC33,user_story_refinement,g23-archivesspace.txt,17,"As a user, I want backend changes to support loading enum value lists from the database.",,16
+USC38,user_story_refinement,g25-duraspace.txt,54,"As a DAMS manager, I want to indicate the source-capture information for a file where it is useful to do so.",,21
+USC41,user_story_refinement,g27-culrepo.txt,59,"As a library staff member, I want to deliver streaming media from within the repository, so that I can deliver such content in the manner expected and ensure continued access to said content.",,33
+USC42,user_story_refinement,g27-culrepo.txt,65,"As a DB/IR administrator, I want to have the system recognize/categorize document type (e.g. historical report still published, expired historical report, single topic dataset, broad topic dataset, report with subtopic, computer file), so that report/dataset is processed and displayed properly.",,40

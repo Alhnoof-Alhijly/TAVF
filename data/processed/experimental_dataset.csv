@@ -1,0 +1,1653 @@
+﻿task_id,task_type,input,expected_output,source,difficulty,metadata
+USC03,user_story_refinement,"As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project.",,Dalpiaz User Stories,,g03-loudoun.txt
+USC05,user_story_refinement,"As a user, I want to be able to browse through the list of facolities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint.",,Dalpiaz User Stories,,g04-recycling.txt
+USC07,user_story_refinement,"As an API User, I want to be able to normalise measures by GDP, so I work with datasets in reference to their contextual constraints.",,Dalpiaz User Stories,,g05-openspending.txt
+USC10,user_story_refinement,"As a ResearcherGovernment Publisher, I want to add reference data on inflation to my spending dataset, so that the spending lines in my dataset is more understandable.",,Dalpiaz User Stories,,g08-frictionless.txt
+USC11,user_story_refinement,"As a site visitor, I want to view a section of the website that teaches me the basics of what Scrum is, so that I can learn that quickly.",,Dalpiaz User Stories,,g10-scrumalliance.txt
+USC12,user_story_refinement,"As a Trainer, I want to include additional details in my profile page about me, so that others can learn about me and decide if I am the right trainer for them.",,Dalpiaz User Stories,,g10-scrumalliance.txt
+USC14,user_story_refinement,"As a team member, I want to understand how work moves between UX/content > visual design > front end dev for a sprint cycle.",,Dalpiaz User Stories,,g11-nsf.txt
+USC19,user_story_refinement,"As a Consumer, I want to see a publisher's profile, so that that I can discover their packages and get a sense of how active and good they are.",,Dalpiaz User Stories,,g14-datahub.txt
+USC20,user_story_refinement,"As a Consumer, I want to download the data package in one file, so that that I don't have to download descriptor and each resource by hand.",,Dalpiaz User Stories,,g14-datahub.txt
+USC21,user_story_refinement,"As a developer, I want to determine if we can use the in-built Fedora 4 event audit services.",,Dalpiaz User Stories,,g16-mis.txt
+USC22,user_story_refinement,"As a collection curator, I want to view the permission on my objects all together.",,Dalpiaz User Stories,,g16-mis.txt
+USC25,user_story_refinement,"As a supervisor, I want to view what my researchers were doing on a given date or period of time.",,Dalpiaz User Stories,,g18-neurohub.txt
+USC26,user_story_refinement,"As a lab administrator, I want to theme the Web interface graphics/colours.",,Dalpiaz User Stories,,g18-neurohub.txt
+USC27,user_story_refinement,"As an OlderPerson, I want to buy ALFRED in a senior shop with special client support.",,Dalpiaz User Stories,,g19-alfred.txt
+USC29,user_story_refinement,"As a administrator, I want to refund sponsorship money that was processed via stripe, so that people get their monies back.",,Dalpiaz User Stories,,g21-badcamp.txt
+USC32,user_story_refinement,"As an archivemanager, I want to know in advance the conservation period of data, so that I can better organize the service by adapting the preservation actions.",,Dalpiaz User Stories,,g22-rdadmp.txt
+USC33,user_story_refinement,"As a user, I want backend changes to support loading enum value lists from the database.",,Dalpiaz User Stories,,g23-archivesspace.txt
+USC38,user_story_refinement,"As a DAMS manager, I want to indicate the source-capture information for a file where it is useful to do so.",,Dalpiaz User Stories,,g25-duraspace.txt
+USC41,user_story_refinement,"As a library staff member, I want to deliver streaming media from within the repository, so that I can deliver such content in the manner expected and ensure continued access to said content.",,Dalpiaz User Stories,,g27-culrepo.txt
+USC42,user_story_refinement,"As a DB/IR administrator, I want to have the system recognize/categorize document type (e.g. historical report still published, expired historical report, single topic dataset, broad topic dataset, report with subtopic, computer file), so that report/dataset is processed and displayed properly.",,Dalpiaz User Stories,,g27-culrepo.txt
+BRC01,bug_report_refinement,"### steps to reproduce
+
+1. browse to a site in fenix nightly
+2. select share from the options menu
+3. select a device from send to device
+
+### expected behavior
+the site should open on the device you selected
+
+### actual behavior
+an error is displayed `unable to send`
+### device information
+
+* firefox version: 127.0a1
+* android device model: samsung s24+
+* android os version: android 14
+
+### any additional information?
+this is not reproducible in 125 release or 126 beta",,BugsRepo,,Application Services
+BRC03,bug_report_refinement,"user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/601.7.7 (khtml, like gecko) version/9.1.2 safari/601.7.7
+
+steps to reproduce:
+
+create a answer file and include the following line
+$answer{'use_email_as_login'} = '1';
+
+run ./checksetup.pl ./answers
+
+
+actual results:
+
+you get the following output:
+initializing ""product/component changes"" email_setting ...
+initializing ""dependency tree changes"" email_setting ...
+deriving regex group memberships...
+login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+
+and in data/params.json you find the line
+   ""use_email_as_login"" : 0,
+
+
+
+expected results:
+
+creation without an error and data/params.json with the following line
+   ""use_email_as_login"" : 1,",,BugsRepo,,Bugzilla
+BRC06,bug_report_refinement,"steps to reproduce:
+
+after moving to the new recent 100.x series (i think it was then), thunderbird switched to some newfangled rich text editor for calendar events. every time i save an event and come back, newlines are added all over the place leaving everything a confusing mess.
+
+i type some nice paragraph such as the following (not the exact text):
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+
+
+actual results:
+
+thunderbird decided to randomly add line breaks, such as:
+
+blah blah foo
+bar (and more foo bar); this 
+
+is foo; this is bar
+foo and
+
+
+bar
+bar and foo
+
+currently i have no way to predict where thunderbird is going to throw in line breaks.
+
+
+expected results:
+
+i should have got back:
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+(we're not even talking about rich formatting!!)
+
+why does everyone try to re-implement a word process and break things royally? if you'd just provide plain text and not screw up the lines, that would be 10 times better than this.
+
+or you could allow us to enter raw markdown and then show it rendered in the view (using a common library), like stack overflow does.
+
+why oh why are you adding line breaks all over the place every time i edit a calendar event?",,BugsRepo,,Calendar
+BRC07,bug_report_refinement,"user agent: mozilla/5.0 (x11; linux x86_64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+0. open the chat tab
+1. connect to your matrix account (e.g. @username:matrix.org)
+2. click on ""join chat"" button
+3. enter a room name from a different homeserver (e.g. #maildev:mozilla.org)
+
+
+actual results:
+
+the chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)
+
+
+expected results:
+
+if a server name is specified, join chat shouldn't append the account server name.",,BugsRepo,,Chat Core
+BRC08,bug_report_refinement,"steps to reproduce:
+
+1) load a phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)
+2) click on ""edit related revisions"" in the toolbox on the right.
+3) click on ""edit child revisions"".
+4) select ""all objects"" in the dropdown that starts out with ""created by me"" (just to make sure the list is not empty).
+5) click the label of the first thing in the list.  this is the part that says ""dnnnnn: bug mmmmm - something""
+
+expected results: the revision you clicked is added to the ""current child revisions"" bit at the bottom of the dialog.
+
+actual results: the dialog just closes.  only clicking the ""select"" button works to add things to ""current child revisions"".
+
+this used to work; per https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430 it no longer working is due to a change in phabricator, not in firefox.",,BugsRepo,,Conduit
+BRC10,bug_report_refinement,"created attachment 9123077
+trr.debug.log
+
+user agent: mozilla/5.0 (macintosh; intel mac os x 10.14; rv:72.0) gecko/20100101 firefox/72.0
+
+steps to reproduce:
+
+enable trr with default configuration and go to https://1.1.1.1/help
+
+
+actual results:
+
+the site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.
+
+
+expected results:
+
+if it's a problem with javascript, i'd expect it to go away after closing a tab, but nothing shows up in the performance console.",,BugsRepo,,Core
+BRC13,bug_report_refinement,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+update from android gradle plugin 3.5 to 4.0 and try to compile an app using glean to generate code.
+
+see https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.
+
+
+actual results:
+
+glean code is not generated
+
+
+expected results:
+
+glean code should be generated",,BugsRepo,,Data Platform and Tools
+BRC14,bug_report_refinement,"**steps to reproduce**
+1. go to `about:config` and turn off `devtools.webconsole.input.autocomplete`
+1. open the console
+1. type `deb`
+1. hit ctrl+space to display the completion text  (should be `ugger`)
+1. type `u`
+1. hit `tab`
+
+
+**expected results**
+
+the input get completed to `debugger`
+
+**actual results**
+
+the input get completed to `debuugger`
+
+---
+
+this is because the completion text wasn't updated",,BugsRepo,,DevTools
+BRC16,bug_report_refinement,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:99.0) gecko/20100101 firefox/99.0
+
+steps to reproduce:
+
+launch firefox 100.0.1 x64 on windows 11 build 22000.613 (april release) or 22000.675 (may release)
+
+
+actual results:
+
+browser window comes up, but browser is unresponsive.  trying to visit any site fails, browser hangs
+
+
+expected results:
+
+able to view site",,BugsRepo,,External Software Affecting Firefox
+BRC18,bug_report_refinement,"**[affected versions]:**
+- firefox nightly 115.0a1 (build id: 20230508214159)
+- firefox nightly 114.0b1 (build id: 20230508175934)
+
+**[affected platforms]:**
+- windows 10 x64
+- linux ubuntu 20.04 x64
+- macos 12.4
+
+**[prerequisites]:**
+- have a vpn client connected to a us server ( make sure the `browser.search.region` pref is set accordingly).
+- have the firefox nightly 115.0a1 build installed.
+- set the following prefs:
+`browser.urlbar.weather.featuregate` = `true`
+(windows only) `browser.urlbar.weather.ignorevpn` = `true`
+
+**[steps to reproduce]:**
+1. open the browser from the prerequisites.
+2. type the “weather” string in the address bar.
+3. click the feedback button.
+4. click any of the first 2 options (“report inaccurate location” or “show less frequently”).
+5. click the feedback button again.
+6. click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).
+7. observe the behavior.
+
+**[expected result]:**
+- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.
+
+**[actual result]:**
+- nothing happens, the weather result remains displayed.
+
+**[notes]:**
+- we noticed that even though the dismiss buttons don’t work, the telemetry is incremented with each click for `firefox-suggest-weather-command-not-relevant` and `firefox-suggest-weather-command-not-interested` (depending on which one is clicked).
+- here is the [screen recording](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing) of the issue.",,BugsRepo,,Firefox
+BRC21,bug_report_refinement,"build: 51abcc7ca
+device: ipad pro
+ios: 9.2.1
+
+steps to reproduce:
+1. launch fennec
+2. open 12 new tabs by tapping the '+' symbol
+3. select the last tab
+4. double tap on the home button and close fennec
+5. open fennec
+
+actual results:
+- the last tab which is selected is not in view. the scroll is positioned at the first tab.
+
+expected results:
+- the selected tab should be in view.",,BugsRepo,,Firefox for iOS
+BRC24,bug_report_refinement,"created attachment 9309175
+android13.mp4
+
+### steps to reproduce
+1. install focus nightly 110.0a1 on an android 13 device
+2. open youtube.com, or vimeo.com.
+3. start a video, then access the fullscreen option.
+
+### expected behavior
+the video is displayed in fullscreen without issues.
+
+### actual behavior
+the video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.
+not reproducible on the latest fenix nightly 110.0a1.
+
+### device information
+* focus version: all (110.0a1 nightly from 12/20, beta 109.0b2, rc 108.1.0 - builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks 
+* android device: google pixel 6 (android 13)
+* not reproducible on: oppo reno 6 (android 12)
+* works fine on the rc 108.1.0 build from playstore",,BugsRepo,,Focus
+BRC26,bug_report_refinement,"created attachment 9106176
+device-2019-11-04-152302.mp4
+
+user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:70.0) gecko/20100101 firefox/70.0
+
+steps to reproduce:
+
+enter some text in an input field on a website (search field at https://startpage.com for example). try to go back a few characters by using the arrow keys at the bottom of the screen (i believe this is a cyanogenmode/lineageos specific feature. that feature works as expected in every other app, including the on-board (webview-based) browser app.)
+
+phone: nexus 5x
+os: lineageos 15.1 (aka android 8.1)
+keyboard: aosp keyboard
+
+
+actual results:
+
+the cursor keeps jumping back to the end of the current word. holding down the left arrow key i can finally get it to skip to a prior word.
+using the right arrow key it skips to the end of the current word again, not just a single character.
+
+this behaviour doesn't occur when i disable all next word suggestions/autocorrection in the aosp keyboard. this is not a usable workaround though.
+
+
+expected results:
+
+the arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.
+
+this works in every other android app except firefox.",,BugsRepo,,GeckoView
+BRC28,bug_report_refinement,"user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:84.0) gecko/20100101 firefox/84.0
+
+steps to reproduce:
+
+pgp encrypted email encrypted for my key is in my inbox, and will not display on new versions of thunderbird. previous versions with enigmail are unaffected. i've tested this on thunderbird 78 on windows, thunderbird 78 on linux, and a debug build on linux from trunk.
+
+
+actual results:
+
+the message fails to display. openpgp icon shows ""message cannot be decrypted: there are unknown problems with this decrypted message."" the debug console shows ""rnp_op_verify_execute returned unexpected: 285212674"".
+
+the debug output is as follows:
+[mem_dst_write() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-common.cpp:991] attempt to alloc more then allowed
+[process_pgp_source() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-parse.cpp:2483] failed to output data
+console.debug: ""rnp_op_verify_execute returned unexpected: 285212674""
+
+
+expected results:
+
+the message should successfully decrypt and its content should be displayed.",,BugsRepo,,MailNews Core
+BRC30,bug_report_refinement,"created attachment 9238939
+firefox suggest label.png
+
+**[affected versions]:**
+- firefox nightly 93.0a1 (build id: 20210901091701) 
+
+**[affected platforms]:**
+- windows 10 x64
+- macos 10.15.7
+- linux mint 20
+
+**[prerequisites]:**
+- have [nightly ro](https://ftp.mozilla.org/pub/firefox/nightly/2021/08/2021-08-21-21-21-31-mozilla-central-l10n/) build downloaded or installed.
+
+**[steps to reproduce]:**
+1. open the nightly ro l10n build.
+2. open a new tab page, type any keyword that will trigger a history result.
+3. observe the ""firefox suggest"" string.
+
+**[expected results]:**
+- the ""firefox suggest"" string is correctly displayed.
+    
+**[actual results]:**
+- the ""-firefox-suggest-brand-name"" string is displayed.
+
+**[notes]:**
+- so far i have managed to reproduce the issue only on ro build. not sure if the issue is also reproducible on other l10n builds.
+- on other l10n builds, the ""firefox suggest"" string is correctly displayed if the string is not yet localized.
+- attached is a screenshot of the issue.",,BugsRepo,,Mozilla Localizations
+BRC36,bug_report_refinement,"steps to reproduce:
+
+see detailed steps and logging in this cypress.io github bug: https://github.com/cypress-io/cypress/issues/23897
+
+close cypress
+update to firefox 105 (latest at the time i write this)
+open cypress
+choose e2e
+select firefox v105
+click start e2e testing in firefox
+observe ff physically opens but the page is empty
+
+
+actual results:
+
+ff physically opens but the page is empty
+
+
+expected results:
+
+ff physically opens, cypress is connected and cypress ui is presented",,BugsRepo,,Remote Protocol
+BRC40,bug_report_refinement,"user agent: mozilla/5.0 (x11; linux x86_64; rv:86.0) gecko/20100101 firefox/86.0
+
+steps to reproduce:
+
+i started a local test instance (make build, make setup, make run). connected to it with a superuser. clicked on the ""go to user management"" link which links to ""/users"".
+
+
+actual results:
+
+got a 404. logs only show this:
+
+> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483
+
+
+expected results:
+
+i expected to end up on some user management page.",,BugsRepo,,Tecken
+BRC44,bug_report_refinement,"created attachment 9172109
+zipped example screenshots
+
+user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/84.0.4147.135 safari/537.36 edg/84.0.522.63
+
+steps to reproduce:
+
+1. enable high-contrast mode in windows 10, by doing the following:
+1.1. open windows settings (windows+i).
+1.2. go to ease of access -> high-contrast.
+1.3. turn on the high-contrast mode, using the respective toggle.
+1.4. from the ""high-contrast theme"" combo-box, select ""high-contrast black"".
+2. install and launch thunderbird 78.2.
+
+
+actual results:
+
+observe how some dialogs and windows of thunderbird do not obey the colors defined by the currently active high-contrast black theme. mostly, where the background should be black, it is gray instead. i'll attach some example screenshots in a zip archive.
+
+examples of such windows include, but may not be limited to, the following:
+- the main window of thunderbird.
+- the dialogs for subscribing to imap folders and rss feeds.
+- the dialogs for the properties of rss and mail folders.
+- the dialog for customizing the toolbars in thunderbird.
+- the dialog for creating a new folder.
+- the dialog/window for adding an account to thunderbird.
+
+
+expected results:
+
+in such dialogs and windows as in the examples above, the background color should be black, instead of being gray as it is now.",,BugsRepo,,Thunderbird
+BRC46,bug_report_refinement,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:123.0) gecko/20100101 firefox/123.0
+
+steps to reproduce:
+
+i after refreshing firefox, i could not import any compressed backup bookmarks. i created new a new profiles and and could not import a compressed bookmark that was valid. i created a new profile and could not import a valid html backup bookmark. community support has not responded to offer any further steps to take after i tried to import a valid html file yet so i am am reporting it here. i really need to get this issue fixed and firefox support is greatly lacking in timely, accurate resolution. i have not tried booting windows in safe mode.
+
+
+actual results:
+
+see above and need to add in addition, that when importing valid compressed backup bookmarks, i get the message, ""unable to process backup file"". when i import a valid backup bookmark html file, nothing happens---and no error message appears.
+
+
+expected results:
+
+as expected, any valid bookmark file should be imported.",,BugsRepo,,Toolkit
+BRC53,bug_report_refinement,"steps to reproduce:
+1. launch the buddy up app.
+2. tap on the ""gear"" button at the right top corner of the screen.
+3. tap on the ""create account or sign in"" button
+4. tap on ""don't have an account? register"" button.
+5. type a valid email address, username and password
+6. tap on ""create account"" button.
+
+expected result:
+""confirm account"" page appears with a ""cancel sign up"" button.
+actual result:
+blank page appears
+
+note:
+user can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.
+
+console errors:
+    typeerror: cancel_button is null email_confirmation_controller.js:47:7
+    error: (main/email_confirmation.html) [line 2, column 10]
+    error: unable to call `_`, which is undefined or falsey
+
+regression searching results:
+https://github.com/mozilla/buddyup/commit/9acf86651442106df4e1ba9a90cdbe6aac7b3795 (no bug, works fine)
+(some commits that can not be tested)
+https://github.com/mozilla/buddyup/commit/6f191663ac6b1f5cc999193ef83576d64c71e51d (first testable commit with the bug)",,BugsRepo,,support.mozilla.org
+TCC02,test_case_generation,"Task Description:
+You are given an alphanumeric string `s`. (Alphanumeric string is a string
+consisting of lowercase English letters and digits).
+
+You have to find a permutation of the string where no letter is followed by
+another letter and no digit is followed by another digit. That is, no two
+adjacent characters have the same type.
+
+Return the reformatted string or return an empty string if it is impossible to
+reformat the string.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def reformat(self, s: str) -> str:
+    A=[]
+    for c in s:
+      if c.isalpha():
+        A.append(c)
+    B=[]
+    for c in s:
+      if c.isdigit():
+        B.append(c)
+
+    if len(A) < len(B):
+      A, B = B, A
+    if len(A) - len(B) > 1:
+      return ''
+
+    ans = []
+
+    for i in range(len(B)):
+      ans.append(A[i])
+      ans.append(B[i])
+
+    if len(A) == len(B) + 1:
+      ans.append(A[-1])
+    return ''.join(ans)
+",,TestEval,1,Reformat The String
+TCC03,test_case_generation,"Task Description:
+A password is said to be strong if it satisfies all the following criteria:
+
+* It has at least `8` characters.
+* It contains at least one lowercase letter.
+* It contains at least one uppercase letter.
+* It contains at least one digit.
+* It contains at least one special character. The special characters are the characters in the following string: `""!@#$%^&*()-+""`.
+* It does not contain `2` of the same character in adjacent positions (i.e., `""aab""` violates this condition, but `""aba""` does not).
+
+Given a string `password`, return `true` if it is a strong password.
+Otherwise, return `false`.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def strongPasswordCheckerII(self, password: str) -> bool:
+    if len(password) < 8:
+      return False
+    if not any(c.islower() for c in password):
+      return False
+    if not any(c.isupper() for c in password):
+      return False
+    if not any(c.isdigit() for c in password):
+      return False
+    if not any(""!@#$%^&*()-+"".find(c) != -1 for c in password):
+      return False
+    return all(a != b for a, b in zip(password, password[1:]))
+",,TestEval,1,Strong Password Checker II
+TCC04,test_case_generation,"Task Description:
+On an `8 x 8` chessboard, there is exactly one white rook `'R'` and some
+number of white bishops `'B'`, black pawns `'p'`, and empty squares `'.'`.
+
+When the rook moves, it chooses one of four cardinal directions (north, east,
+south, or west), then moves in that direction until it chooses to stop,
+reaches the edge of the board, captures a black pawn, or is blocked by a white
+bishop. A rook is considered attacking a pawn if the rook can capture the pawn
+on the rook's turn. The number of available captures for the white rook is the
+number of pawns that the rook is attacking.
+
+Return the number of available captures for the white rook.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def numRookCaptures(self, board: List[List[str]]) -> int:
+    ans = 0
+
+    for i in range(8):
+      for j in range(8):
+        if board[i][j] == 'R':
+          i0 = i
+          j0 = j
+
+    for d in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+      i = i0 + d[0]
+      j = j0 + d[1]
+      while 0 <= i < 8 and 0 <= j < 8:
+        if board[i][j] == 'p':
+          ans += 1
+        if board[i][j] != '.':
+          break
+        i += d[0]
+        j += d[1]
+
+    return ans
+",,TestEval,1,Available Captures for Rook
+TCC06,test_case_generation,"Task Description:
+Given an `m x n` binary matrix `mat`, return the number of special positions
+in `mat`.
+
+A position `(i, j)` is called special if `mat[i][j] == 1` and all other
+elements in row `i` and column `j` are `0` (rows and columns are 0-indexed).
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def numSpecial(self, mat: List[List[int]]) -> int:
+    m = len(mat)
+    n = len(mat[0])
+    ans = 0
+    rowOnes = [0] * m
+    colOnes = [0] * n
+
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j] == 1:
+          rowOnes[i] += 1
+          colOnes[j] += 1
+
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j] == 1 and rowOnes[i] == 1 and colOnes[j] == 1:
+          ans += 1
+
+    return ans
+",,TestEval,1,Special Positions in a Binary Matrix
+TCC07,test_case_generation,"Task Description:
+You are given an integer `n`. There is an undirected graph with `n` vertices,
+numbered from `0` to `n - 1`. You are given a 2D integer array `edges` where
+`edges[i] = [ai, bi]` denotes that there exists an undirected edge connecting
+vertices `ai` and `bi`.
+
+Return the number of complete connected components of the graph.
+
+A connected component is a subgraph of a graph in which there exists a path
+between any two vertices, and no vertex of the subgraph shares an edge with a
+vertex outside of the subgraph.
+
+A connected component is said to be complete if there exists an edge between
+every pair of its vertices.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class UnionFind:
+  def __init__(self, n: int):
+    self.id = list(range(n))
+    self.rank = [0] * n
+    self.nodeCount = [1] * n
+    self.edgeCount = [0] * n
+
+  def unionByRank(self, u: int, v: int) -> None:
+    i = self.find(u)
+    j = self.find(v)
+    self.edgeCount[i] += 1
+    if i == j:
+      return
+    if self.rank[i] < self.rank[j]:
+      self.id[i] = j
+      self.edgeCount[j] += self.edgeCount[i]
+      self.nodeCount[j] += self.nodeCount[i]
+    elif self.rank[i] > self.rank[j]:
+      self.id[j] = i
+      self.edgeCount[i] += self.edgeCount[j]
+      self.nodeCount[i] += self.nodeCount[j]
+    else:
+      self.id[i] = j
+      self.edgeCount[j] += self.edgeCount[i]
+      self.nodeCount[j] += self.nodeCount[i]
+      self.rank[j] += 1
+
+  def find(self, u: int) -> int:
+    if self.id[u] != u:
+      self.id[u] = self.find(self.id[u])
+    return self.id[u]
+
+  def isComplete(self, u):
+    return self.nodeCount[u] * (self.nodeCount[u] - 1) // 2 == self.edgeCount[u]
+
+
+class Solution:
+  def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+    ans = 0
+    uf = UnionFind(n)
+    parents = set()
+
+    for u, v in edges:
+      uf.unionByRank(u, v)
+
+    for i in range(n):
+      parent = uf.find(i)
+      if parent not in parents and uf.isComplete(parent):
+        ans += 1
+        parents.add(parent)
+
+    return ans
+",,TestEval,2,Count the Number of Complete Components
+TCC08,test_case_generation,"Task Description:
+You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D
+array of size `rows x columns`, where `heights[row][col]` represents the
+height of cell `(row, col)`. You are situated in the top-left cell, `(0, 0)`,
+and you hope to travel to the bottom-right cell, `(rows-1, columns-1)` (i.e.,
+0-indexed). You can move up, down, left, or right, and you wish to find a
+route that requires the minimum effort.
+
+A route's effort is the maximum absolute difference in heights between two
+consecutive cells of the route.
+
+Return the minimum effort required to travel from the top-left cell to the
+bottom-right cell.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumEffortPath(self, heights: List[List[int]]) -> int:
+    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))
+    m = len(heights)
+    n = len(heights[0])
+    diff = [[math.inf] * n for _ in range(m)]
+    seen = set()
+
+    minHeap = [(0, 0, 0)]
+    diff[0][0] = 0
+
+    while minHeap:
+      d, i, j = heapq.heappop(minHeap)
+      if i == m - 1 and j == n - 1:
+        return d
+      seen.add((i, j))
+      for dx, dy in dirs:
+        x = i + dx
+        y = j + dy
+        if x < 0 or x == m or y < 0 or y == n:
+          continue
+        if (x, y) in seen:
+          continue
+        newDiff = abs(heights[i][j] - heights[x][y])
+        maxDiff = max(diff[i][j], newDiff)
+        if diff[x][y] > maxDiff:
+          diff[x][y] = maxDiff
+          heapq.heappush(minHeap, (diff[x][y], x, y))
+",,TestEval,2,Path With Minimum Effort
+TCC10,test_case_generation,"Task Description:
+There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where
+`edges[i] = [fromi, toi, weighti]` represents a bidirectional and weighted
+edge between cities `fromi` and `toi`, and given the integer
+`distanceThreshold`.
+
+Return the city with the smallest number of cities that are reachable through
+some path and whose distance is at most `distanceThreshold`, If there are
+multiple such cities, return the city with the greatest number.
+
+Notice that the distance of a path connecting cities i and j is equal to the
+sum of the edges' weights along that path.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+    ans = -1
+    minCitiesCount = n
+    dist = self._floydWarshall(n, edges, distanceThreshold)
+
+    for i in range(n):
+      citiesCount = sum(dist[i][j] <= distanceThreshold for j in range(n))
+      if citiesCount <= minCitiesCount:
+        ans = i
+        minCitiesCount = citiesCount
+
+    return ans
+
+  def _floydWarshall(self, n: int, edges: List[List[int]], distanceThreshold: int) -> List[List[int]]:
+    dist = [[distanceThreshold + 1] * n for _ in range(n)]
+
+    for i in range(n):
+      dist[i][i] = 0
+
+    for u, v, w in edges:
+      dist[u][v] = w
+      dist[v][u] = w
+
+    for k in range(n):
+      for i in range(n):
+        for j in range(n):
+          dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+    return dist
+",,TestEval,2,Find the City With the Smallest Number of Neighbors at a Threshold Distance
+TCC11,test_case_generation,"Task Description:
+You are given a map of a server center, represented as a `m * n` integer
+matrix `grid`, where 1 means that on that cell there is a server and 0 means
+that it is no server. Two servers are said to communicate if they are on the
+same row or on the same column.  
+
+Return the number of servers that communicate with any other server.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def countServers(self, grid: List[List[int]]) -> int:
+    m = len(grid)
+    n = len(grid[0])
+    ans = 0
+    rows = [0] * m
+    cols = [0] * n
+
+    for i in range(m):
+      for j in range(n):
+        if grid[i][j] == 1:
+          rows[i] += 1
+          cols[j] += 1
+
+    for i in range(m):
+      for j in range(n):
+        if grid[i][j] == 1 and (rows[i] > 1 or cols[j] > 1):
+          ans += 1
+
+    return ans
+",,TestEval,2,Count Servers that Communicate
+TCC13,test_case_generation,"Task Description:
+You are given a network of `n` nodes, labeled from `1` to `n`. You are also
+given `times`, a list of travel times as directed edges `times[i] = (ui, vi,
+wi)`, where `ui` is the source node, `vi` is the target node, and `wi` is the
+time it takes for a signal to travel from source to target.
+
+We will send a signal from a given node `k`. Return the minimum time it takes
+for all the `n` nodes to receive the signal. If it is impossible for all the
+`n` nodes to receive the signal, return `-1`.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+    graph = [[] for _ in range(n)]
+
+    for u, v, w in times:
+      graph[u - 1].append((v - 1, w))
+
+    return self._dijkstra(graph, k - 1)
+
+  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> int:
+    dist = [math.inf] * len(graph)
+
+    dist[src] = 0
+    minHeap = [(dist[src], src)]
+
+    while minHeap:
+      d, u = heapq.heappop(minHeap)
+      if d > dist[u]:
+        continue
+      for v, w in graph[u]:
+        if d + w < dist[v]:
+          dist[v] = d + w
+          heapq.heappush(minHeap, (dist[v], v))
+
+    maxDist = max(dist)
+    return maxDist if maxDist != math.inf else -1
+",,TestEval,2,Network Delay Time
+TCC15,test_case_generation,"Task Description:
+Given a string `s` containing an out-of-order English representation of digits
+`0-9`, return the digits in ascending order.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def originalDigits(self, s: str) -> str:
+    count = [0] * 10
+
+    for c in s:
+      if c == 'z':
+        count[0] += 1
+      if c == 'o':
+        count[1] += 1
+      if c == 'w':
+        count[2] += 1
+      if c == 'h':
+        count[3] += 1
+      if c == 'u':
+        count[4] += 1
+      if c == 'f':
+        count[5] += 1
+      if c == 'x':
+        count[6] += 1
+      if c == 's':
+        count[7] += 1
+      if c == 'g':
+        count[8] += 1
+      if c == 'i':
+        count[9] += 1
+
+    count[1] -= count[0] + count[2] + count[4]
+    count[3] -= count[8]
+    count[5] -= count[4]
+    count[7] -= count[6]
+    count[9] -= count[5] + count[6] + count[8]
+
+    return ''.join(chr(i + ord('0')) for i, c in enumerate(count) for j in range(c))
+",,TestEval,2,Reconstruct Original Digits from English
+TCC16,test_case_generation,"Task Description:
+Given an integer array nums, return all the triplets `[nums[i], nums[j],
+nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] +
+nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def threeSum(self, nums: List[int]) -> List[List[int]]:
+    if len(nums) < 3:
+      return []
+
+    ans = []
+
+    nums.sort()
+
+    for i in range(len(nums) - 2):
+      if i > 0 and nums[i] == nums[i - 1]:
+        continue
+
+      l = i + 1
+      r = len(nums) - 1
+      while l < r:
+        summ = nums[i] + nums[l] + nums[r]
+        if summ == 0:
+          ans.append((nums[i], nums[l], nums[r]))
+          l += 1
+          r -= 1
+          while nums[l] == nums[l - 1] and l < r:
+            l += 1
+          while nums[r] == nums[r + 1] and l < r:
+            r -= 1
+        elif summ < 0:
+          l += 1
+        else:
+          r -= 1
+
+    return ans
+",,TestEval,2,3Sum
+TCC18,test_case_generation,"Task Description:
+Given an integer n, return the smallest prime palindrome greater than or equal
+to `n`.
+
+An integer is prime if it has exactly two divisors: `1` and itself. Note that
+`1` is not a prime number.
+
+* For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.
+
+An integer is a palindrome if it reads the same from left to right as it does
+from right to left.
+
+* For example, `101` and `12321` are palindromes.
+
+The test cases are generated so that the answer always exists and is in the
+range `[2, 2 * 108]`.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def primePalindrome(self, n: int) -> int:
+    def getPalindromes(n: int):
+      length = n // 2
+      for i in range(10**(length - 1), 10**length):
+        s = str(i)
+        for j in range(10):
+          yield int(s + str(j) + s[::-1])
+
+    def isPrime(num: int) -> bool:
+      for i in range(2, int(num**0.5 + 1)):
+        if num % i == 0:
+          return False
+      return True
+
+    if n <= 2:
+      return 2
+    if n == 3:
+      return 3
+    if n <= 5:
+      return 5
+    if n <= 7:
+      return 7
+    if n <= 11:
+      return 11
+
+    nLength = len(str(n))
+
+    while True:
+      for num in getPalindromes(nLength):
+        if num >= n and isPrime(num):
+          return num
+      nLength += 1
+",,TestEval,2,Prime Palindrome
+TCC19,test_case_generation,"Task Description:
+There are `n` 1-indexed robots, each having a position on a line, health, and
+movement direction.
+
+You are given 0-indexed integer arrays `positions`, `healths`, and a string
+`directions` (`directions[i]` is either 'L' for left or 'R' for right). All
+integers in `positions` are unique.
+
+All robots start moving on the line simultaneously at the same speed in their
+given directions. If two robots ever share the same position while moving,
+they will collide.
+
+If two robots collide, the robot with lower health is removed from the line,
+and the health of the other robot decreases by one. The surviving robot
+continues in the same direction it was going. If both robots have the same
+health, they are both removed from the line.
+
+Your task is to determine the health of the robots that survive the
+collisions, in the same order that the robots were given, i.e. final heath of
+robot 1 (if survived), final health of robot 2 (if survived), and so on. If
+there are no survivors, return an empty array.
+
+Return an array containing the health of the remaining robots (in the order
+they were given in the input), after no further collisions can occur.
+
+Note: The positions may be unsorted.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+from dataclasses import dataclass
+
+@dataclass
+class Robot:
+  index: int
+  position: int
+  health: int
+  direction: str
+
+
+class Solution:
+  def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
+    robots = sorted([Robot(index, position, health, direction) for index, (position, health, direction) in enumerate(zip(positions, healths, directions))], key=lambda robot: robot.position)
+    stack: List[Robot] = []
+
+    for robot in robots:
+      if robot.direction == 'R':
+        stack.append(robot)
+        continue
+      while stack and stack[-1].direction == 'R' and robot.health > 0:
+        if stack[-1].health == robot.health:
+          stack.pop()
+          robot.health = 0
+        elif stack[-1].health < robot.health:
+          stack.pop()
+          robot.health -= 1
+        else:
+          stack[-1].health -= 1
+          robot.health = 0
+      if robot.health > 0:
+        stack.append(robot)
+
+    stack.sort(key=lambda robot: robot.index)
+    return [robot.health for robot in stack]
+",,TestEval,3,Robot Collisions
+TCC21,test_case_generation,"Task Description:
+You are given a 0-indexed array of strings `words`. Each string consists of
+lowercase English letters only. No letter occurs more than once in any string
+of `words`.
+
+Two strings `s1` and `s2` are said to be connected if the set of letters of
+`s2` can be obtained from the set of letters of `s1` by any one of the
+following operations:
+
+* Adding exactly one letter to the set of the letters of `s1`.
+* Deleting exactly one letter from the set of the letters of `s1`.
+* Replacing exactly one letter from the set of the letters of `s1` with any letter, including itself.
+
+The array `words` can be divided into one or more non-intersecting groups. A
+string belongs to a group if any one of the following is true:
+
+* It is connected to at least one other string of the group.
+* It is the only string present in the group.
+
+Note that the strings in `words` should be grouped in such a manner that a
+string belonging to a group cannot be connected to a string present in any
+other group. It can be proved that such an arrangement is always unique.
+
+Return an array `ans` of size `2` where:
+
+* `ans[0]` is the maximum number of groups `words` can be divided into, and
+* `ans[1]` is the size of the largest group.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class UnionFind:
+  def __init__(self, n: int):
+    self.count = n
+    self.id = list(range(n))
+    self.sz = [1] * n
+
+  def unionBySize(self, u: int, v: int) -> None:
+    i = self._find(u)
+    j = self._find(v)
+    if i == j:
+      return
+    if self.sz[i] < self.sz[j]:
+      self.sz[j] += self.sz[i]
+      self.id[i] = j
+    else:
+      self.sz[i] += self.sz[j]
+      self.id[j] = i
+    self.count -= 1
+
+  def _find(self, u: int) -> int:
+    if self.id[u] != u:
+      self.id[u] = self._find(self.id[u])
+    return self.id[u]
+
+
+class Solution:
+  def groupStrings(self, words: List[str]) -> List[int]:
+    uf = UnionFind(len(words))
+
+    def getMask(s: str) -> int:
+      mask = 0
+      for c in s:
+        mask |= 1 << ord(c) - ord('a')
+      return mask
+
+    def getAddedMasks(mask: int):
+      for i in range(26):
+        if not (mask >> i & 1):
+          yield mask | 1 << i
+
+    def getDeletedMasks(mask: int):
+      for i in range(26):
+        if mask >> i & 1:
+          yield mask ^ 1 << i
+
+    maskToIndex = {getMask(word): i for i, word in enumerate(words)}
+    deletedMaskToIndex = {}
+
+    for i, word in enumerate(words):
+      mask = getMask(word)
+      for m in getAddedMasks(mask):
+        if m in maskToIndex:
+          uf.unionBySize(i, maskToIndex[m])
+      for m in getDeletedMasks(mask):
+        if m in maskToIndex:
+          uf.unionBySize(i, maskToIndex[m])
+        if m in deletedMaskToIndex:
+          uf.unionBySize(i, deletedMaskToIndex[m])
+        else:
+          deletedMaskToIndex[m] = i
+
+    return [uf.count, max(uf.sz)]
+",,TestEval,3,Groups of Strings
+TCC22,test_case_generation,"Task Description:
+You are given an integer `n` denoting the number of nodes of a weighted
+directed graph. The nodes are numbered from `0` to `n - 1`.
+
+You are also given a 2D integer array `edges` where `edges[i] = [fromi, toi,
+weighti]` denotes that there exists a directed edge from `fromi` to `toi` with
+weight `weighti`.
+
+Lastly, you are given three distinct integers `src1`, `src2`, and `dest`
+denoting three distinct nodes of the graph.
+
+Return the minimum weight of a subgraph of the graph such that it is possible
+to reach `dest` from both `src1` and `src2` via a set of edges of this
+subgraph. In case such a subgraph does not exist, return `-1`.
+
+A subgraph is a graph whose vertices and edges are subsets of the original
+graph. The weight of a subgraph is the sum of weights of its constituent
+edges.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minimumWeight(self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int) -> int:
+    graph = [[] for _ in range(n)]
+    reversedGraph = [[] for _ in range(n)]
+
+    for u, v, w in edges:
+      graph[u].append((v, w))
+      reversedGraph[v].append((u, w))
+
+    fromSrc1 = self._dijkstra(graph, src1)
+    fromSrc2 = self._dijkstra(graph, src2)
+    fromDest = self._dijkstra(reversedGraph, dest)
+    minWeight = min(a + b + c for a, b, c in zip(fromSrc1, fromSrc2, fromDest))
+    if minWeight == math.inf:
+      return -1
+    else:
+      return minWeight
+
+  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> List[int]:
+    dist = [math.inf] * len(graph)
+
+    dist[src] = 0
+    minHeap = [(dist[src], src)]
+
+    while minHeap:
+      d, u = heapq.heappop(minHeap)
+      if d > dist[u]:
+        continue
+      for v, w in graph[u]:
+        if d + w < dist[v]:
+          dist[v] = d + w
+          heapq.heappush(minHeap, (dist[v], v))
+
+    return dist
+",,TestEval,3,Minimum Weighted Subgraph With the Required Paths
+TCC23,test_case_generation,"Task Description:
+You are given an array `nums` consisting of non-negative integers. You are
+also given a `queries` array, where `queries[i] = [xi, mi]`.
+
+The answer to the `ith` query is the maximum bitwise `XOR` value of `xi` and
+any element of `nums` that does not exceed `mi`. In other words, the answer is
+`max(nums[j] XOR xi)` for all `j` such that `nums[j] <= mi`. If all elements
+in `nums` are larger than `mi`, then the answer is `-1`.
+
+Return an integer array `answer` where `answer.length == queries.length` and
+`answer[i]` is the answer to the `ith` query.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator, Optional
+
+class TrieNode:
+  def __init__(self):
+    self.children: List[Optional[TrieNode]] = [None] * 2
+
+
+class BitTrie:
+  def __init__(self, maxBit: int):
+    self.maxBit = maxBit
+    self.root = TrieNode()
+
+  def insert(self, num: int) -> None:
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = num >> i & 1
+      if not node.children[bit]:
+        node.children[bit] = TrieNode()
+      node = node.children[bit]
+
+  def getMaxXor(self, num: int) -> int:
+    maxXor = 0
+    node = self.root
+    for i in range(self.maxBit, -1, -1):
+      bit = num >> i & 1
+      toggleBit = bit ^ 1
+      if node.children[toggleBit]:
+        maxXor = maxXor | 1 << i
+        node = node.children[toggleBit]
+      elif node.children[bit]:
+        node = node.children[bit]
+      else:
+        return 0
+    return maxXor
+
+
+class IndexedQuery:
+  def __init__(self, queryIndex: int, x: int, m: int):
+    self.queryIndex = queryIndex
+    self.x = x
+    self.m = m
+
+  def __iter__(self):
+    yield self.queryIndex
+    yield self.x
+    yield self.m
+
+
+class Solution:
+  def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+    ans = [-1] * len(queries)
+    maxBit = int(math.log2(max(max(nums), max(x for x, _ in queries))))
+    bitTrie = BitTrie(maxBit)
+
+    nums.sort()
+
+    i = 0
+    for queryIndex, x, m in sorted([IndexedQuery(i, x, m) for i, (x, m) in enumerate(queries)], key=lambda iq: iq.m):
+      while i < len(nums) and nums[i] <= m:
+        bitTrie.insert(nums[i])
+        i += 1
+      if i > 0 and nums[i - 1] <= m:
+        ans[queryIndex] = bitTrie.getMaxXor(x)
+
+    return ans
+",,TestEval,3,Maximum XOR With an Element From Array
+TCC25,test_case_generation,"Task Description:
+Strings `s1` and `s2` are `k`-similar (for some non-negative integer `k`) if
+we can swap the positions of two letters in `s1` exactly `k` times so that the
+resulting string equals `s2`.
+
+Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and
+`s2` are `k`-similar.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def kSimilarity(self, s1: str, s2: str) -> int:
+    ans = 0
+    q = collections.deque([s1])
+    seen = {s1}
+
+    while q:
+      for _ in range(len(q)):
+        curr = q.popleft()
+        if curr == s2:
+          return ans
+        for child in self._getChildren(curr, s2):
+          if child in seen:
+            continue
+          q.append(child)
+          seen.add(child)
+      ans += 1
+
+    return -1
+
+  def _getChildren(self, curr: str, target: str) -> List[str]:
+    children = []
+    s = list(curr)
+    i = 0
+    while curr[i] == target[i]:
+      i += 1
+
+    for j in range(i + 1, len(s)):
+      if s[j] == target[i]:
+        s[i], s[j] = s[j], s[i]
+        children.append(''.join(s))
+        s[i], s[j] = s[j], s[i]
+
+    return children
+",,TestEval,3,K-Similar Strings
+TCC27,test_case_generation,"Task Description:
+Given an array `rectangles` where `rectangles[i] = [xi, yi, ai, bi]`
+represents an axis-aligned rectangle. The bottom-left point of the rectangle
+is `(xi, yi)` and the top-right point of it is `(ai, bi)`.
+
+Return `true` if all the rectangles together form an exact cover of a
+rectangular region.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator, Set
+
+class Solution:
+  def isRectangleCover(self, rectangles: List[List[int]]) -> bool:
+    area = 0
+    x1 = math.inf
+    y1 = math.inf
+    x2 = -math.inf
+    y2 = -math.inf
+    corners: Set[Tuple[int, int]] = set()
+
+    for x, y, a, b in rectangles:
+      area += (a - x) * (b - y)
+      x1 = min(x1, x)
+      y1 = min(y1, y)
+      x2 = max(x2, a)
+      y2 = max(y2, b)
+
+      for point in [(x, y), (x, b), (a, y), (a, b)]:
+        if point in corners:
+          corners.remove(point)
+        else:
+          corners.add(point)
+
+    if len(corners) != 4:
+      return False
+    if (x1, y1) not in corners or (x1, y2) not in corners or (x2, y1) not in corners or (x2, y2) not in corners:
+      return False
+    return area == (x2 - x1) * (y2 - y1)
+",,TestEval,3,Perfect Rectangle
+TCC28,test_case_generation,"Task Description:
+Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively,
+return the median of the two sorted arrays.
+
+The overall run time complexity should be `O(log (m+n))`.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+    n1 = len(nums1)
+    n2 = len(nums2)
+    if n1 > n2:
+      return self.findMedianSortedArrays(nums2, nums1)
+
+    l = 0
+    r = n1
+
+    while l <= r:
+      partition1 = (l + r) // 2
+      partition2 = (n1 + n2 + 1) // 2 - partition1
+      maxLeft1 = -2**31 if partition1 == 0 else nums1[partition1 - 1]
+      maxLeft2 = -2**31 if partition2 == 0 else nums2[partition2 - 1]
+      minRight1 = 2**31 - 1 if partition1 == n1 else nums1[partition1]
+      minRight2 = 2**31 - 1 if partition2 == n2 else nums2[partition2]
+      if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:
+        if (n1 + n2) % 2 == 0:
+          return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) * 0.5
+        else:
+          return max(maxLeft1, maxLeft2)
+      elif maxLeft1 > minRight2:
+        r = partition1 - 1
+      else:
+        l = partition1 + 1
+",,TestEval,3,Median of Two Sorted Arrays
+TCC30,test_case_generation,"Task Description:
+Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and
+flip it and all the four neighbors of it if they exist (Flip is changing `1`
+to `0` and `0` to `1`). A pair of cells are called neighbors if they share one
+edge.
+
+Return the minimum number of steps required to convert `mat` to a zero matrix
+or `-1` if you cannot.
+
+A binary matrix is a matrix with all cells equal to `0` or `1` only.
+
+A zero matrix is a matrix with all cells equal to `0`.
+
+
+
+Reference Implementation:
+import math
+import itertools
+import bisect
+import collections
+import string
+import heapq
+import functools
+import sortedcontainers
+from typing import List, Dict, Tuple, Iterator
+
+class Solution:
+  def minFlips(self, mat: List[List[int]]) -> int:
+    m = len(mat)
+    n = len(mat[0])
+    hash = self._getHash(mat, m, n)
+    if hash == 0:
+      return 0
+
+    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))
+    step = 0
+    q = collections.deque([hash])
+    seen = {hash}
+
+    while q:
+      step += 1
+      for _ in range(len(q)):
+        curr = q.popleft()
+        for i in range(m):
+          for j in range(n):
+            next = curr ^ 1 << (i * n + j)
+            for dx, dy in dirs:
+              x = i + dx
+              y = j + dy
+              if x < 0 or x == m or y < 0 or y == n:
+                continue
+              next ^= 1 << (x * n + y)
+            if next == 0:
+              return step
+            if next in seen:
+              continue
+            q.append(next)
+            seen.add(next)
+
+    return -1
+
+  def _getHash(self, mat: List[List[int]], m: int, n: int) -> int:
+    hash = 0
+    for i in range(m):
+      for j in range(n):
+        if mat[i][j]:
+          hash |= 1 << (i * n + j)
+    return hash
+",,TestEval,3,Minimum Number of Flips to Convert Binary Matrix to Zero Matrix

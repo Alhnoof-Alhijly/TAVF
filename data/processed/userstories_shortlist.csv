@@ -1,0 +1,45 @@
+﻿candidate_id,source_file,line_number,original_story,word_count
+USC01,g02-federalspending.txt,72,"As an Agency user, I want historical FPDS data loaded.",10
+USC02,g02-federalspending.txt,24,"As a UI designer, I want to begin user testing, so that I can validate stakeholder UI improvement requests.",19
+USC03,g03-loudoun.txt,41,"As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project.",33
+USC04,g03-loudoun.txt,52,"As an Enforcement Staff member, I want to Issue a Notice of Violation, so that I can provide formal communication to the responsible party.",24
+USC05,g04-recycling.txt,48,"As a user, I want to be able to browse through the list of facolities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint.",39
+USC06,g04-recycling.txt,39,"As a user, I want to contact the administrators, so that I can give feedback or ask for help.",19
+USC07,g05-openspending.txt,71,"As an API User, I want to be able to normalise measures by GDP, so I work with datasets in reference to their contextual constraints.",25
+USC08,g05-openspending.txt,13,"As a Data Publishing User, I want to be able to edit the data source of data I have already imported, So that I can fix bugs or make enhancements in the API built for my data.",37
+USC09,g08-frictionless.txt,50,"As a Civic Tech Activist, I want to make it easy to assess the quality of data stored by the government, so that I can make sure that government is living up to its transparency commitments.",36
+USC10,g08-frictionless.txt,29,"As a ResearcherGovernment Publisher, I want to add reference data on inflation to my spending dataset, so that the spending lines in my dataset is more understandable.",27
+USC11,g10-scrumalliance.txt,79,"As a site visitor, I want to view a section of the website that teaches me the basics of what Scrum is, so that I can learn that quickly.",29
+USC12,g10-scrumalliance.txt,5,"As a Trainer, I want to include additional details in my profile page about me, so that others can learn about me and decide if I am the right trainer for them.",32
+USC13,g11-nsf.txt,54,"As a VisualDesigner, I want to create a moodboard to aid with visual design concepts for the nsf.gov website, so that we can discuss different design concepts with stakeholders.",29
+USC14,g11-nsf.txt,73,"As a team member, I want to understand how work moves between UX/content > visual design > front end dev for a sprint cycle.",24
+USC15,g12-camperplus.txt,46,"As a parent, I want to be able to enroll my children, so that they can be admitted to camp.",20
+USC16,g12-camperplus.txt,15,"As a camp administrator, I want to store campers' emergency information in a database, so that I can easily notify the necessary parties in case of an emergency.",28
+USC17,g13-planningpoker.txt,2,"As a moderator, I want to invite estimators by giving them a URL where they can access the game, so that we can start the game.",26
+USC18,g13-planningpoker.txt,30,"As an estimator, I want to see the item we’re estimating, so that I know what I’m giving an estimate for.",21
+USC19,g14-datahub.txt,52,"As a Consumer, I want to see a publisher's profile, so that that I can discover their packages and get a sense of how active and good they are.",29
+USC20,g14-datahub.txt,31,"As a Consumer, I want to download the data package in one file, so that that I don't have to download descriptor and each resource by hand.",27
+USC21,g16-mis.txt,7,"As a developer, I want to determine if we can use the in-built Fedora 4 event audit services.",18
+USC22,g16-mis.txt,66,"As a collection curator, I want to view the permission on my objects all together.",15
+USC23,g17-cask.txt,19,"As an app developer, I want to create a dataset instance with a specific version of a dataset type.",19
+USC24,g17-cask.txt,16,"As an app developer, I want to write unit tests for an app that depends on the interface of a dataset type.",22
+USC25,g18-neurohub.txt,20,"As a supervisor, I want to view what my researchers were doing on a given date or period of time.",20
+USC26,g18-neurohub.txt,7,"As a lab administrator, I want to theme the Web interface graphics/colours.",12
+USC27,g19-alfred.txt,16,"As an OlderPerson, I want to buy ALFRED in a senior shop with special client support.",16
+USC28,g19-alfred.txt,72,"As an OlderPerson, I want to use ALFRED to learn about art expositions or a museum.",16
+USC29,g21-badcamp.txt,20,"As a administrator, I want to refund sponsorship money that was processed via stripe, so that people get their monies back.",21
+USC30,g21-badcamp.txt,35,"As a administrator, I want to create blog posts, so that I can share the latest information about BADCamp with the public.",22
+USC31,g22-rdadmp.txt,18,"As a data manager, I want to know which kind of data types will be produced or collected, so that I can determine what basic support services and functionalities are required.",31
+USC32,g22-rdadmp.txt,20,"As an archivemanager, I want to know in advance the conservation period of data, so that I can better organize the service by adapting the preservation actions.",27
+USC33,g23-archivesspace.txt,17,"As a user, I want backend changes to support loading enum value lists from the database.",16
+USC34,g23-archivesspace.txt,3,"As a user, I want backend changes for managing enum lists.",11
+USC35,g24-unibath.txt,9,"As a depositor, I want to deposit arbitrarily large files, so that I am not limited in what files I can and cannot deposit.",24
+USC36,g24-unibath.txt,21,"As a depositor, I want to manage multiple versions of the same dataset, so that changes to the dataset are transparent and do not compromise research integrity.",27
+USC37,g25-duraspace.txt,22,"As a repository manager, I want to indicate the copyright status of an object.",14
+USC38,g25-duraspace.txt,54,"As a DAMS manager, I want to indicate the source-capture information for a file where it is useful to do so.",21
+USC39,g26-racdam.txt,41,"As a researcher, I want to locate photographs and documents that I can share on social media.",17
+USC40,g26-racdam.txt,68,"As a researcher, I want to search using structured data, so that I can find everything relevant to my inquiry across collections.",22
+USC41,g27-culrepo.txt,59,"As a library staff member, I want to deliver streaming media from within the repository, so that I can deliver such content in the manner expected and ensure continued access to said content.",33
+USC42,g27-culrepo.txt,65,"As a DB/IR administrator, I want to have the system recognize/categorize document type (e.g. historical report still published, expired historical report, single topic dataset, broad topic dataset, report with subtopic, computer file), so that report/dataset is processed and displayed properly.",40
+USC43,g28-zooniverse.txt,21,"As an admin, I want to filter and rank videos based on A/V quality aspects.",15
+USC44,g28-zooniverse.txt,37,"As a Zooniverse admin, I want to automatically detect Plankton Portal images with no classifiable plankton in them.",18

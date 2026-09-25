@@ -1,0 +1,2654 @@
+﻿candidate_id,Bug ID,Comment ID,Author,Comment Text,Contains Steps to Reproduce,Contains Actual Result,Contains Expected Result or Expect,Contains Expected,Contains Actual,Steps to Reproduce,Expected_Res,Actual_Res,Summary,Product,__index_level_0__,word_count
+BRC01,1895711,16926575,dmeehan@mozilla.com,"### steps to reproduce
+
+1. browse to a site in fenix nightly
+2. select share from the options menu
+3. select a device from send to device
+
+### expected behavior
+the site should open on the device you selected
+
+### actual behavior
+an error is displayed `unable to send`
+### device information
+
+* firefox version: 127.0a1
+* android device model: samsung s24+
+* android os version: android 14
+
+### any additional information?
+this is not reproducible in 125 release or 126 beta",True,False,True,True,True,"Here are the steps to reproduce:
+
+1. Browse to a site in Fenix Nightly.
+2. Select ""Share"" from the Options menu.
+3. Select a device from ""Send to Device"".","The ""Expected Results"" section is:
+
+### Expected Results
+the site should open on the device you selected","Here is the extracted section titled ""Actual Results"":
+
+### Actual Behavior
+an error is displayed `unable to send`","Here's a rewritten version of the text in paragraph format:
+
+When attempting to send a website from Fenix Nightly to an Android device, I encountered an issue. To reproduce this problem, I followed these steps: First, I browsed to a site in Fenix Nightly. Next, I selected ""Share"" from the options menu and then chose a device from the ""Send to device"" option. However, instead of the website opening on the selected device, an error message was displayed stating ""Unable to send.""
+
+The expected behavior was that the site should open on the device I selected. Unfortunately, this is not what happened. The issue appears to be specific to Android devices running version 14, as it was not reproducible in earlier releases (Fenix Nightly 125 or 126 beta).
+
+Here's some additional information:
+
+* Firefox version: 127.0a1
+* Android device model: Samsung S24+
+* Android OS version: Android 14",Application Services,312,82
+BRC02,1235395,11033205,mva@FreeBSD.org,"user agent: mozilla/5.0 (x11; freebsd amd64; rv:43.0) gecko/20100101 firefox/43.0
+build id: 20151225125557
+
+steps to reproduce:
+
+execute the whine.pl cronjob according to http://bugzilla.readthedocs.org/en/5.0/installing/optional-post-install-config.html?highlight=whine
+
+
+actual results:
+
+the script broke due to ""undefined subroutine &main::generate_email called at ./whine.pl line 355""
+
+
+expected results:
+
+working whine mails should have been sent
+
+it looks like there is no generate_email() routine defined in bugzilla/mailer.pm in 5.0.2., while there is one in the current head/master",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+Execute the whine.pl cronjob according to http://bugzilla.readthedocs.org/en/5.0/installing/optional-post-install-config.html?highlight=whine","The ""Expected Results"" section is:
+
+Working whine mails should have been sent.","Here is the extracted ""Actual Results"" section:
+
+Actual Results:
+the script broke due to ""undefined subroutine &main::generate_email called at ./whine.pl line 355""","Here's a rewritten version of the user agent string in paragraph format:
+
+The Mozilla Firefox browser, version 43.0, was used to execute a cron job script named whine.pl according to instructions provided at http://bugzilla.readthedocs.org/en/5.0/installing/optional-post-install-config.html?highlight=whine. This script is intended to send working whine mails.
+
+Unfortunately, the actual results were different from what was expected. When the script was executed, it broke due to an error message reading ""undefined subroutine &main::generate_email called at ./whine.pl line 355"". The expected result was that the script would successfully send out the desired emails.
+
+Further investigation revealed that the generate_email() routine is not defined in bugzilla/mailer.pm version 5.0.2, which suggests that this issue may be related to an outdated or incompatible library component. In contrast, a current head/master version of bugzilla/mailer.pm does include this routine, implying that updating this component may resolve the issue.",Bugzilla,799,67
+BRC03,1296831,11641490,Frank@Frank-Becker.de,"user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/601.7.7 (khtml, like gecko) version/9.1.2 safari/601.7.7
+
+steps to reproduce:
+
+create a answer file and include the following line
+$answer{'use_email_as_login'} = '1';
+
+run ./checksetup.pl ./answers
+
+
+actual results:
+
+you get the following output:
+initializing ""product/component changes"" email_setting ...
+initializing ""dependency tree changes"" email_setting ...
+deriving regex group memberships...
+login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+
+and in data/params.json you find the line
+   ""use_email_as_login"" : 0,
+
+
+
+expected results:
+
+creation without an error and data/params.json with the following line
+   ""use_email_as_login"" : 1,",True,True,True,True,True,"Here is the extracted ""Steps to Reproduce"" section:
+
+**Steps to Reproduce**
+
+1. Create an answer file and include the following line:
+```
+$answer{'use_email_as_login'} = '1';
+```
+2. Run `./checksetup.pl ./answers`
+
+Let me know if you need anything else!","The section titled ""Expected Results"" is:
+
+Creation without an error and data/params.json with the following line:
+""use_email_as_login"": 1,","Here is the extracted section titled ""Actual Results"":
+
+you get the following output:
+initializing ""product/component changes"" email_setting ...
+initializing ""dependency tree changes"" email_setting ...
+deriving regex group memberships...
+login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+and in data/params.json you find the line
+    ""use_email_as_login"" : 0,","Here is a rewritten version of the text in paragraph format:
+
+The user agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7 reports an issue with the checksetup.pl script when creating an answer file.
+
+To reproduce the issue, follow these steps: First, create an answer file and include the line `$answer{'use_email_as_login'} = '1';`. Then, run the `./checksetup.pl ./answers` command.
+
+The actual results are as follows:
+
+When running the script, you will see the following output:
+```
+Initializing ""product/component changes"" email setting ...
+Initializing ""dependency tree changes"" email setting ...
+Deriving regex group memberships...
+Login names may not contain the ""@"" sign unless you are setting your
+login name to be identical to your email address.
+```
+
+After running the script, the `data/params.json` file will contain the line `""use_email_as_login"": 0,`, which is an unexpected result. The expected result is that the script should create the answer file without error and write the correct value to `data/params.json`.",Bugzilla,2453,102
+BRC04,1567114,14244270,u643384@disabled.tld,"user agent: mozilla/5.0 (x11; fedora; linux x86_64; rv:68.0) gecko/20100101 firefox/68.0
+
+steps to reproduce:
+
+since today all internet providers in kazakhstan started mitm on all encrypted https traffic.
+
+they asked end-users to install government-issued certificate authority on all devices in every browser: http://qca.kz/
+
+
+actual results:
+
+mitm attack: https://i.imgur.com/rfejxkw.jpg
+
+message from internet provider, requires to install this ca: https://i.imgur.com/wykjoug.jpg
+
+proofs: https://atlas.ripe.net/measurements/22372655/#!probes
+
+official site with root ca: http://qca.kz/
+
+links to certificates:
+http://qca.kz/qazca.cer
+http://qca.kz/qazca.pem
+http://qca.kz/qazca.der
+
+
+expected results:
+
+i think this ca should be blacklisted by mozilla and firefox should not accept it at all even user installed it manually.
+
+this will save privacy of all internet users in kazakhstan.",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+Steps to Reproduce:
+since today all internet providers in Kazakhstan started MIMT on all encrypted HTTPS traffic.
+they asked end-users to install government-issued certificate authority on all devices in every browser: http://qca.kz/
+
+Note that this appears to be a report of a real-world situation, rather than a test case or experiment designed to reproduce a specific issue.","Here is the extracted section titled ""Expected Results"":
+
+Expected Results:
+I think this CA should be blacklisted by Mozilla and Firefox should not accept it at all even if a user installed it manually.
+This will save the privacy of all internet users in Kazakhstan.","Here is the extracted section:
+
+**Actual Results**
+
+* MITM attack: https://i.imgur.com/rfejxkw.jpg
+* Message from internet provider, requires to install this CA: https://i.imgur.com/wykjug.jpg
+* Proofs: https://atlas.ripe.net/measurements/22372655/#!probes
+* Official site with root CA: http://qca.kz/
+* Links to certificates:
+	+ http://qca.kz/qazca.cer
+	+ http://qca.kz/qazca.pem
+	+ http://qca.kz/qazca.der","Here is the rewritten text in paragraph format:
+
+As a Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0 user agent, I want to report an unexpected situation that has been unfolding since today. In Kazakhstan, all internet providers have started intercepting and decrypting all HTTPS traffic using a man-in-the-middle (MitM) attack. This means that anyone attempting to access secure websites will have their encrypted data intercepted and decrypted by these providers.
+
+To reproduce this issue, users are being asked to install a government-issued Certificate Authority (CA) on their devices in every browser. The CA can be obtained from the official website at http://qca.kz/. Once installed, this CA allows the internet provider to intercept and decrypt all HTTPS traffic. This has serious implications for user privacy.
+
+The actual results of this MitM attack are alarming. I have encountered several instances where my browser was prompted to install the government-issued CA in order to access secure websites. For example, when trying to access a specific image URL (https://i.imgur.com/rfejxkw.jpg), I was presented with a message from my internet provider requiring me to install this CA (https://i.imgur.com/wykjug.jpg).
+
+I have also provided proof of this MitM attack through the RIPE Atlas measurement tool (https://atlas.ripe.net/measurements/22372655/#probes). Additionally, I have linked to official resources that provide more information about the government-issued CA and its certificates.
+
+Given these circumstances, I expect Mozilla and Firefox to blacklist this CA and reject any attempts to install it, even if a user does so manually. By doing so, we can help protect the privacy of internet users in Kazakhstan and prevent further exploitation by these providers.",CA Program,185,105
+BRC05,1085287,9468913,jasonrumney@gmail.com,"user agent: mozilla/5.0 (windows nt 6.1; wow64) applewebkit/537.36 (khtml, like gecko) chrome/38.0.2125.104 safari/537.36
+
+steps to reproduce:
+
+i received an appointment from an outlook user, with the following details:
+
+[calgooglecalendar] setting upload data (application/json; charset=utf-8):
+{""start"":{""datetime"":""2014-10-23t10:00:00+08:00"",""timezone"":""singapore standard time""},""end"":{""datetime"":""2014-10-23t12:00:00+08:00"",""timezone"":""singapore standard time""},...}}
+
+
+actual results:
+
+[calgooglecalendar] request post https://www.googleapis.com/calendar/v3/calendars/jasonrumney%40gmail.com/events responded with http 400
+[calgooglecalendar] a request error occurred. status code: 400 bad request body: {
+ ""error"": {
+  ""errors"": [
+   {
+    ""domain"": ""global"",
+    ""reason"": ""invalid"",
+    ""message"": ""invalid time zone definition for start time.""
+   },
+   {
+    ""domain"": ""global"",
+    ""reason"": ""invalid"",
+    ""message"": ""invalid time zone definition for end time.""
+   }
+  ],
+  ""code"": 400,
+  ""message"": ""invalid time zone definition for start time.""
+ }
+}
+
+
+
+expected results:
+
+if it can be detected beforehand that the timezone is incorrect, it would be better to replace it with the timezone from the datetime where provided, or fall back to local timezone in worst case.
+
+even if this cannot be detected ahead of time, the gdata provider could catch the error from google servers and handle it by resubmitting.",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+I received an appointment from an Outlook user, with the following details:
+
+* Setting upload data (application/json; charset=UTF-8): {""start"":{""datetime"":""2014-10-23T10:00:00+08:00"",""timezone"":""Singapore Standard Time""},""end"":{""datetime"":""2014-10-23T12:00:00+08:00"",""timezone"":""Singapore Standard Time""},...}}","The ""Expected Results"" section is:
+
+""If it can be detected beforehand that the timezone is incorrect, it would be better to replace it with the timezone from the datetime where provided, or fall back to local timezone in worst case.
+
+Even if this cannot be detected ahead of time, the GData provider could catch the error from Google servers and handle it by resubmitting.""","Here is the extracted ""Actual Results"" section:
+
+[calgooglecalendar] request post https://www.googleapis.com/calendar/v3/calendars/jasonrumney%40gmail.com/events responded with http 400
+[calgooglecalendar] a request error occurred. status code: 400 bad request body:
+{
+  ""error"": {
+   ""errors"": [
+    {
+     ""domain"": ""global"",
+     ""reason"": ""invalid"",
+     ""message"": ""invalid time zone definition for start time.""
+    },
+    {
+     ""domain"": ""global"",
+     ""reason"": ""invalid"",
+     ""message"": ""invalid time zone definition for end time.""
+    }
+   ],
+   ""code"": 400,
+   ""message"": ""invalid time zone definition for start time.""
+  }
+}","Here is a rewritten version of the user agent and steps to reproduce in paragraph format:
+
+The user agent in question is Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36. This browser is attempting to upload appointment data from Microsoft Outlook to Google Calendar.
+
+To reproduce the issue, an appointment was received from an Outlook user with the following details:
+
+The ""CalGoogleCalendar"" setting was configured to upload data in JSON format with a UTF-8 character set. The data included start and end times for an event, along with time zone information. Specifically, the start date was set as October 23, 2014 at 10:00 AM Singapore Standard Time, while the end date was set as October 23, 2014 at 12:00 PM Singapore Standard Time.
+
+The actual results of this attempt were a HTTP 400 error response from Google Calendar. The ""CalGoogleCalendar"" request to post the event data resulted in an error with status code 400 (Bad Request). The error message indicated that there was an invalid time zone definition for both the start and end times.
+
+The expected results, however, would be that if the timezone is incorrect, it should be detected beforehand and replaced with the timezone from the datetime where provided. If this cannot be detected ahead of time, then the GData provider could catch the error from Google servers and handle it by resubmitting the request.",Calendar,2397,167
+BRC06,1792078,16085116,garret@globalmentor.com,"steps to reproduce:
+
+after moving to the new recent 100.x series (i think it was then), thunderbird switched to some newfangled rich text editor for calendar events. every time i save an event and come back, newlines are added all over the place leaving everything a confusing mess.
+
+i type some nice paragraph such as the following (not the exact text):
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+
+
+actual results:
+
+thunderbird decided to randomly add line breaks, such as:
+
+blah blah foo
+bar (and more foo bar); this 
+
+is foo; this is bar
+foo and
+
+
+bar
+bar and foo
+
+currently i have no way to predict where thunderbird is going to throw in line breaks.
+
+
+expected results:
+
+i should have got back:
+
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+(we're not even talking about rich formatting!!)
+
+why does everyone try to re-implement a word process and break things royally? if you'd just provide plain text and not screw up the lines, that would be 10 times better than this.
+
+or you could allow us to enter raw markdown and then show it rendered in the view (using a common library), like stack overflow does.
+
+why oh why are you adding line breaks all over the place every time i edit a calendar event?",True,True,True,True,True,"Here is the section titled ""Steps to Reproduce"":
+
+(after moving to the new recent 100.x series, Thunderbird switched to some newfangled rich text editor for calendar events.)
+
+... (no specific steps mentioned)
+
+Note that there are no specific steps provided in this section, only a general description of what happened.","Here is the section titled ""Expected Results"":
+
+Expected results:
+i should have got back:
+blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo
+(we're not even talking about rich formatting!!)","Here is the extracted ""Actual Results"" section:
+
+thunderbird decided to randomly add line breaks, such as:
+blah blah foo
+bar (and more foo bar); this 
+is foo; this is bar
+foo and 
+
+bar
+bar and foo","Here is the rewritten text in paragraph format:
+
+When I updated my Thunderbird to the latest version, I noticed that the rich text editor for calendar events had changed. While I was initially excited about the new features, I soon found myself frustrated with a peculiar problem: every time I saved an event and came back to it later, random line breaks would appear, making the text difficult to read.
+
+To illustrate this issue, let's say I entered some text in the following format:
+
+""blah blah foo bar (and more foo bar); this is foo; this is bar
+foo and bar
+bar and foo""
+
+But when I saved the event and came back to it later, Thunderbird would somehow insert line breaks randomly, resulting in the following mess:
+
+""blah blah foo
+bar (and more foo bar); this 
+is foo; this is bar
+foo and
+
+bar
+bar and foo""
+
+I find it difficult to predict where these line breaks will appear, making it a hassle to edit calendar events.
+
+What I had expected was that my original text would be preserved, without any unnecessary line breaks. This is the simplest format that works well for most people. Instead of trying to re-implement a word processor and breaking things in the process, why not just provide plain text and avoid messing up the lines? Alternatively, allowing us to enter raw Markdown and rendering it nicely in the view using a common library would be a much better approach.
+
+Why oh why do I have to deal with these random line breaks every time I edit a calendar event?",Calendar,3043,239
+BRC07,1657797,14977048,contact@dannycolin.com,"user agent: mozilla/5.0 (x11; linux x86_64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+0. open the chat tab
+1. connect to your matrix account (e.g. @username:matrix.org)
+2. click on ""join chat"" button
+3. enter a room name from a different homeserver (e.g. #maildev:mozilla.org)
+
+
+actual results:
+
+the chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)
+
+
+expected results:
+
+if a server name is specified, join chat shouldn't append the account server name.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+0. Open the chat tab
+1. Connect to your Matrix account (e.g. @username:matrix.org)
+2. Click on ""Join Chat"" button
+3. Enter a room name from a different homeserver (e.g. #maildev:mozilla.org)","Here are the ""Expected Results"" extracted from the text:
+
+**Expected Results**
+If a server name is specified, join chat shouldn't append the account server name.","Here is the extracted section titled ""Actual Results"":
+
+Actual Results:
+the chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)","Here's a rewritten version of the user agent and steps to reproduce in paragraph format:
+
+A user agent with the following specifications: Mozilla/5.0 (X11; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0, has reported an issue when joining a chat room on Matrix. To reproduce this issue, follow these steps:
+
+Open the chat tab and connect to your Matrix account using your username and password (@username:matrix.org). Then, click on the ""Join Chat"" button. Next, enter a room name from a different homeserver (e.g., #maildev:mozilla.org).
+
+The actual result is that the chat joins a room with a URL in the format #room_name:server_name:account_server_name.tld (e.g., #maildev:mozilla.org:matrix.org). However, the expected result is that if a server name is specified, the ""Join Chat"" button should not append the account server name. In other words, the correct room URL should be #room_name:server_name.tld, without the account server name.
+
+Let me know if you'd like me to rephrase anything!",Chat Core,35,69
+BRC08,1568643,14257904,bzbarsky@mit.edu,"steps to reproduce:
+
+1) load a phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)
+2) click on ""edit related revisions"" in the toolbox on the right.
+3) click on ""edit child revisions"".
+4) select ""all objects"" in the dropdown that starts out with ""created by me"" (just to make sure the list is not empty).
+5) click the label of the first thing in the list.  this is the part that says ""dnnnnn: bug mmmmm - something""
+
+expected results: the revision you clicked is added to the ""current child revisions"" bit at the bottom of the dialog.
+
+actual results: the dialog just closes.  only clicking the ""select"" button works to add things to ""current child revisions"".
+
+this used to work; per https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430 it no longer working is due to a change in phabricator, not in firefox.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1) Load a Phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)
+2) Click on ""Edit related revisions"" in the toolbox on the right.
+3) Click on ""Edit child revisions"".
+4) Select ""All objects"" in the dropdown that starts out with ""Created by me"" (just to make sure the list is not empty).
+5) Click the label of the first thing in the list. (This is the part that says ""dnnnnn: Bug mmmmm - something"")","Here are the ""Expected Results"" extracted from the text:
+
+**Expected Results**: the revision you clicked is added to the ""current child revisions"" bit at the bottom of the dialog.","Here is the extracted ""Actual Results"" section:
+
+Actual results: the dialog just closes. Only clicking the ""select"" button works to add things to ""current child revisions"".","Here's the rewritten text in paragraph format:
+
+To reproduce this issue, start by loading a Phabricator revision, for example, https://phabricator.services.mozilla.com/d39234. Once you're viewing the revision, click on ""Edit related revisions"" in the toolbox on the right side of the screen. From there, click on ""Edit child revisions."" This will display a list of objects that are connected to the original revision. To ensure the list isn't empty, select ""All objects"" from the dropdown menu that initially displays ""Created by me."" Next, click on the label of the first item in the list, which should read something like ""dnnnnn: bug mmmmm - something.""
+
+The expected outcome is that the selected revision would be added to the ""Current child revisions"" section at the bottom of the dialog box. However, the actual result is that the dialog simply closes without adding any revisions to the ""Current child revisions"" list. The only way to successfully add a revision to this list is by clicking the ""Select"" button.
+
+As mentioned in https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430, this issue is not due to a change in Firefox but rather a change in Phabricator itself.",Conduit,987,132
+BRC09,1834885,16426546,zeid@mozilla.com,"**steps to reproduce:**
+1. create a revision and submit with moz-phab.
+2. land revision with lando.
+3. backout the revision.
+4. update the revision with a new diff.
+5. land revision again with lando.
+
+**expected behaviour:**
+each landing job should show the correct (and different) diff id.
+
+**actual behaviour:**
+each landing job is showing the most recent diff id.",True,False,True,True,True,"Here are the steps to reproduce:
+
+1. create a revision and submit with moz-Phab.
+2. land revision with lando.
+3. backout the revision.
+4. update the revision with a new diff.
+5. land revision again with lando.","Here is the extracted section:
+
+**Expected Results:**
+
+each landing job should show the correct (and different) diff id.","Here is the extracted section:
+
+**Actual Results:**
+each landing job is showing the most recent diff id.","Here is the rewritten text in paragraph format:
+
+The process of reproducing an issue involves several steps. First, a revision must be created and submitted using Moz-Phab. Next, the revision should be landed with Lando. However, instead of seeing the correct and different diff ID, each landing job shows the most recent diff ID. This is not the expected behavior.
+
+To reproduce this issue, the following steps can be taken:
+
+Create a revision and submit it with Moz-Phab. Land the revision using Lando. Then, back out the revision to return to its original state. Update the revision by adding a new diff. Finally, land the revised revision again using Lando.
+
+Despite following these steps, each landing job still shows the same diff ID, which is not the expected behavior. The correct behavior would be for each landing job to display a unique and different diff ID.",Conduit,2842,59
+BRC10,1611651,14611009,marek@vavrusa.com,"created attachment 9123077
+trr.debug.log
+
+user agent: mozilla/5.0 (macintosh; intel mac os x 10.14; rv:72.0) gecko/20100101 firefox/72.0
+
+steps to reproduce:
+
+enable trr with default configuration and go to https://1.1.1.1/help
+
+
+actual results:
+
+the site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.
+
+
+expected results:
+
+if it's a problem with javascript, i'd expect it to go away after closing a tab, but nothing shows up in the performance console.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+**Steps to Reproduce:**
+
+1. Enable TRR (Trusted Recursive Resolver) with default configuration.
+2. Go to `https://1.1.1.1/help`.","The ""Expected Results"" section is:
+
+If it's a problem with JavaScript, I'd expect it to go away after closing a tab, but nothing shows up in the Performance Console.","Here is the extracted section titled ""Actual Results"":
+
+actual results:
+the site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.","Here is the rewritten text in paragraph format:
+
+I encountered an issue while using Firefox 72.0 on a Mac running macOS High Sierra (10.14). The problem arose when I enabled TRR (Trusted Recursive Resolver) with default settings and visited the URL https://1.1.1.1/help. As expected, the website loaded without issues initially. However, upon further inspection, I noticed that Firefox began consuming 100% CPU usage and remained in this state even after closing the tab. It appeared as though the browser was repeatedly attempting to resolve an IP address, specifically ipv6{a,b}.cloudflare-dns.com.
+
+My expected outcome would be that if there were a JavaScript-related issue, it would cease once I closed the tab or refreshed the page. However, no such error messages surfaced in the Performance Console. This behavior persisted, leaving me puzzled as to what was causing Firefox to continually occupy 100% CPU resources.",Core,1166,85
+BRC11,1408792,12759502,dvdplm@gmail.com,"created attachment 8918684
+death-of-the-nile---bbc-news-2017-10-15-23-17-48.jpg
+
+user agent: mozilla/5.0 (macintosh; intel mac os x 10.13; rv:58.0) gecko/20100101 firefox/58.0
+build id: 20171015100127
+
+steps to reproduce:
+
+visit http://www.bbc.co.uk/news/resources/idt-sh/death_of_the_nile with webrender turned on using latest firefox (""58.0a1 (2017-10-15) (64-bit)"" on macos v10.13 (17a405).
+
+
+actual results:
+
+the article text is missing completely.
+
+
+expected results:
+
+the article text should appear.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+**Steps to Reproduce**
+
+1. Visit http://www.bbc.co.uk/news/resources/idt-sh/death_of_the_nile with WebRender turned on.
+2. Use the latest Firefox (""58.0a1 (2017-10-15) (64-bit)"" on Mac OS v10.13 (17a405).","The section titled ""Expected Results"" is:
+
+""The article text should appear.""","Here is the extracted section:
+
+**Actual Results**
+
+The article text is missing completely.","Here is the rewritten text in paragraph format:
+
+A bug report was filed regarding a issue with the BBC News website. The specific page affected was ""Death of the Nile"" which can be accessed at http://www.bbc.co.uk/news/resources/idt-sh/death_of_the_nile. When visiting this page using the latest version of Firefox (58.0a1) on a Mac running macOS v10.13 (17a405), with WebRender turned on, the article text is missing entirely.
+
+The steps to reproduce this issue are as follows: visit the aforementioned URL using the specified browser and settings. The actual result is that the article text does not appear, whereas the expected result would be that the text is displayed normally.",Core,2069,53
+BRC12,1676712,15127062,florent@sodria.com,"user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:80.0) gecko/20100101 firefox/80.0
+
+steps to reproduce:
+
+i tried to pass the automatic tests of moz-phab with the instructions provided here:
+https://github.com/mozilla-conduit/review
+basically, i tried to execute the following command:
+venv/bin/pytest -vv tests/test_bmo.py
+
+
+
+
+actual results:
+
+========================================================================== test session starts ==========================================================================
+platform linux -- python 3.8.5, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /.../venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /.../review-mozphab, inifile: pytest.ini
+collected 242 items                                                                                                                                                     
+
+tests/test_bmo.py::test_get passed     [  0%]
+tests/test_bmo.py::test_whoami 
+
+^c
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! keyboardinterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+the second test will be stuck forever until i would do a ctrl+c.
+
+in fact, it will be locked mozphab fixture_reset_glean that is trying to call the following glean_sdk function:
+glean.testing.reset_glean(application_id=""mozphab"", application_version=""0.1.86"")
+
+and reset_glean will be stuck waiting for all ""glean"" process to terminate.
+and it is stuck, because one process with pinguploadworker will be stuck
+
+
+expected results:
+
+pinguploadworker should have returned in a few seconds maximum.
+and so the subprocess would have been terminated, and reset_glean could return and not be stuck for half a day.",True,True,True,True,True,"Here are the steps to reproduce:
+
+I tried to pass the automatic tests of Moz-Phab with the instructions provided here: https://github.com/mozilla-conduit/review
+
+Basically, I tried to execute the following command:
+```
+venv/bin/pytest -vv tests/test_bmo.py
+```","Here is the extracted ""Expected Results"" section:
+
+""Expected results:
+pinguploadworker should have returned in a few seconds maximum.
+and so the subprocess would have been terminated, and reset_glean could return and not be stuck for half a day.""","Here are the ""Actual Results"" extracted:
+
+========================================================================== test session starts ==========================================================================
+
+platform linux  -- python 3.8.5, pytest-5.2.1, py-1.8.0, pluggy-0.13.0  --  /.../venv/bin/python3
+cachedir: .pytest_cache
+rootdir:  /.../review-mozphab, inifile: pytest.ini
+collected 242 items                                                                                                                                                     
+tests/test_bmo.py::test_get passed      [  0%]
+tests/test_bmo.py::test_whoami 
+^c
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! keyboardinterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+the second test will be stuck forever until i would do a ctrl+c.
+in fact, it will be locked mozphab fixture_reset_glean that is trying to call the following glean_sdk function:
+glean.testing.reset_glean(application_id=""mozphab"", application_version=""0.1.86"")
+and reset_glean will be stuck waiting for all ""glean"" process to terminate.
+and it is stuck, because one process with pinguploadworker will be stuck","Here's the rewritten text in paragraph format:
+
+As a user agent, I am Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0. Recently, I encountered an issue while trying to run the automatic tests of Moz-Phab using the instructions provided on GitHub. Specifically, I was attempting to execute a command using pytest to test the `test_bmo.py` file.
+
+Here's what happened: when I ran the command `venv/bin/pytest -vv tests/test_bmo.py`, the test session started, and 242 tests were collected. The first test, `test_get`, passed successfully, but the second test, `test_whoami`, got stuck forever until I intervened with a Ctrl+C. This behavior is caused by a Moz-Phab fixture called `reset_glean` that tries to call the `glean_sdk` function.
+
+The issue arises because this function, `reset_glean`, is waiting for all ""glean"" processes to terminate before it can return. However, one of these processes, specifically the `pinguploadworker`, gets stuck and never returns, causing the entire test to hang indefinitely. This is not what I expected - I was hoping that the process would complete in a few seconds at most.
+
+In summary, when running the automatic tests for Moz-Phab using pytest, the second test got stuck forever due to an issue with the `reset_glean` fixture and the `pinguploadworker` process.",Data Platform and Tools,8,161
+BRC13,1657758,14976783,tigeroakes@gmail.com,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:81.0) gecko/20100101 firefox/81.0
+
+steps to reproduce:
+
+update from android gradle plugin 3.5 to 4.0 and try to compile an app using glean to generate code.
+
+see https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.
+
+
+actual results:
+
+glean code is not generated
+
+
+expected results:
+
+glean code should be generated",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+1. Update from Android Gradle Plugin 3.5 to 4.0.
+2. Try to compile an app using Glean to generate code.
+
+**See:** https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.","The ""Expected Results"" section is:
+
+```
+Expected Results:
+Glean code should be generated
+```","Here is the extracted section:
+
+Actual Results:
+Glean code is not generated","Here's a rewritten version of the user agent string and steps to reproduce in paragraph format:
+
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0 - This is the User Agent string of a Mozilla Firefox browser on a Windows 10 machine.
+
+To reproduce this issue, follow these steps:
+
+Update the Android Gradle plugin from version 3.5 to version 4.0 and attempt to compile an app using Glean to generate code. For reference, please see Pull Request #13271 on the Fenix repository at GitHub.com/mozilla-mobile/Fenix, which includes logs where all generated classes cannot be found.
+
+Actual Results: The Glean code is not generated.
+
+Expected Results: The Glean code should be generated successfully.",Data Platform and Tools,34,61
+BRC14,1579366,14345469,nchevobbe@mozilla.com,"**steps to reproduce**
+1. go to `about:config` and turn off `devtools.webconsole.input.autocomplete`
+1. open the console
+1. type `deb`
+1. hit ctrl+space to display the completion text  (should be `ugger`)
+1. type `u`
+1. hit `tab`
+
+
+**expected results**
+
+the input get completed to `debugger`
+
+**actual results**
+
+the input get completed to `debuugger`
+
+---
+
+this is because the completion text wasn't updated",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Go to `about:config` and turn off `devtools.webconsole.input.autocomplete`.
+2. Open the console.
+3. Type `deb`.
+4. Hit Ctrl+Space to display the completion text (should be `ugger`).
+5. Type `u`.
+6. Hit Tab.
+
+Let me know if you need anything else!","The ""Expected Results"" section is:
+
+* the input get completed to `debugger`","Here is the extracted section:
+
+**Actual Results**
+the input get completed to `debuugger`","Here's a rewritten version of the steps in paragraph format:
+
+To reproduce this issue, start by navigating to the ""about:config"" page and disabling the ""devtools.webconsole.input.autocomplete"" option. Next, open the console and type the command `deb`. Then, hit Ctrl+Space to display the completion text, which should be `ugger`. However, instead of displaying `debugger`, you'll notice that the input gets completed to `debuugger`.
+
+The expected outcome is that the input would get completed to `debugger`, but due to an issue with the completion text not being updated, it ends up completing to `debuugger` instead.",DevTools,914,60
+BRC15,1331601,11986854,u424271@disabled.tld,"steps to reproduce:
+1) ctrl+shift+m to open responsive design view
+2) ctrl+shift+m to exit responsive design view
+3) ctrl+u to open page source
+
+actual results
+a blank page (completely white) opened in a new tab
+
+expected results
+the page source should have opened in a new tab
+
+versions tested
+53.0a1 (2017-01-16) (64-bit) [issue present]
+51.0b14 (64-bit) [issue not present]
+50.1.0 [issue not present]",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+**Steps to Reproduce**
+
+1) Ctrl+Shift+M to open responsive design view
+2) Ctrl+Shift+M to exit responsive design view
+3) Ctrl+U to open page source","Here is the extracted section:
+
+**Expected Results**
+the page source should have opened in a new tab","Here is the extracted section:
+
+**Actual Results**
+A blank page (completely white) opened in a new tab.","Here is the rewritten text in paragraph format:
+
+The steps to reproduce this issue are as follows: first, press Ctrl+Shift+M to open the responsive design view. Then, again press Ctrl+Shift+M to exit the responsive design view. Next, press Ctrl+U to open the page source. However, when following these steps, a blank page (completely white) opens in a new tab instead of displaying the page source.
+
+The expected result is that pressing Ctrl+U should open the page source in a new tab. This issue was observed on version 53.0a1 (64-bit), but not on versions 51.0b14 (64-bit) and 50.1.0, suggesting that it may be specific to a particular version or build of the browser.
+
+Let me know if you'd like me to make any further changes!",DevTools,1875,63
+BRC16,1770098,15906006,tquan@linkedin.com,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:99.0) gecko/20100101 firefox/99.0
+
+steps to reproduce:
+
+launch firefox 100.0.1 x64 on windows 11 build 22000.613 (april release) or 22000.675 (may release)
+
+
+actual results:
+
+browser window comes up, but browser is unresponsive.  trying to visit any site fails, browser hangs
+
+
+expected results:
+
+able to view site",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+**Steps to Reproduce:**
+
+1. Launch Firefox 100.0.1 x64 on Windows 11 build 22000.613 (April release) or 22000.675 (May release).","The extracted ""Expected Results"" section is:
+
+**Expected Results**
+Able to view a site","Here is the extracted section titled ""Actual Results"":
+
+""Browser window comes up, but browser is unresponsive. Trying to visit any site fails, browser hangs.""","Here's the rewritten text in paragraph format:
+
+Mozilla Firefox version 99.0 was used as the user agent when accessing a website. The browser's behavior was observed and documented.
+
+To reproduce the issue:
+
+Launch Firefox 100.0.1 x64 on Windows 11 build 22000.613 (April release) or 22000.675 (May release).
+
+The actual results were as follows:
+
+When launched, the browser window came up, but the browser became unresponsive. Attempting to visit any site resulted in the browser hanging and failing to load.
+
+The expected result was that the user should be able to view a website without any issues. However, this did not occur, indicating a problem with the browser's functionality.",External Software Affecting Firefox,589,53
+BRC17,1686708,15215746,bmaris@mozilla.com,"created attachment 9197062
+update browser console.txt
+
+**affected versions**
+* latest nightly 86.0a1
+
+**affected platforms**
+* windows 10 64bit
+* windows 7 64bit
+
+**unaffected platforms**
+* macos 11
+* ubuntu 18.04
+
+**steps to reproduce**
+1. install old nightly form a few days or yesterday (i tried with 08.01.2021 or 13.01.2021)
+2. access about nightly so an update is triggered
+3. restart nightly
+
+**expected result**
+* nightly restarts after updates are applied
+
+**actual result**
+* nightly does not restart and can't be opened anymore
+
+**regression range**
+* i also restarted nightly yesterday after update and it worked just fine so it must be something that broke since yesterday",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+**steps to reproduce**
+1. install old nightly form a few days or yesterday (i tried with 08.01.2021 or 13.01.2021)
+2. access about nightly so an update is triggered
+3. restart nightly","Here is the extracted section:
+
+**Expected Results**
+
+* Nightly restarts after updates are applied","Here is the section titled ""Actual Results"":
+
+**actual result**
+* nightly does not restart and can't be opened anymore","Here is the rewritten text in paragraph format:
+
+This issue affects the latest nightly build (86.0a1) on Windows 10 64-bit and Windows 7 64-bit platforms. However, it does not affect macOS 11 or Ubuntu 18.04.
+
+To reproduce this issue, follow these steps: First, install an old nightly build from a few days ago or yesterday (I tried with builds dated January 8th, 2021, and January 13th, 2021). Next, access the nightly browser so that an update is triggered. Finally, restart the nightly browser.
+
+The expected result of these steps is that the nightly browser will restart after updates are applied. However, in reality, the nightly browser does not restart and cannot be opened again.
+
+It appears that this issue started occurring recently, as I was able to successfully restart the nightly browser yesterday after an update. Therefore, it seems likely that some change has been made since then that is causing this problem.",External Software Affecting Firefox,167,106
+BRC18,1832105,16403332,cfat@mozilla.com,"**[affected versions]:**
+- firefox nightly 115.0a1 (build id: 20230508214159)
+- firefox nightly 114.0b1 (build id: 20230508175934)
+
+**[affected platforms]:**
+- windows 10 x64
+- linux ubuntu 20.04 x64
+- macos 12.4
+
+**[prerequisites]:**
+- have a vpn client connected to a us server ( make sure the `browser.search.region` pref is set accordingly).
+- have the firefox nightly 115.0a1 build installed.
+- set the following prefs:
+`browser.urlbar.weather.featuregate` = `true`
+(windows only) `browser.urlbar.weather.ignorevpn` = `true`
+
+**[steps to reproduce]:**
+1. open the browser from the prerequisites.
+2. type the “weather” string in the address bar.
+3. click the feedback button.
+4. click any of the first 2 options (“report inaccurate location” or “show less frequently”).
+5. click the feedback button again.
+6. click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).
+7. observe the behavior.
+
+**[expected result]:**
+- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.
+
+**[actual result]:**
+- nothing happens, the weather result remains displayed.
+
+**[notes]:**
+- we noticed that even though the dismiss buttons don’t work, the telemetry is incremented with each click for `firefox-suggest-weather-command-not-relevant` and `firefox-suggest-weather-command-not-interested` (depending on which one is clicked).
+- here is the [screen recording](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing) of the issue.",True,True,True,True,True,"Here are the steps to reproduce:
+
+**Steps to Reproduce:**
+
+1. Open the browser from the prerequisites.
+2. Type the “weather” string in the address bar.
+3. Click the feedback button.
+4. Click any of the first 2 options (“report inaccurate location” or “show less frequently”).
+5. Click the feedback button again.
+6. Click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).
+7. Observe the behavior.","Here is the section titled ""Expected Results"":
+
+**[expected result]:**
+- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.","Here is the ""Actual Results"" section:
+
+**[actual result]:**
+- nothing happens, the weather result remains displayed.","Here is the rewritten text in paragraph format:
+
+We have identified an issue with Firefox Nightly versions 115.0a1 and 114.0b1 on Windows 10, Linux Ubuntu 20.04, and macOS 12.4. The problem arises when attempting to dismiss weather suggestions from the address bar panel. To reproduce this issue, one must first meet certain prerequisites: have a VPN client connected to a US server with the `browser.search.region` preference set accordingly; have Firefox Nightly 115.0a1 installed; and set the preferences `browser.urlbar.weather.featuregate` and (on Windows only) `browser.urlbar.weather.ignorevpn` to `true`.
+
+To reproduce the issue, follow these steps: open the browser from the prerequisites, type the string ""weather"" in the address bar, click the feedback button, select either of the first two options (""report inaccurate location"" or ""show less frequently""), and then click the feedback button again. From the sub-menu that appears, dismiss the suggestion by clicking either of the options (""not relevant"" or ""not interested""). Finally, observe the behavior.
+
+The expected result is that the weather suggestion should be removed from the address bar panel and a ""thank you"" message with a ""got it"" button should appear. However, in reality, nothing happens and the weather suggestion remains displayed. It's worth noting that even though the dismiss buttons do not work as intended, telemetry data is still incremented for each click of `firefox-suggest-weather-command-not-relevant` or `firefox-suggest-weather-command-not-interested`, depending on which option is selected. A screen recording of this issue can be found at [this link](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing).",Firefox,2933,208
+BRC19,1623905,14706715,cbaica@mozilla.com,"created attachment 9134671
+cfr button bug
+
+**affected platforms**
+* windows
+* ubuntu
+* macos
+
+**steps to reproduce**
+1. launch firefox.
+2. trigger the cfr addon recommandation.
+3. click the 'not now' option displayed on the doorhanger.
+
+**expected result**
+* the doorhanger is dismissed and the cfr button is minimized, but still displayed.
+
+**actual result**
+* the cfr button is not minimized.
+
+**regression range**
+* last good revision: e1a3a62f20351336f9afbcd3df26996b2acc14ae
+* first bad revision: 532b71703571a8a65e58330208afa0b28febfba8
+
+pushlog: https://hg.mozilla.org/integration/autoland/pushloghtml?fromchange=e1a3a62f20351336f9afbcd3df26996b2acc14ae&tochange=532b71703571a8a65e58330208afa0b28febfba8
+
+**additional notes**
+* this issue occurs for the cfr pin tab recommandation as well.",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+**Steps to Reproduce**
+
+1. Launch Firefox.
+2. Trigger the CFR addon recommendation.
+3. Click the 'Not now' option displayed on the doorhanger.","Here is the extracted section titled ""Expected Results"":
+
+**Expected Result**
+* the doorhanger is dismissed and the cfr button is minimized, but still displayed.","Here is the extracted ""Actual Results"" section:
+
+**actual result**
+* the cfr button is not minimized.","Here is a rewritten version of the attachment in paragraph format:
+
+A bug has been identified that affects Firefox on Windows, Ubuntu, and macOS platforms. The issue arises when the CFR (Customize Firefox Rewards) addon recommendation is triggered and the user clicks the ""Not Now"" option displayed on the doorhanger.
+
+In the expected behavior, the doorhanger should be dismissed and the CFR button minimized, still visible to the user. However, in the actual result, the CFR button does not minimize as expected. Instead, it remains at its original size.
+
+The regression range for this issue is between changeset e1a3a62f20351336f9afbcd3df26996b2acc14ae and 532b71703571a8a65e58330208afa0b28febfba8. The pushlog can be accessed at https://hg.mozilla.org/integration/autoland/pushloghtml?fromchange=e1a3a62f20351336f9afbcd3df26996b2acc14ae&tochange=532b71703571a8a65e58330208afa0b28febfba8.
+
+It is worth noting that this issue affects not just the CFR button, but also the CFR pin tab recommendation.",Firefox,885,89
+BRC20,1762736,15841754,arai.unmht@gmail.com,"created attachment 9270560
+task_id.txt
+
+steps to reproduce:
+  1. have mozilla-unified clone with git-cinnabar
+  2. remove `~/.mozbuild` directory
+  3. run `./mach bootstrap` on revision `d14c155fb35a9ae59561ca33344ecb91e42dc1b1` (mercurial revision, not git revision)
+  4. press `return` for `press enter/return to continue or ctrl+c to abort.`
+  5. enter `2` for `please choose the version of firefox you want to build:`
+  6. press `return` for `would you like to run a few configuration steps to ensure git is
+optimally configured? (yn):`
+
+actual result:
+`exception: task_id must be defined to use run-task on generic-worker` raised
+
+entire log attached
+
+expected result:
+no exception raised",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Have a Mozilla-unified clone with Git-Cinnabar.
+2. Remove `~/.mozbuild` directory.
+3. Run `./mach bootstrap` on revision `d14c155fb35a9ae59561ca33344ecb91e42dc1b1`.
+4. Press `return` for ""press enter/return to continue or ctrl+c to abort.""
+5. Enter `2` for ""please choose the version of Firefox you want to build:"".
+6. Press `return` for ""would you like to run a few configuration steps to ensure Git is optimally configured? (yn):"".","The ""Expected Results"" section is:
+
+* No exception raised","Here is the ""Actual Results"" section:
+
+`exception: task_id must be defined to use run-task on generic-worker` raised
+
+Entire log attached","Here is a rewritten version of the attachment in paragraph format:
+
+The following steps were attempted to reproduce an issue with the Mozilla-unified clone and Git-Cinnabar. The goal was to run `./mach bootstrap` on a specific Mercurial revision, but the process ended with an unexpected error.
+
+To attempt to reproduce the issue, the following steps were taken: first, the Mozilla-unified clone was obtained using Git-Cinnabar. Next, the `~/.mozbuild` directory was removed. Then, the `./mach bootstrap` command was run on a specific Mercurial revision (not a Git revision). After that, the user was prompted to press enter/return to continue or Ctrl+C to abort, and they chose to continue by pressing return. The next prompt asked the user to choose the version of Firefox to build; they selected option 2. A subsequent prompt asked if the user wanted to run configuration steps to optimize Git settings; they chose to answer ""yes"" (or press enter) to proceed.
+
+Unfortunately, instead of completing the process without issue, an exception was raised: `exception: task_id must be defined to use run-task on generic-worker`. The entire log for this attempt is attached. The expected result was that no exceptions would be raised and the process would complete successfully.
+
+Let me know if you'd like me to make any changes!",Firefox Build System,67,96
+BRC21,1333754,12009363,simion.basca@softvision.com,"build: 51abcc7ca
+device: ipad pro
+ios: 9.2.1
+
+steps to reproduce:
+1. launch fennec
+2. open 12 new tabs by tapping the '+' symbol
+3. select the last tab
+4. double tap on the home button and close fennec
+5. open fennec
+
+actual results:
+- the last tab which is selected is not in view. the scroll is positioned at the first tab.
+
+expected results:
+- the selected tab should be in view.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Launch Fennec.
+2. Open 12 new tabs by tapping the '+' symbol.
+3. Select the last tab.
+4. Double tap on the home button and close Fennec.
+5. Open Fennec again.","Here is the extracted ""Expected Results"" section:
+
+* The selected tab should be in view.","Here is the extracted section:
+
+**Actual Results**
+
+* The last tab which is selected is not in view. The scroll is positioned at the first tab.","On an iPad Pro running iOS 9.2.1, I experienced a peculiar issue with Fennec while building and testing. Here's what happened:
+
+To reproduce this issue, I followed these steps:
+
+First, I launched Fennec on my iPad Pro. Then, I opened 12 new tabs by tapping the '+' symbol repeatedly. Next, I selected the last tab in the stack. After that, I performed a double tap on the Home button to close Fennec. Finally, I reopened Fennec.
+
+However, when I did this, I encountered an unexpected result:
+
+Instead of seeing the selected tab in view, the scroll position was reset to the first tab. This means that the last tab I had selected was no longer visible. Ideally, after reopening Fennec and closing all tabs, the selected tab should remain in view.
+
+In summary, when launching Fennec on an iPad Pro running iOS 9.2.1 and following these specific steps, the expected result is not achieved: the selected tab does not remain in view, but rather the scroll position resets to the first tab.",Firefox for iOS,1858,72
+BRC22,1375995,12426337,sarentz@mozilla.com,"steps to reproduce:
+
+- stay on the home screen
+- send yourself three different tabs, wait for each to arrive on your phone
+- swipe down the notification center, make sure you see the three tabs
+- tap the middle one
+
+expected:
+
+that specific tab is opened.
+
+actual:
+
+different tab is opened.",True,False,True,True,True,"Here are the ""Steps to Reproduce"":
+
+1. Stay on the home screen.
+2. Send yourself three different tabs, wait for each to arrive on your phone.
+3. Swipe down the notification center, make sure you see the three tabs.
+4. Tap the middle one.
+
+Let me know if you need anything else!","Here is the extracted section:
+
+**Expected Results**
+
+That specific tab is opened.","The ""Actual Results"" section is:
+
+different tab is opened.","Here's a rewritten version of the steps in paragraph format:
+
+To reproduce this issue, start by staying on the home screen of your device. Then, send three different tabs to yourself using whatever method you typically use (e.g., email, messaging app, etc.). Wait for each tab to arrive on your phone. Once they're all received, swipe down the notification center to view the list of notifications. Confirm that you see all three tabs in the notification center.
+
+Next, tap the middle tab. At this point, you would expect that specific tab to be opened. However, what actually happens is different from what's expected - a different tab opens instead of the one you selected.
+
+Let me know if you'd like me to make any further adjustments!",Firefox for iOS,82,52
+BRC23,1557763,14167476,proof131072@gmail.com,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/75.0.3770.80 safari/537.36
+
+steps to reproduce:
+
+we are able to spoof the address bar and ssl on ios firefox focus using non-existent port.
+
+e.g. https://www.facebook.com:82
+
+poc:
+
+
+
+<html>
+	<body>
+		this is not facebook.com!
+		<script>
+			window.location.href = 'https://facebook.com:82';
+		</script>
+	</body>
+</html>
+
+test on: http://pwning.click/ffspoofeg.php
+
+
+actual results:
+
+address bar and ssl is spoofed.
+
+
+expected results:
+
+address bar and ssl shouldn't be spoofed despite the site is loaded with non-existent port.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Open Firefox Focus on iOS.
+2. Load a page using a non-existent port, for example:
+```
+https://www.facebook.com:82
+```
+3. View the page source and use the following code:
+```html
+<html>
+  <body>
+    this is not facebook.com!
+    <script>
+      window.location.href = 'https://facebook.com:82';
+    </script>
+  </body>
+</html>
+```
+4. Test on a URL, for example:
+```
+http://pwning.click/ffspoofeg.php
+```
+5. Observe the results:
+
+Actual Results: The address bar and SSL are spoofed.
+
+Expected Results: The address bar and SSL should not be spoofed despite loading the site with a non-existent port.","Here are the ""Expected Results"" extracted from the text:
+
+**Expected Results**
+Address bar and SSL shouldn't be spoofed despite the site is loaded with non-existent port.","Here is the extracted section titled ""Actual Results"":
+
+Actual Results:
+Address bar and SSL is spoofed.","Here's a rewritten version of the user agent and steps to reproduce in paragraph format:
+
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36 - This is the user agent string reported by a Firefox browser on Windows 10.
+
+To reproduce this issue, we can use the following steps:
+
+We are able to spoof the address bar and SSL on iOS Firefox Focus using a non-existent port. For example, if we enter `https://www.facebook.com:82` in the URL bar, the website will be loaded with the fake port number. To demonstrate this, we can create an HTML file that sets the `window.location.href` property to `https://facebook.com:82`. The code is as follows:
+
+```
+<html>
+  <body>
+    This is not Facebook.com!
+    <script>
+      window.location.href = 'https://facebook.com:82';
+    </script>
+  </body>
+</html>
+```
+
+To test this, we can load the HTML file on the following URL: `http://pwning.click/ffspoofeg.php`.
+
+The actual results are that the address bar and SSL are spoofed. However, our expected results were that the address bar and SSL should not be spoofed despite the website being loaded with a non-existent port number.
+
+This highlights an issue in Firefox's implementation of URL handling, where it is possible to manipulate the URL bar and SSL settings by using a non-existent port number.",Focus,1416,78
+BRC24,1806652,16207709,mlobontiuroman@mozilla.com,"created attachment 9309175
+android13.mp4
+
+### steps to reproduce
+1. install focus nightly 110.0a1 on an android 13 device
+2. open youtube.com, or vimeo.com.
+3. start a video, then access the fullscreen option.
+
+### expected behavior
+the video is displayed in fullscreen without issues.
+
+### actual behavior
+the video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.
+not reproducible on the latest fenix nightly 110.0a1.
+
+### device information
+* focus version: all (110.0a1 nightly from 12/20, beta 109.0b2, rc 108.1.0 - builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks 
+* android device: google pixel 6 (android 13)
+* not reproducible on: oppo reno 6 (android 12)
+* works fine on the rc 108.1.0 build from playstore",True,False,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+### Steps to Reproduce
+1. install focus nightly 110.0a1 on an Android 13 device
+2. open youtube.com, or vimeo.com.
+3. start a video, then access the fullscreen option.","Here is the extracted section titled ""Expected Results"":
+
+### expected behavior
+the video is displayed in fullscreen without issues.","The ""Actual Results"" section is:
+
+### actual behavior
+the video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.","Here is a rewritten version of the attachment in paragraph format:
+
+When using Firefox Nightly 110.0a1 on an Android 13 device, such as the Google Pixel 6, issues arise when playing videos on YouTube or Vimeo and entering fullscreen mode. The expected behavior is that the video would be displayed seamlessly without any problems. However, the actual behavior is that the screen turns white, despite the audio continuing to play. Tapping the home button triggers a pip (picture-in-picture) mode, but this too displays a blank screen.
+
+This issue only occurs on Android 13 devices and not on other Android versions, such as Android 12 on the Oppo Reno 6. Interestingly, the same issue does not occur when using the latest Fenix Nightly 110.0a1 build. The problem seems to be specific to the combination of Firefox Nightly 110.0a1 and Android 13.
+
+The device information is as follows: the Android device used was a Google Pixel 6 running Android 13, with Firefox Nightly versions including all (110.0a1 nightly from December 20), beta 109.0b2, and rc 108.1.0 (builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks).",Focus,574,139
+BRC25,1318897,11873315,sdna.muneaki.nishimura@gmail.com,"created attachment 8812508
+spoofing.png
+
+user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/602.1.50 (khtml, like gecko) version/10.0 safari/602.1.50
+
+steps to reproduce:
+
+open poc of bug 1224906 (below) and tap the first link in the page.
+https://mallory.csrf.jp/ios/spoofing.html
+focus tries to open ""https://accounts.google.com@mallory.csrf.jp:8020"" that the link specifies.
+
+
+actual results:
+
+focus's address bar shows https://accounts.google.com@mallory.csrf.jp:8020 directly (see the attached).
+userinfo field of uri is not stripped.
+
+
+expected results:
+
+userinfo field should be stripped on the address bar same as firefox for ios.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Open a proof-of-concept (POC) of bug 1224906.
+2. Tap the first link in the page.
+3. The link specifies ""https://accounts.google.com@mallory.csrf.jp:8020"".
+4. Focus tries to open this URL.
+
+Let me know if you need anything else!","The ""Expected Results"" section is:
+
+userinfo field should be stripped on the address bar same as Firefox for iOS.","Here is the extracted section:
+
+**Actual Results**
+
+* Focus' s address bar shows https://accounts.google.com@mallory.csrf.jp:8020 directly (see the attached).
+* Userinfo field of URI is not stripped.","Here's a rewritten version of the attachment in paragraph format, with a paraphrased summary:
+
+**Bug Report**
+
+We've encountered an issue with Focus, a web browser, where it fails to strip the userinfo field from a URI when opening a link that specifies a custom URL. The problem arises when we open a proof-of-concept (POC) page for bug 1224906 and tap the first link on the page, which points to a URL containing userinfo information.
+
+**Steps to Reproduce**
+
+To reproduce this issue, simply follow these steps:
+
+1. Open the POC page at https://mallory.csrf.jp/ios/spoofing.html.
+2. Tap the first link on the page.
+3. Focus attempts to open the custom URL specified by the link: https://accounts.google.com@mallory.csrf.jp:8020.
+
+**Actual Results**
+
+When we follow these steps, we observe that the address bar in Focus displays the full custom URL, including the userinfo field, without any stripping or encoding (see attached screenshot).
+
+**Expected Results**
+
+We expect that, just like Firefox for iOS, Focus should strip the userinfo field from the URI and display only the main hostname and port number in the address bar. This is a critical issue, as it may lead to security vulnerabilities and compromise user data.",Focus-iOS,2303,80
+BRC26,1593683,14465999,bubu@bubu1.eu,"created attachment 9106176
+device-2019-11-04-152302.mp4
+
+user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:70.0) gecko/20100101 firefox/70.0
+
+steps to reproduce:
+
+enter some text in an input field on a website (search field at https://startpage.com for example). try to go back a few characters by using the arrow keys at the bottom of the screen (i believe this is a cyanogenmode/lineageos specific feature. that feature works as expected in every other app, including the on-board (webview-based) browser app.)
+
+phone: nexus 5x
+os: lineageos 15.1 (aka android 8.1)
+keyboard: aosp keyboard
+
+
+actual results:
+
+the cursor keeps jumping back to the end of the current word. holding down the left arrow key i can finally get it to skip to a prior word.
+using the right arrow key it skips to the end of the current word again, not just a single character.
+
+this behaviour doesn't occur when i disable all next word suggestions/autocorrection in the aosp keyboard. this is not a usable workaround though.
+
+
+expected results:
+
+the arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.
+
+this works in every other android app except firefox.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+* Enter some text in an input field on a website (e.g., search field at https://startpage.com).
+* Try to go back a few characters by using the arrow keys at the bottom of the screen.","The ""Expected Results"" section is:
+
+""The arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.
+This works in every other Android app except Firefox.""","Here are the ""Actual Results"" extracted from the text:
+
+The cursor keeps jumping back to the end of the current word. Holding down the left arrow key, I can finally get it to skip to a prior word.
+Using the right arrow key, it skips to the end of the current word again, not just a single character.","Here's the rewritten text in paragraph format:
+
+I'm experiencing an issue with Firefox on my Nexus 5X running LineageOS 15.1 (Android 8.1). Specifically, when I enter some text into an input field and try to navigate backward by using the arrow keys at the bottom of the screen, the cursor jumps back to the end of the current word instead of skipping to a prior character or word as expected.
+
+To reproduce this issue, I simply need to enter some text in an input field on a website (e.g., the search field at startpage.com) and try to go back a few characters by using the arrow keys. This is a feature that works as expected in every other app, including the on-board browser app.
+
+What happens instead is that holding down the left arrow key allows me to finally skip to a prior word, but the right arrow key still skips to the end of the current word again, not just a single character. I've tried disabling all next word suggestions and autocorrection in my AOSP keyboard, which fixes the issue, but this is not a usable workaround.
+
+What I expect is that the arrow keys should control the cursor position like the left and right arrow keys do on a physical keyboard - i.e., they should allow me to navigate backward or forward by individual characters or words. Unfortunately, this works in every other Android app except Firefox.",GeckoView,1075,189
+BRC27,1783542,16018310,bbhtt.zn0i8@slmail.me,"created attachment 9288718
+screencap
+
+from github https://github.com/mozilla-mobile/fenix/issues/26327:
+
+> ### steps to reproduce
+>
+>this happens pretty randomly so i don't have exact steps other than browsing some sites. >although i can reproduce it consistently while searching for issues on github (see attached >video and screenshot)
+>
+>it started with the nightly builds published on google playstore on august 3-4.
+>
+>i think it is coming from the space used by the keyboard app which is the part that glitches out.
+>
+>see attached video for an example
+>
+>### expected behaviour
+>
+>there shouldn't be a glitch
+>
+>### actual behaviour
+>
+>the app glitches.
+>
+>### device name
+>
+>nokia c03
+>
+>### android version
+>
+>android 10
+>
+>### firefox release type
+>
+>firefox nightly
+>
+>### firefox version
+>
+>105.0a1 20220804094607
+>
+>### device logs
+>
+>_no response_
+>
+>### additional information
+>
+>about:support: [aboutsupport.txt](https://github.com/mozilla-mobile/fenix/files/9267125/aboutsupport.txt)",True,False,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+> this happens pretty randomly so i don't have exact steps other than browsing some sites.
+> although i can reproduce it consistently while searching for issues on github (see attached video and screenshot)
+>
+> it started with the nightly builds published on google playstore on august 3-4.
+
+Let me know if you need anything else!","Here is the extracted section titled ""Expected Results"":
+
+### expected behaviour
+>
+there shouldn't be a glitch","Here is the extracted section titled ""Actual Results"":
+
+### Actual behaviour
+the app glitches.","Here is the rewritten text in paragraph format:
+
+I've encountered an issue with Firefox Nightly (version 105.0a1 20220804094607) on my Nokia C03 device running Android 10. The problem occurs randomly while browsing certain websites, and I can consistently reproduce it when searching for issues on GitHub (see attached video and screenshot). 
+
+The issue started with the Nightly builds published on Google Play Store around August 3-4. I believe the glitch is related to the space used by the keyboard app, which appears to be malfunctioning. The attached video demonstrates an example of this problem.
+
+As expected, there should be no glitches when using Firefox. However, in reality, the app freezes and becomes unresponsive. 
+
+Additional information can be found at [aboutsupport.txt](https://github.com/mozilla-mobile/fenix/files/9267125/aboutsupport.txt).
+
+Note: The attachment 9288718 (screencap) is a video and screenshot that demonstrates the issue.",GeckoView,3036,148
+BRC28,1686984,15218095,worryelectric@gmail.com,"user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:84.0) gecko/20100101 firefox/84.0
+
+steps to reproduce:
+
+pgp encrypted email encrypted for my key is in my inbox, and will not display on new versions of thunderbird. previous versions with enigmail are unaffected. i've tested this on thunderbird 78 on windows, thunderbird 78 on linux, and a debug build on linux from trunk.
+
+
+actual results:
+
+the message fails to display. openpgp icon shows ""message cannot be decrypted: there are unknown problems with this decrypted message."" the debug console shows ""rnp_op_verify_execute returned unexpected: 285212674"".
+
+the debug output is as follows:
+[mem_dst_write() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-common.cpp:991] attempt to alloc more then allowed
+[process_pgp_source() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-parse.cpp:2483] failed to output data
+console.debug: ""rnp_op_verify_execute returned unexpected: 285212674""
+
+
+expected results:
+
+the message should successfully decrypt and its content should be displayed.",True,True,True,True,True,"Here are the ""Steps to Reproduce"":
+
+PGP encrypted email encrypted for my key is in my inbox, and will not display on new versions of Thunderbird. Previous versions with Enigmail are unaffected. I've tested this on Thunderbird 78 on Windows, Thunderbird 78 on Linux, and a debug build on Linux from trunk.","The expected results are:
+
+* The message should successfully decrypt.
+* Its content should be displayed.","Here is the extracted section:
+
+**Actual Results**
+
+The message fails to display. OpenPGP icon shows ""Message cannot be decrypted: there are unknown problems with this decrypted message."" The debug console shows:
+
+* ""rnp_op_verify_execute returned unexpected: 285212674"".
+* `[mem_dst_write() ...] attempt to alloc more then allowed`
+* `[process_pgp_source() ...] failed to output data`
+
+Let me know if you need anything else!","Here is the rewritten text in paragraph format:
+
+I am experiencing an issue with PGP-encrypted emails in Thunderbird. The problem occurs when I receive a PGP-encrypted email that was encrypted specifically for my public key. The email appears in my inbox, but it does not display correctly on newer versions of Thunderbird. In fact, it fails to decrypt and displays the error message ""Message cannot be decrypted: there are unknown problems with this decrypted message."" This issue only affects newer versions of Thunderbird and is not present in previous versions that use Enigmail.
+
+I have tested this issue on multiple platforms, including Windows and Linux, using various versions of Thunderbird, including version 78. The problem persists across all these configurations. When I enable the debug console, I see additional error messages that suggest a specific issue with the rnp library.
+
+To reproduce the issue, simply receive a PGP-encrypted email that was encrypted for your public key and try to view it in Thunderbird. You should expect the message to decrypt successfully and display its contents. However, due to this bug, you will instead see an error message indicating that there are unknown problems with the decrypted message.
+
+Here is the rewritten user agent string:
+
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0",MailNews Core,3331,127
+BRC29,1662433,15016334,marinar@oakton.edu,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/85.0.4183.83 safari/537.36 edg/85.0.564.41
+
+steps to reproduce:
+
+in thunderbird 68 and earlier we use mcd autoconfig to read user information for ldap
+..thunderbird\default\pref\autoconfig.js points to autoconfiguration script that uses 
+function processldapvalues (values) to read users attributes.
+starting thunderbird 69 the mcd script does not return values.
+is any way to fix mcd or any other way to auto setup users profiles and preferences?
+
+
+
+actual results:
+
+mcd script and processldapvalues function does not read user information.  sets ldap address books, and other preferences.
+
+
+
+
+expected results:
+
+mcd autoconfig script reads user information from ldap and sets user account and profile preferences.",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+1. In Thunderbird (68 and earlier), use MCD autoconfig to read user information for LDAP.
+2. The `autoconfig.js` file in `Thunderbird\default\pref` points to an autoconfiguration script that uses the `processldapvalues(values)` function to read users' attributes.
+3. Starting from Thunderbird 69, the MCD script does not return values.
+
+Let me know if you need anything else!","The ""Expected Results"" section is:
+
+""MCD autoconfig script reads user information from LDAP and sets user account and profile preferences.""","Here is the extracted section titled ""Actual Results"":
+
+Actual Results:
+MCD script and processldapvalues function does not read user information. Sets LDAP address books, and other preferences.","Here is a rewritten version of the text in paragraph format:
+
+As a Mozilla Firefox user (version 5.0) on Windows 10 with a 64-bit processor, I'm experiencing an issue with Thunderbird's autoconfiguration script for LDAP settings. In versions prior to 68, we relied on Mozilla Configuration Data (MCD) to read user information and set up profiles and preferences. The `autoconfig.js` file in the `Thunderbird\Default\Pref` directory points to a script that utilizes the `processLDAPValues` function to retrieve user attributes.
+
+However, starting with Thunderbird 69, the MCD script no longer returns values. This has broken our ability to auto-set user profiles and preferences using LDAP settings. I'm seeking alternative solutions or fixes for this issue.
+
+Here are the details of the problem:
+
+**Steps to Reproduce:**
+
+1. Use Mozilla Configuration Data (MCD) to read user information for LDAP settings.
+2. The `autoconfig.js` file in the `Thunderbird\Default\Pref` directory points to an autoconfiguration script that uses the `processLDAPValues` function to retrieve user attributes.
+
+**Actual Results:**
+
+The MCD script and `processLDAPValues` function do not read user information, but instead set up LDAP address books and other preferences.
+
+**Expected Results:**
+
+I expect the MCD autoconfig script to read user information from LDAP and set up user accounts and profile preferences.",MailNews Core,482,110
+BRC30,1728595,15551387,cmuntean@mozilla.com,"created attachment 9238939
+firefox suggest label.png
+
+**[affected versions]:**
+- firefox nightly 93.0a1 (build id: 20210901091701) 
+
+**[affected platforms]:**
+- windows 10 x64
+- macos 10.15.7
+- linux mint 20
+
+**[prerequisites]:**
+- have [nightly ro](https://ftp.mozilla.org/pub/firefox/nightly/2021/08/2021-08-21-21-21-31-mozilla-central-l10n/) build downloaded or installed.
+
+**[steps to reproduce]:**
+1. open the nightly ro l10n build.
+2. open a new tab page, type any keyword that will trigger a history result.
+3. observe the ""firefox suggest"" string.
+
+**[expected results]:**
+- the ""firefox suggest"" string is correctly displayed.
+    
+**[actual results]:**
+- the ""-firefox-suggest-brand-name"" string is displayed.
+
+**[notes]:**
+- so far i have managed to reproduce the issue only on ro build. not sure if the issue is also reproducible on other l10n builds.
+- on other l10n builds, the ""firefox suggest"" string is correctly displayed if the string is not yet localized.
+- attached is a screenshot of the issue.",True,True,True,True,True,"Here are the steps to reproduce:
+
+**[steps to reproduce]:**
+
+1. Open the nightly RO L10n build.
+2. Open a new tab page, type any keyword that will trigger a history result.
+3. Observe the ""firefox suggest"" string.","Here is the section titled ""Expected Results"":
+
+**[expected results]:**
+- the ""firefox suggest"" string is correctly displayed.","Here are the **Actual Results** extracted from the text:
+
+**[actual results]:**
+- the ""-firefox-suggest-brand-name"" string is displayed.","Here is the rewritten text in paragraph format:
+
+I've encountered an issue with Firefox Nightly build ID: 20210901091701, which affects Windows 10 x64, macOS 10.15.7, and Linux Mint 20 platforms. The problem arises when attempting to use the ""Firefox Suggest"" feature.
+
+To reproduce the issue, follow these steps: open a new tab page, type any keyword that will trigger a history result, and observe the string displayed in the address bar. According to my findings, the expected results are that the ""Firefox Suggest"" string is correctly displayed. However, instead of this, I see the ""-firefox-suggest-brand-name"" string being displayed.
+
+Notably, I've been able to reproduce the issue only on this specific RO build, and it's unclear whether the problem is also present in other L10n builds. In my testing, if the string has not yet been localized, the ""Firefox Suggest"" string is correctly displayed on other L10n builds. A screenshot of the issue is attached for reference (Attachment 9238939).
+
+The prerequisites for reproducing this issue are having the Nightly RO build downloaded or installed. The affected versions include Firefox Nightly 93.0a1.",Mozilla Localizations,3140,140
+BRC31,1678868,15142884,komissarov999@gmail.com,"created attachment 9189373
+site ff desktop.png
+
+user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/86.0.4240.198 safari/537.36
+
+steps to reproduce:
+
+1. open web-link:
+https://www.mozilla.org/ru/firefox/channel/desktop/
+2. look at the top of the site, where the menu is located
+
+
+
+actual results:
+
+there is an error in the phrase ""firefox browsers"", in the word ""browsers""
+
+actual result: 
+баузеры firefox
+
+
+
+expected results:
+
+expected result: 
+(in russian) браузеры firefox",True,True,True,True,True,"Here are the ""Steps to Reproduce"":
+
+1. Open web-link:
+https://www.mozilla.org/ru/firefox/channel/desktop/
+
+2. Look at the top of the site, where the menu is located","The ""Expected Results"" section is:
+
+```
+expected result: 
+(ин русском) браузеры firefox
+```","Here is the extracted section titled ""Actual Results"":
+
+Actual Results:
+there is an error in the phrase ""firefox browsers"", in the word ""browsers""
+Actual result: баузеры firefox","Here is the rewritten text in paragraph format:
+
+A issue was observed on the Mozilla website, specifically at https://www.mozilla.org/ru/firefox/channel/desktop/. Upon visiting this page and looking at the top of the site where the menu is located, an error was found. The problem occurs with the phrase ""Firefox Browsers"", where the word ""browsers"" is incorrect.
+
+The actual result shows that the word ""browsers"" has been replaced with ""баузеры"", which is an error. The expected result should be ""(in Russian) браузеры Firefox"".
+
+Here are the details of the issue:
+
+* User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+* Steps to reproduce:
+	1. Open web-link: https://www.mozilla.org/ru/firefox/channel/desktop/
+	2. Look at the top of the site where the menu is located
+
+Actual results:
+
+* Error in phrase ""Firefox Browsers"" with incorrect word ""баузеры"" instead of ""бrowsers""
+
+Expected results:
+
+* Correct phrase: ""(in Russian) браузеры Firefox""",Mozilla Localizations,11,67
+BRC32,1209397,10787183,ashwani.kadian@oracle.com,"user agent: mozilla/5.0 (windows nt 6.1; wow64; rv:40.0) gecko/20100101 firefox/40.0
+build id: 20150826023504
+
+steps to reproduce:
+
+build nspr 4.10.9
+
+
+actual results:
+
+build failed with following error :
+
+cc  env.o -r /share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -l/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -lplc4 -l/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -lnspr4 -lpthread -o env
+undefined			first referenced
+ symbol  			    in file
+pr_duplicateenvironment             env.o
+ld: fatal: symbol referencing errors. no output written to env
+gmake-3.79[1]: *** [env] error 1
+gmake-3.79[1]: leaving directory `/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nspr/sunos5.8_opt.obj/pr/tests'
+gmake-3.79: *** [nspr] error 2
+
+
+expected results:
+
+build should have passed.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted:
+
+**Steps to Reproduce**
+
+* Build NSPR 4.10.9","The ""Expected Results"" section is:
+
+Expected Results:
+Build should have passed.","Here is the extracted ""Actual Results"" section:
+
+Actual Results:
+Build failed with following error :
+cc env.o -r /share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -l/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -lplc4 -lnspr4 -lpthread -o env
+undefined			first referenced
+symbol  			    in file
+pr_duplicateenvironment             env.o
+ld: fatal: symbol referencing errors. no output written to env
+gmake-3.79[1]:  *** [env] error 1
+gmake-3.79[1]: leaving directory `/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nspr/sunos5.8_opt.obj/pr/tests'
+gmake-3.79:  *** [nspr] error 2","Here is the rewritten text in paragraph format:
+
+This user agent, Mozilla/5.0 (Windows NT 6.1; WOW64; RV:40.0) Gecko/20100101 Firefox/40.0 Build ID: 20150826023504, has attempted to reproduce a build of NSPR (Network Security Services Protocol) version 4.10.9. Unfortunately, the actual results were that the build failed with an error.
+
+The error message indicated that there was a symbol referencing issue and no output was written to the env file. The gmake-3.79 command-line tool reported two errors: one for the env directory and another for the nspr directory. Despite these issues, the expected result was that the build would pass successfully.
+
+Here are the actual steps taken by the user agent:
+
+1. Build NSPR 4.10.9
+
+Actual results:
+
+* Build failed with error:
+```
+cc env.o -r /share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -l/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nss/../dist/sunos5.8_opt.obj/lib -lnspr4 -lpthread -o env
+Undefined symbol referenced in file pr_duplicateenvironment
+ld: fatal: symbol referencing errors. No output written to env
+gmake-3.79[1]: *** [env] Error 1
+gmake-3.79[1]: leaving directory `/share/builds/mccrel3/security/securitytip/builds/20150925.1/wozzeck_solaris8/nspr/sunos5.8_opt.obj/pr/tests'
+gmake-3.79: *** [nspr] Error 2
+```
+Expected results:
+
+* Build should have passed successfully.",NSPR,2384,76
+BRC33,1606992,14572704,ronan.jouchet@gmail.com,"## steps to reproduce
+
+1. open `about:logins`
+
+## actual results
+
+- load takes 10s...
+- ... during which the main `firefox-bin` process keeps 1 cpu core (out of 4) 100% busy, making the laptop fans spin
+
+## expected results
+
+before lockwise, opening the password manager was instant and didn't make the fans spin.
+
+## debug information
+
+- firefox 73.0a1 - 20200103202240 (official binary build from mozilla.org)
+- arch linux 64bit
+- 304 passwords
+- using a master password
+- un/checking _""show alerts about passwords for breached websites""_ doesn't change anything
+- passwords are _not_ synced with firefox sync, they're local only
+- feel free to ask for more info",True,True,True,True,True,"Here is the section titled ""Steps to Reproduce"":
+
+## Steps to Reproduce
+
+1. open `about:logins`
+
+Let me know if you need anything else!","Here is the extracted section titled 'Expected Results':
+
+## Expected Results
+before lockwise, opening the password manager was instant and didn't make the fans spin.","Here is the ""Actual Results"" section:
+
+## Actual Results
+
+* load takes 10s...
+* ... during which the main `firefox-bin` process keeps 1 cpu core (out of 4) 100% busy, making the laptop fans spin","Here is the rewritten text in paragraph format:
+
+When opening the ""about:logins"" page in Firefox, I observed a significant delay of around 10 seconds. During this time, the main Firefox process monopolized one CPU core out of four, causing the laptop fans to spin rapidly. This behavior is in stark contrast to how things used to be before Lockwise was introduced.
+
+Before Lockwise, opening the password manager was instantaneous and did not cause any noticeable CPU usage or fan activity. However, since its introduction, this process has become much slower and more resource-intensive.
+
+Here are some details about my setup:
+
+* I am using Firefox version 73.0a1, which is an official binary build from Mozilla.org.
+* My operating system is Arch Linux, running on a 64-bit architecture.
+* I have approximately 304 passwords stored in the password manager, and they are all locally encrypted with a master password.
+* I have tried toggling the option to show alerts about breached websites, but this does not affect the behavior described above.
+* My passwords are not synced with Firefox Sync, as they are stored only locally.
+
+If you would like more information or details about my setup, please don't hesitate to ask.",NSS,1184,109
+BRC34,1608245,14583369,alexander.m.scheel@gmail.com,"user agent: mozilla/5.0 (x11; fedora; linux x86_64; rv:71.0) gecko/20100101 firefox/71.0
+
+steps to reproduce:
+
+per bug 1607955, the kbkdf code introduced in bug 1599603 confused coverity with a elided null check on `sftk_slotfromsessionhandle(...)`. while coverity is incorrect (and the behavior is fine as-is), it isn't consistent with the kbkdf code's handling of `sftk_sessionfromhandle(...)` (which _is_ null checked).
+
+in both cases, move to a `pr_assert(...)` and mention why the value can't reasonably be null in the code. this'll aid debugging (in the rare case this code is called during shutdown and sessions are actively being removed), but not incur a performance penalty on non-debug builds.
+
+
+actual results:
+
+coverity was confused.
+
+
+expected results:
+
+the code should be written in a way that coverity isn't confused.
+
+(if you'd like to close this bug in favor of attaching the patch to 1607955 and re-opening it, feel free).",True,True,True,True,True,"Here is the section titled ""Steps to Reproduce"":
+
+There is no ""Steps to Reproduce"" section in the provided text. The closest thing to a reproduction step is the description of the issue itself:
+
+""Per bug 1607955, the KBKDF code introduced in bug 1599603 confused Coverity with an elided null check on `sftk_slotfromsessionhandle(...)`. While Coverity is incorrect (and the behavior is fine as-is), it isn't consistent with the KBKDF code's handling of `sftk_sessionfromhandle(...)` (which _is_ null checked).""","The ""Expected Results"" section is:
+
+the code should be written in a way that coverity isn't confused.","Here is the extracted section:
+
+**Actual Results**
+
+Coverity was confused.","Here is the rewritten text in paragraph format:
+
+A recent change in the KBKDF code introduced by Bug #1599603 has caused Coverity to become confused with an elided null check on `sftk_slotfromsessionhandle(...)`. Although Coverity's report is incorrect and the behavior is fine as-is, it does not align with the handling of `sftk_sessionfromhandle(...)` which does perform a null check. This inconsistency has led to confusion for Coverity.
+
+To address this issue, I propose moving the code that was causing the confusion into a `pr_assert` statement, accompanied by a comment explaining why the value cannot reasonably be null in the code. This change will aid debugging in the rare case where the code is called during shutdown and sessions are being actively removed, without incurring a performance penalty on non-debug builds.
+
+The user agent string provided is:
+```
+Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0
+```
+
+The steps to reproduce the issue are:
+
+Per Bug #1607955, the KBKDF code introduced in Bug #1599603 caused Coverity to become confused with an elided null check on `sftk_slotfromsessionhandle(...)`. The expected results were that the code should be written in a way that does not confuse Coverity.",NSS,1113,142
+BRC35,1795167,16110964,matt.fagnani@bell.net,"user agent: mozilla/5.0 (x11; linux x86_64; rv:107.0) gecko/20100101 firefox/107.0
+
+steps to reproduce:
+
+i started firefox 107.0a1 (2022-10-12) 20221012094509 on wayland with webrender compositing in plasma 5.25.5 in a fedora 37 kde plasma installation. i selected help in the menu bar and then about nightly. 
+
+i started thunderbird 107.0a1 (2022-10-12) 20221012104921 on wayland in the same environment. i selected help in the menu bar and then about daily. 
+
+
+actual results:
+
+the about nightly screen in firefox showed checking for updates... and then nightly is up to date each time even though the newer builds 20221012213343 and 20221013100028 were available at https://archive.mozilla.org
+/pub/firefox/nightly/2022/10/ i ran mozregression --launch 2022-10-13 which downloaded and ran firefox 107.0a1 20221013100028 normally.
+
+the about daily screen in thunderbird showed checking for updates... and then nightly is up to date each time even though a newer build was available. i ran mozregression --launch 2022-10-13 --app thunderbird which downloaded and ran thunderbird 107.0a1 20221013103729 normally
+
+
+expected results:
+
+firefox and thunderbird 107.0a1 (2022-10-12) should have shown the available updates in help > about and allowed them to be updated them normally.",True,True,True,True,True,"Here is the ""Steps to Reproduce"" section:
+
+I started Firefox 107.0a1 (2022-10-12) 20221012094509 on Wayland with WebRender compositing in Plasma 5.25.5 in a Fedora 37 KDE plasma installation. I selected Help in the menu bar and then About Nightly.
+
+I started Thunderbird 107.0a1 (2022-10-12) 20221012104921 on Wayland in the same environment. I selected Help in the menu bar and then About Daily.","Here is the ""Expected Results"" section:
+
+Expected Results:
+Firefox and Thunderbird 107.0a1 (2022-10-12) should have shown the available updates in Help > About and allowed them to be updated normally.","Here is the section titled ""Actual Results"":
+
+The about nightly screen in Firefox showed ""checking for updates..."" and then ""nightly is up to date"" each time, even though the newer builds 20221012213343 and 20221013100028 were available at https://archive.mozilla.org/pub/firefox/nightly/2022/10/. I ran `mozregression --launch 2022-10-13` which downloaded and ran Firefox 107.0a1 20221013100028 normally.
+
+The about daily screen in Thunderbird showed ""checking for updates..."" and then ""nightly is up to date"" each time, even though a newer build was available. I ran `mozregression --launch 2022-10-13 --app thunderbird` which downloaded and ran Thunderbird 107.0a1 20221013103729 normally.","Here's a rewritten version of the text in paragraph format:
+
+I encountered an issue with Firefox and Thunderbird on my Fedora 37 KDE Plasma installation, running Plasma 5.25.5 with Wayland and WebRender compositing enabled. I started Firefox 107.0a1 (2022-10-12) and selected ""Help"" from the menu bar, then chose ""About Nightly"". The screen displayed a message stating that my nightly build is up to date, despite newer builds being available at https://archive.mozilla.org/pub/firefox/nightly/2022/10/. I ran MozRegression with the --launch option and downloaded Firefox 107.0a1 (20221013100028), which ran normally.
+
+I experienced similar behavior with Thunderbird. I started Thunderbird 107.0a1 (2022-10-12) and followed a similar process, selecting ""Help"" from the menu bar, then choosing ""About Daily"". The screen also indicated that my daily build is up to date, despite a newer build being available. I ran MozRegression with the --launch option and downloaded Thunderbird 107.0a1 (20221013103729), which ran normally.
+
+The expected results were that Firefox and Thunderbird would have shown the available updates in the ""Help"" > ""About"" screen and allowed them to be updated normally.
+
+Here's a paraphrased version of the user agent:
+
+Mozilla/5.0 is the browser identification string, indicating that it's a Firefox browser running on Linux (x86_64 architecture) with Wayland compositing enabled, using Gecko 20100101 rendering engine and Firefox 107.0 browser version.",Release Engineering,153,180
+BRC36,1792088,16085174,christopher.graham@rstudio.com,"steps to reproduce:
+
+see detailed steps and logging in this cypress.io github bug: https://github.com/cypress-io/cypress/issues/23897
+
+close cypress
+update to firefox 105 (latest at the time i write this)
+open cypress
+choose e2e
+select firefox v105
+click start e2e testing in firefox
+observe ff physically opens but the page is empty
+
+
+actual results:
+
+ff physically opens but the page is empty
+
+
+expected results:
+
+ff physically opens, cypress is connected and cypress ui is presented",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Close Cypress.
+2. Update to Firefox 105 (latest at the time I write this).
+3. Open Cypress.
+4. Choose E2E.
+5. Select Firefox v105.
+6. Click ""Start E2E testing in Firefox"".
+7. Observe FF physically opens but the page is empty.","The ""Expected Results"" section is:
+
+* FF physically opens, Cypress is connected and Cypress UI is presented.","Here is the extracted section:
+
+Actual Results:
+FF physically opens but the page is empty","Here is a rewritten version of your text in paragraph format:
+
+To reproduce this issue, please follow these steps. First, close Cypress and update to Firefox 105, which was the latest version at the time I wrote this. Then, open Cypress and choose E2E testing. Select Firefox v105 as the browser to use. Next, click ""Start E2E Testing in Firefox"". Upon doing so, you should observe that Firefox physically opens a new window, but the page remains empty.
+
+Actual results: When running these steps, Firefox opens a new window, but the page is blank and does not display the Cypress UI as expected.
+
+Expected results: Ideally, when starting E2E testing in Firefox, the browser should open a new window with the Cypress UI displayed, allowing for seamless testing. However, the actual result is that the page remains empty, indicating an issue with Cypress's integration with Firefox. For more detailed information on this bug, please refer to the Cypress GitHub issue tracker at https://github.com/cypress-io/cypress/issues/23897.",Remote Protocol,62,72
+BRC37,1793311,16094731,brewmanz@gmail.com,"user agent: mozilla/5.0 (x11; linux x86_64) applewebkit/537.36 (khtml, like gecko) chrome/105.0.0.0 safari/537.36
+
+steps to reproduce:
+
+a) went to https://firefox-source-docs.mozilla.org/testing/marionette/pythontests.html
+b) clicked bottom-most link labelled ""[marionette]: client that speaks to firefox.""
+ 
+
+
+actual results:
+
+got url https://firefox-source-docs.mozilla.org/python/marionette_driver.rst#marionette_driver.marionette.marionette
+which stated 
+404 not found
+code: nosuchkey
+message: the specified key does not exist.
+key: python/marionette_driver.rst
+requestid: jw474g5c3r4vkmxe
+hostid: fvtuj7nlt3pzxi0lsdnwovg8t1tdxqyn+uy0ihyxbbjwt76iohi/4jr/slc5+k2w2ggwss5mcjq=
+
+
+
+
+expected results:
+
+some sort of useful information",True,True,True,True,True,"Here are the steps to reproduce:
+
+A) Went to https://firefox-source-docs.mozilla.org/testing/marionette/pythontests.html
+B) Clicked bottom-most link labelled ""[Marionette]: Client that speaks to Firefox.""","The ""Expected Results"" section is:
+
+Expected Results:
+some sort of useful information","Here is the extracted ""Actual Results"" section:
+
+Actual Results:
+got URL https://firefox-source-docs.mozilla.org/python/marionette_driver.rst#marionette_driver.marionette.marionette
+which stated 404 Not Found
+Code: No Such Key
+Message: The specified key does not exist.
+Key: python/marionette_driver.rst
+RequestID: jw474g5c3r4vkmxe
+HostID: fvtuj7nlt3pzxi0lsdnwovg8t1tdxqyn+uy0ihyxbbjwt76iohi/4jr/sl/c5+k2w2ggwss5mcjq=","Here is the rewritten text in paragraph format:
+
+I encountered an issue while testing the Marionette client on Firefox. Using my Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 user agent, I followed these steps to reproduce the problem:
+
+I visited the ""Testing Marionette"" page at https://firefox-source-docs.mozilla.org/testing/marionette/pythontests.html and clicked on the link labeled ""[Marionette]: Client that speaks to Firefox."" However, instead of getting useful information, I was directed to a 404 Not Found error page with the following details:
+
+The URL that was supposed to be displayed was https://firefox-source-docs.mozilla.org/python/marionette_driver.rst#marionette_driver.marionette.marionette. The error message read ""No such key"" with a request ID of jw474g5c3r4vkmxe and a host ID of fvtuj7nlt3pzxi0lsdnwovg8t1tdxqyn+uy0ihyxbbjwt76iohi/4jr/slc5+k2w2ggwss5mcjq=. This was not the expected result.
+
+Instead, I was expecting to see some sort of useful information about the Marionette client or how to use it with Python. Unfortunately, the 404 error page did not provide any helpful information.",Remote Protocol,63,62
+BRC38,1621445,14687967,1ponb@vokp.net,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:60.0) gecko/20100101 firefox/60.0 seamonkey/2.53.1 lightning/5.8.1
+
+steps to reproduce:
+
+in seamonkey latest version 2.53.1, i create 5 profiles and in each profile my main setting is to set:
+""always ckear private date when i close seamonkey""
+with more option that  it will erase all of 9 checked items (from ""browsing history"", to ""authenticated session"", see menu preferences>privacy & security>private data). 
+
+i browse some sites, say using profile1, and when i close it, a form called ""clear private data"" is displayed that warn me before everything deleted; and i hit 'clear private data now' button.
+then i open a browser again with the same profile (profile1). a bug is, all of the link since last used, are still remembered.
+
+this issue not happened in seamonkey version 2.49.5, but now happened in latest version.
+
+wanted to let you know that i also found this issue for all version (from version 38 to now on) of firefox browser, that why i no longer interested with firefox and i don't want this issue happen to seamonkey.
+
+ps: i'm is a thunderbird and seamonkey lover and currently always make a donation. but now thunderbird stop all donation, please also fix it because i'll glad to make donation
+
+
+actual results:
+
+cookies/history not removed in a seamonkey (or firefox) profile
+
+
+expected results:
+
+i want cookies/history is completely removed in a seamonkey (or firefox) profile",True,True,True,True,True,"Here are the steps to reproduce the issue:
+
+**Steps to Reproduce**
+
+1. In Seamonkey latest version (2.53.1), create 5 profiles.
+2. Set ""Always clear private data when I close Seamonkey"" as a main setting for each profile, with options to erase all of 9 checked items (""Browsing history"", etc.) under Preferences > Privacy & Security > Private Data.
+3. Browse some sites using one of the profiles (e.g., Profile1).
+4. Close the browser and confirm that the ""Clear private data"" form is displayed before everything is deleted.
+5. Open a browser again with the same profile (Profile1). Observe that all links since last used are still remembered, despite clearing private data.
+
+This issue does not occur in Seamonkey version 2.49.5 but has been present in all versions from 38 to the latest.","The ""Expected Results"" section is:
+
+""I want cookies/history is completely removed in a Seamoney (or Firefox) profile""
+
+Let me know if you need anything else!","Here is the extracted section:
+
+**Actual Results**
+
+Cookies/history not removed in a SeaMonkey (or Firefox) profile.","Here's the rewritten text in paragraph format:
+
+I'm using Mozilla Firefox version 60.0 on Windows NT 10.0, with the Gecko engine and SeaMonkey browser. I've created five profiles and set each one to always clear private data when closing the browser. In each profile, I've selected nine options to erase browsing history, including authenticated sessions.
+
+When I browse some sites using Profile1 and then close the browser, a form appears asking me to confirm before clearing my private data. I hit the ""Clear Private Data Now"" button and expect that all my browsing links will be erased. However, when I reopen the same profile (Profile1), I find that all the links since my last use are still remembered.
+
+This issue didn't occur in SeaMonkey version 2.49.5, but it started happening with the latest version. What's even more concerning is that I've found this problem in all versions of Firefox, from 38 to the current one. That's why I'm no longer interested in using Firefox and I don't want this issue to affect SeaMonkey either.
+
+As a loyal user of Thunderbird and SeaMonkey, I'm disappointed to see this bug persist. I used to make donations regularly, but now Thunderbird has stopped accepting them. I hope you'll fix this issue soon so I can resume my support.
+
+Here are the actual and expected results:
+
+Actual Results: Cookies/history not removed in a SeaMonkey (or Firefox) profile.
+
+Expected Results: I want cookies/history to be completely removed in a SeaMonkey (or Firefox) profile.",SeaMonkey,155,234
+BRC39,1812771,16253330,jboek@mozilla.com,"from github: https://github.com/mozilla-mobile/fenix/issues/23977.
+
+> ### steps to reproduce
+> 
+> more than half of the [socorro crash reports from fenix or focus](https://crash-stats.mozilla.org/search/?product=focus&date=%3e%3d2022-02-17t19%3a55%3a00.000z&date=%3c2022-02-24t19%3a55%3a00.000z&_facets=signature&_facets=build_id&_facets=product&_facets=release_channel&_facets=platform&_facets=platform_pretty_version&_sort=-date&_columns=date&_columns=signature&_columns=product&_columns=version&_columns=build_id&_columns=platform#facet-platform) have ""platform"" == ""unknown"" instead of ""android"".
+> 
+> the [socorro crash reports with platform == ""android""](https://crash-stats.mozilla.org/search/?product=focus&platform=android&date=%3e%3d2022-02-17t19%3a55%3a00.000z&date=%3c2022-02-24t19%3a55%3a00.000z&_facets=signature&_facets=build_id&_facets=product&_facets=release_channel&_facets=platform&_facets=platform_pretty_version&_sort=-date&_columns=date&_columns=signature&_columns=product&_columns=version&_columns=build_id&_columns=platform#facet-signature) are all native code crashes.
+> 
+> the [socorro crash reports with platform == ""unknown""](https://crash-stats.mozilla.org/search/?product=focus&platform=unknown&date=%3e%3d2022-02-17t19%3a55%3a00.000z&date=%3c2022-02-24t19%3a55%3a00.000z&_facets=signature&_facets=build_id&_facets=product&_facets=release_channel&_facets=platform&_facets=platform_pretty_version&_sort=-date&_columns=date&_columns=signature&_columns=product&_columns=version&_columns=build_id&_columns=platform#facet-signature) are all java exceptions.
+> 
+> ### expected behaviour
+> 
+> all socorro crash reports from fenix or focus should have ""platform"" == ""android"".
+> 
+> ### actual behaviour
+> 
+> socorro crash reports for java exceptions from fenix or focus have ""platform"" == ""unknown"".
+> 
+> ### device name
+> 
+> _no response_
+> 
+> ### android version
+> 
+> android 10
+> 
+> ### firefox release type
+> 
+> firefox
+> 
+> ### firefox version
+> 
+> 97.0
+> 
+> ### device logs
+> 
+> _no response_
+> 
+> ### additional information
+> 
+> _no response_
+> 
+> ┆issue is synchronized with this [jira task](https://mozilla-hub.atlassian.net/browse/fnxv2-19650)
+> 
+
+change performed by the [move to bugzilla add-on](https://addons.mozilla.org/en-us/firefox/addon/move-to-bugzilla/).",True,False,True,True,True,"Here is the extracted ""Steps to Reproduce"" section:
+
+> None (there is no steps to reproduce in this issue)","There is no section titled ""Expected Results"" in the provided text. The closest sections are:
+
+* ### Expected behaviour
+* ### Actual behaviour
+
+However, if you're looking for a summary of the expected and actual behavior, it can be extracted as follows:
+
+**Expected Behaviour:** All Socorro crash reports from Fenix or Focus should have ""platform"" == ""android"".
+
+**Actual Behaviour:** Socorro crash reports for Java exceptions from Fenix or Focus have ""platform"" == ""unknown"".","The ""Actual Results"" section is:
+
+### Actual behaviour
+
+Socorro crash reports for Java exceptions from Fenix or Focus have ""platform"" == ""unknown"".","Here is a rewritten version of the GitHub issue in paragraph format:
+
+The Socorro crash reports from Fennec or Focus have an unexpected platform value. More than half of the crash reports show ""platform"" == ""unknown"" instead of the expected ""android"". This behavior was observed by analyzing crash reports from February 17th to 24th, 2022.
+
+An analysis of the crash reports reveals that the native code crashes with ""platform"" == ""android"" are all Android-specific issues. In contrast, the Java exceptions with ""platform"" == ""unknown"" are related to Fennec or Focus crashes on unknown platforms.
+
+The expected behavior is for all Socorro crash reports from Fennec or Focus to have a ""platform"" value of ""android"". However, the actual behavior shows that most crash reports have an unexpected ""platform"" value of ""unknown"".
+
+Additional information about the issue includes:
+
+* Device name: No response
+* Android version: 10
+* Firefox release type: Firefox
+* Firefox version: 97.0
+* Device logs: No response
+* Additional information: No response
+
+This issue is synchronized with a JIRA task (Fnxv2-19650).",Socorro,3354,170
+BRC40,1683665,15185907,eijebong@bananium.fr,"user agent: mozilla/5.0 (x11; linux x86_64; rv:86.0) gecko/20100101 firefox/86.0
+
+steps to reproduce:
+
+i started a local test instance (make build, make setup, make run). connected to it with a superuser. clicked on the ""go to user management"" link which links to ""/users"".
+
+
+actual results:
+
+got a 404. logs only show this:
+
+> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483
+
+
+expected results:
+
+i expected to end up on some user management page.",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+I started a local test instance (make build, make setup, make run). Connected to it with a superuser. Clicked on the ""Go to User Management"" link which links to ""/users"".","The ""Expected Results"" section is:
+
+I expected to end up on some user management page.","Here is the extracted section:
+
+**Actual Results**
+
+Got a 404. Logs only show this:
+
+> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483","Here is a rewritten version of the text in paragraph format:
+
+I encountered an issue while testing my Django application using Firefox (version 86.0). To reproduce the problem, I started a local test instance by running the commands `make build`, `make setup`, and `make run`. Then, as a superuser, I clicked on the ""Go to User Management"" link, which is supposed to take me to the `/users` page.
+
+However, instead of being taken to the expected user management page, I received a 404 error. The only log entry related to this request was:
+
+`> info 2020-12-21 13:08:40,101 django.server ""get /api/_auth/ http/1.1"" 200 483`
+
+This is not the behavior I expected. As a superuser, I should have been taken directly to the user management page.
+
+The User Agent string associated with this issue is:
+
+`Mozilla/5.0 (X11; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0`
+
+This suggests that the browser being used to test the application is a recent version of Firefox on a 64-bit Linux system.",Tecken,3339,73
+BRC41,1507428,13758611,github@christian-bromann.com,"user agent: mozilla/5.0 (macintosh; intel mac os x 10_13_6) applewebkit/537.36 (khtml, like gecko) chrome/70.0.3538.77 safari/537.36
+
+steps to reproduce:
+
+create a session with arbitrary capabilities.
+
+
+actual results:
+
+received response with header:
+""content-type"": ""application/json; charset=utf8""
+
+
+expected results:
+
+receive response with header:
+""content-type"": ""application/json; charset=utf-8""",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+**Steps to Reproduce**
+
+Create a session with arbitrary capabilities.","Here is the extracted ""Expected Results"" section:
+
+Expected Results:
+receive response with header: ""content-type"": ""application/json; charset=utf-8""","Here is the extracted section:
+
+Actual Results:
+Received response with header:
+""Content-Type"": ""application/json; charset=utf-8""","Here is a rewritten version of the text in paragraph format:
+
+When attempting to create a session with arbitrary capabilities, a specific user agent (Mozilla/5.0) was used. This user agent, which is running on an Intel-based Macintosh computer under macOS 10.13.6, utilizes Apple's WebKit rendering engine and Chrome browser version 70.0.3538.77, while also supporting Safari 537.36.
+
+To reproduce the issue, a session was created with arbitrary capabilities. The actual result of this action was the receipt of a response header containing the key ""Content-Type"" with a value of ""application/json; charset=utf-8"".
+
+However, it is expected that the response header would contain the key ""Content-Type"" with a value of ""application/json; charset=utf-8"", rather than the actual result. The discrepancy between these two values highlights the issue being reported.",Testing,1228,42
+BRC42,1483996,13551188,fisherii@google.com,"user agent: mozilla/5.0 (x11; linux x86_64) applewebkit/537.36 (khtml, like gecko) chrome/68.0.3440.106 safari/537.36
+
+steps to reproduce:
+
+we use geckodriver in a linux environment that has no ipv4 network stack. to get firefox working in this environment we use a hack that uses an ld_preload library to make it use ipv6 connections when ipv4 connections are requested. in this environment, we need geckodriver to fallback to using ipv6 when ipv4 is not available (we tried using the same ld_preload with geckodriver as we use with firefox and it did not work).
+
+
+actual results:
+
+geckodriver returns ""other os error"" when trying to provision a browser.
+
+
+expected results:
+
+geckodriver should fall back to using ipv6 when ipv4 is not available.",True,True,True,True,True,"Here are the steps to reproduce:
+
+We use Geckodriver in a Linux environment that has no IPv4 network stack. To get Firefox working in this environment, we use a hack that uses an LD_PRELOAD library to make it use IPv6 connections when IPv4 connections are requested. In this environment, we need Geckodriver to fallback to using IPv6 when IPv4 is not available (we tried using the same LD_PRELOAD with Geckodriver as we use with Firefox and it did not work).","Here is the ""Expected Results"" section:
+
+Expected results:
+Geckodriver should fall back to using IPv6 when IPv4 is not available.","Here is the extracted section:
+
+**Actual Results**
+
+Geckodriver returns ""other OS error"" when trying to provision a browser.","Here is the rewritten text in paragraph format:
+
+We are experiencing an issue with Geckodriver on a Linux environment that lacks an IPv4 network stack. To overcome this limitation and get Firefox working, we use a hack involving an LD_PRELOAD library to force the browser to use IPv6 connections when IPv4 connections are requested. However, our attempts to apply the same hack to Geckodriver have been unsuccessful. In this environment, where IPv4 is not available, we expect Geckodriver to fall back and use IPv6 connections instead.
+
+The user agent string provided is: `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36`. This string suggests that the browser is a Linux-based version of Firefox with a Chromium-inspired rendering engine.
+
+The steps to reproduce the issue are as follows:
+
+1. Run Geckodriver in a Linux environment without an IPv4 network stack.
+2. Use a hack involving an LD_PRELOAD library to force Firefox to use IPv6 connections when IPv4 connections are requested.
+3. Attempt to provision a browser using Geckodriver.
+
+The actual results of these steps are:
+
+* Geckodriver returns an ""other OS error"" when attempting to provision the browser.
+
+The expected results are that Geckodriver should fall back and use IPv6 connections when IPv4 is not available.",Testing,1489,116
+BRC43,1687585,15224149,bodqhrohro@gmail.com,"user agent: mozilla/5.0 (x11; linux x86_64; rv:85.0) gecko/20100101 thunderbird/85.0
+
+steps to reproduce:
+
+1. preferences → general → default search engine → add from file
+2. picked a file with following contents:
+
+<searchplugin xmlns=""http://www.mozilla.org/2006/browser/search/"">
+<shortname>duckduckgo</shortname>
+<description>duckduckgo</description>
+<inputencoding>utf-8</inputencoding>
+<image width=""16"" height=""16"">https://duckduckgo.com/favicon.ico</image>
+<url type=""text/html"" method=""get"" template=""https://duckduckgo.com/"">
+  <param name=""q"" value=""{searchterms}""/>
+</url>
+<searchform>https://duckduckgo.com</searchform>
+</searchplugin>
+
+
+actual results:
+
+uncaught (in promise) typeerror: services.search.addengine is not a function
+    addsearchengine chrome://messenger/content/preferences/general.js:701
+
+
+expected results:
+
+the search engine successfully added.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Preferences → General → Default Search Engine → Add from file
+
+Note that this is likely a bug report or a test case, and the steps are intended to be followed to reproduce the issue.","The ""Expected Results"" section from the text is:
+
+""The search engine successfully added.""","Here is the section titled ""Actual Results"" extracted from the text:
+
+Actual Results:
+uncaught (in promise) TypeError: services.search.addEngine is not a function
+    addSearchEngine chrome://messenger/content/preferences/general.js:701","Here is the rewritten text in paragraph format:
+
+When attempting to add a custom search engine using Mozilla Firefox 85.0 on Linux, an error occurs. The steps taken to reproduce this issue are as follows: first, navigate to Preferences > General and click ""Add from file"" to load a custom search plugin. In this case, a file with the following contents is used:
+
+The file contains a `<searchplugin>` element with various attributes, including `shortname`, `description`, `inputencoding`, `image` URL, `url` template, and `param` name-value pair. The intention is to add DuckDuckGo as a custom search engine.
+
+However, when attempting to load this custom search plugin, an error occurs. Specifically, an uncaught TypeError is thrown: ""services.search.addEngine is not a function"". This error occurs in the file chrome://messenger/content/preferences/general.js at line 701.
+
+The expected result is that the search engine would successfully be added, allowing users to use DuckDuckGo as their default search engine. Instead, the error prevents this from happening, indicating a problem with the `services.search.addEngine` function or the custom search plugin file itself.",Thunderbird,6,69
+BRC44,1661229,15006620,k.kolev1985@gmail.com,"created attachment 9172109
+zipped example screenshots
+
+user agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/84.0.4147.135 safari/537.36 edg/84.0.522.63
+
+steps to reproduce:
+
+1. enable high-contrast mode in windows 10, by doing the following:
+1.1. open windows settings (windows+i).
+1.2. go to ease of access -> high-contrast.
+1.3. turn on the high-contrast mode, using the respective toggle.
+1.4. from the ""high-contrast theme"" combo-box, select ""high-contrast black"".
+2. install and launch thunderbird 78.2.
+
+
+actual results:
+
+observe how some dialogs and windows of thunderbird do not obey the colors defined by the currently active high-contrast black theme. mostly, where the background should be black, it is gray instead. i'll attach some example screenshots in a zip archive.
+
+examples of such windows include, but may not be limited to, the following:
+- the main window of thunderbird.
+- the dialogs for subscribing to imap folders and rss feeds.
+- the dialogs for the properties of rss and mail folders.
+- the dialog for customizing the toolbars in thunderbird.
+- the dialog for creating a new folder.
+- the dialog/window for adding an account to thunderbird.
+
+
+expected results:
+
+in such dialogs and windows as in the examples above, the background color should be black, instead of being gray as it is now.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Enable high-contrast mode in Windows 10 by doing the following:
+   1.1. Open Windows settings (Windows+i).
+   1.2. Go to Ease of Access -> High Contrast.
+   1.3. Turn on the high-contrast mode using the respective toggle.
+   1.4. From the ""High-Contrast Theme"" combo-box, select ""High-Contrast Black"".
+2. Install and launch Thunderbird 78.2.","Here are the expected results:
+
+* In such dialogs and windows (e.g. main window, subscription dialogs, folder properties dialogs, toolbar customization dialog, new folder creation dialog, account addition dialog), the background color should be black, instead of being gray.","Here is the extracted section:
+
+**Actual Results**
+
+Observe how some dialogs and windows of Thunderbird do not obey the colors defined by the currently active high-contrast black theme. Mostly, where the background should be black, it is gray instead. I'll attach some example screenshots in a zip archive.
+
+Examples of such windows include, but may not be limited to, the following:
+
+* The main window of Thunderbird.
+* The dialogs for subscribing to IMAP folders and RSS feeds.
+* The dialogs for the properties of RSS and mail folders.
+* The dialog for customizing the toolbars in Thunderbird.
+* The dialog for creating a new folder.
+* The dialog/window for adding an account to Thunderbird.","Here's a rewritten version of the attachment in paragraph format:
+
+When using High-Contrast mode on Windows 10, some Thunderbird 78.2.0 dialogs and windows fail to adhere to the selected theme colors. Specifically, backgrounds that should be black appear gray instead. This issue affects various Thunderbird windows and dialogs, including the main window, subscription and RSS feed dialogs, folder properties dialogs, toolbar customization dialog, new folder creation dialog, and account addition dialog.
+
+To reproduce this issue, follow these steps:
+
+1. Enable High-Contrast mode on Windows 10:
+	* Press the Windows key + I to open Settings.
+	* Navigate to Ease of Access > High Contrast.
+	* Toggle High-Contrast mode on.
+	* Select ""High-Contrast Black"" from the ""High-Contrast theme"" combo box.
+
+2. Install and launch Thunderbird 78.2.0.
+
+I've attached example screenshots in a zip archive, which demonstrate the issue in various Thunderbird windows and dialogs. In these examples, backgrounds that should be black appear gray instead. I expect that, in such situations, the background color should be black, not gray.",Thunderbird,28,209
+BRC45,1243729,11116375,vbacia.work@gmail.com,"created attachment 8713167
+screenshot
+
+user agent: mozilla/5.0 (windows nt 6.3; win64; x64; rv:47.0) gecko/20100101 firefox/47.0
+build id: 20160127030236
+
+user agent: mozilla/5.0 (windows nt 6.3; win64; x64; rv:44.0) gecko/20100101 firefox/44.0
+build id: 20160123151951
+
+prerequisites:
+have at least 2 logins saved for twitter in browser.
+
+steps to reproduce:
+1. login to twitter with one of the saved accounts.
+2. go to twitter->settings->password screen.
+3. enter the current password and the new one.
+4. click on ""save changes"" button.
+5. select from `confirm password change` window the username for which the password has been changed.
+6. click on ""ok"" button.
+7. open a new tab and go to about:preferences#security, click on ""saved logins..."" button.
+8. observe the username for which the password has been changed.
+
+expected results:
+the username is displayed and only the password is updated.
+
+actual results:
+the username is blank.
+
+this issue is reproducible also on windows 10, mac os x 10.11.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Login to Twitter with one of the saved accounts.
+2. Go to Twitter -> Settings -> Password screen.
+3. Enter the current password and the new one.
+4. Click on ""Save changes"" button.
+5. Select from `Confirm password change` window the username for which the password has been changed.
+6. Click on ""OK"" button.
+7. Open a new tab and go to about:preferences#security, click on ""Saved Logins..."" button.
+8. Observe the username for which the password has been changed.","Here is the ""Expected Results"" section:
+
+The expected results are:
+* The username is displayed.
+* Only the password is updated.","Here is the section titled ""Actual Results"":
+
+**Actual Results**
+
+The username is blank.","Here is a rewritten version of the attachment in paragraph format:
+
+A bug was discovered in Firefox's handling of Twitter account logins and password changes. To reproduce the issue, a user must have at least two Twitter accounts saved in their browser. Then, they should follow these steps: login to one of the saved accounts on Twitter, navigate to the settings page, enter the current password and a new one, click ""Save Changes"", select the username for which the password has been changed from the ""Confirm Password Change"" window, and then click ""OK"". Next, open a new tab and go to the ""About: Preferences#Security"" page, where you can view saved logins. Upon doing so, it is expected that only the password would be updated for the selected username. However, the actual result is that the username field remains blank.
+
+The issue has been reproduced on multiple platforms, including Windows 10 and Mac OS X 10.11, indicating a broader problem with Firefox's handling of Twitter account logins and password changes.",Toolkit,2575,152
+BRC46,1884308,16834225,wayne@rocky77.com,"user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:123.0) gecko/20100101 firefox/123.0
+
+steps to reproduce:
+
+i after refreshing firefox, i could not import any compressed backup bookmarks. i created new a new profiles and and could not import a compressed bookmark that was valid. i created a new profile and could not import a valid html backup bookmark. community support has not responded to offer any further steps to take after i tried to import a valid html file yet so i am am reporting it here. i really need to get this issue fixed and firefox support is greatly lacking in timely, accurate resolution. i have not tried booting windows in safe mode.
+
+
+actual results:
+
+see above and need to add in addition, that when importing valid compressed backup bookmarks, i get the message, ""unable to process backup file"". when i import a valid backup bookmark html file, nothing happens---and no error message appears.
+
+
+expected results:
+
+as expected, any valid bookmark file should be imported.",True,True,True,True,True,"Here is the extracted ""Steps to Reproduce"" section:
+
+I after refreshing Firefox, I could not import any compressed backup bookmarks. I created a new profile and couldn't import a compressed bookmark that was valid. I created a new profile and couldn't import a valid HTML backup bookmark. I have not tried booting Windows in safe mode.","Here is the section titled ""Expected Results"":
+
+Expected results:
+As expected, any valid bookmark file should be imported.","Here is the extracted section:
+
+**Actual Results**
+
+See above and need to add in addition, that when importing valid compressed backup bookmarks, I get the message, ""unable to process backup file"". When I import a valid backup bookmark HTML file, nothing happens---and no error message appears.","Here is the rewritten text in paragraph format:
+
+I experienced issues importing compressed bookmarks and HTML backups in Firefox. After refreshing my browser, I was unable to import any compressed backup bookmarks. I created a new profile and attempted to import a compressed bookmark that was previously valid, but this also failed. When I tried to import a valid HTML backup file, nothing happened - no error message appeared. The Mozilla community support has not responded to my requests for assistance, so I'm reporting the issue here.
+
+The steps to reproduce the problem are as follows: after refreshing Firefox, I attempted to import compressed backup bookmarks, but was unable to do so. I then created a new profile and tried importing a valid compressed bookmark, which also failed. Additionally, when I tried importing a valid HTML backup file, nothing happened and no error message appeared.
+
+The actual results were that I was unable to import any of the above-mentioned bookmark files. When attempting to import compressed bookmarks, I received the error message ""unable to process backup file."" For HTML backups, no error message appeared at all.
+
+My expected result is that Firefox should be able to successfully import valid bookmark files in both compressed and HTML formats.
+
+Here is the user agent rewritten in paragraph format:
+
+The user agent information is as follows: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0.",Toolkit,391,165
+BRC47,1182994,10484504,david@dchanm.com,"user agent: mozilla/5.0 (windows nt 6.3; wow64) applewebkit/537.36 (khtml, like gecko) chrome/43.0.2357.132 safari/537.36
+
+steps to reproduce:
+
+the treeherder api constructs raw sql queries for certain endpoints. the data is not properly escaped resulting in sql injection. 
+
+str:
+1. visit 
+https://treeherder.mozilla.org/api/project/mozilla-central/bug-job-map/?offset=%27abcd
+
+
+actual results:
+
+sql error indicating successful injection
+{""detail"": ""(1064, \""you have an error in your sql syntax; check the manual that corresponds to your mysql server version for the right syntax to use near ''abcd,10' at line 1\"")""}
+
+
+expected results:
+
+no error
+
+this specific bug exists due to the code not properly casting the get param to an int. [1] there may be more vulnerable api endpoints which call jobs_execute() in [2]
+
+[1] - https://github.com/mozilla/treeherder/blob/12f80ce4486497e33131faeaae19429f1e00ff4e/treeherder/webapp/api/bug.py#l74
+[2] -  https://github.com/mozilla/treeherder/blob/12f80ce4486497e33131faeaae19429f1e00ff4e/treeherder/model/derived/jobs.py#l209",True,True,True,True,True,"Here are the steps to reproduce:
+
+1. Visit `https://treeherder.mozilla.org/api/project/mozilla-central/bug-job-map/?offset='abcd`
+
+Actual results: SQL error indicating successful injection
+{""detail"": ""(1064, \""you have an error in your sql syntax; check the manual that corresponds to your mysql server version for the right syntax to use near ''abcd,10' at line 1\"")""}
+
+Expected results: No error","Here is the ""Expected Results"" section:
+
+**Expected Results**
+
+* No error","Here is the section titled ""Actual Results"":
+
+sql error indicating successful injection
+{""detail"":  ""(1064, \""you have an error in your sql syntax; check the manual that corresponds to your mysql server version for the right syntax to use near 'abcd,10' at line 1\"")""}","Here is the rewritten text in paragraph format:
+
+The Treeherder API constructs raw SQL queries for certain endpoints, but fails to properly escape data, resulting in a SQL injection vulnerability. Specifically, the `bug-job-map` endpoint does not adequately cast the GET parameter, allowing an attacker to inject arbitrary SQL code.
+
+To reproduce this issue, follow these steps:
+
+1. Visit the following URL: https://treeherder.mozilla.org/api/project/mozilla-central/bug-job-map/?offset='%27abcd
+
+When attempting to access this URL, you should expect to see no error message. However, due to the lack of proper data escaping, a SQL error indicating successful injection will actually occur.
+
+The expected outcome is that the API would return an error-free response. Instead, the presence of a SQL error indicates that the API is vulnerable to SQL injection attacks.
+
+This specific bug exists because the code does not properly cast the GET parameter to an integer. [1] It's possible that there are additional vulnerable API endpoints that call `jobs_execute()` in [2].
+
+References:
+
+[1] https://github.com/mozilla/treeherder/blob/12f80ce4486497e33131faeaae19429f1e00ff4e/treeherder/webapp/api/bug.py#L74
+[2] https://github.com/mozilla/treeherder/blob/12f80ce4486497e33131faeaae19429f1e00ff4e/treeherder/model/derived/jobs.py#L209
+
+As for the user agent, it can be paraphrased as follows:
+
+""This request is made by Mozilla's Firefox browser version 43.0.2357.132, running on Windows NT 6.3 (Wow64) and using Apple's WebKit rendering engine (like Gecko).""",Tree Management,2376,118
+BRC48,1441851,13075563,aryx.bugmail@gmx-topmail.de,"steps to reproduce:
+1. pin some pending or running jobs.
+2. at the very right where the box with the pinned jobs is, open the dropdown.
+3. call 'cancel all'.
+actual result: nothing happens
+expected result: job cancelled.
+
+from the console:
+error: must pass an object as last argument to thnotify.send!
+stack-trace:
+o.send@https://treeherder.mozilla.org/index.10e1584401e22240f319.bundle.js:13:339615
+i.canceljobs/<@https://treeherder.mozilla.org/index.10e1584401e22240f319.bundle.js:39:262250
+processqueue@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:410264
+scheduleprocessqueue/<@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:410930
+$rootscopeprovider/this.$get</scope.prototype.$digest@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:418440
+$rootscopeprovider/this.$get</scope.prototype.$apply@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:420551
+timeout/io<@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:429295
+completeoutstandingrequest@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:348446
+browser/ko.defer/fo<@https://treeherder.mozilla.org/vendor.3e5c3f8b422f87cd7d81.bundle.js:36:350364
+ possibly unhandled rejection: {}",True,True,True,True,True,"Here are the steps to reproduce:
+
+1. Pin some pending or running jobs.
+2. At the very right where the box with the pinned jobs is, open the dropdown.
+3. Call 'cancel all'.","Here is the ""Expected Results"" section:
+
+```
+Expected Result:
+Job cancelled.
+```","The ""Actual Results"" section is:
+
+```
+actual result: nothing happens
+```","Here is the rewritten text in paragraph format:
+
+When attempting to cancel all pending or running jobs, an unexpected error occurs. The process begins by pinning some jobs, followed by opening a dropdown menu at the right location where the pinned jobs are displayed. Finally, the ""Cancel All"" option is selected. However, instead of cancelling the jobs as expected, nothing happens and an error message is displayed in the console.
+
+The actual result was that no jobs were cancelled, while the expected result was that all pending or running jobs would be cancelled. The error message displayed in the console was: ""Error: Must pass an object as last argument to notify.send!"" with a stack trace showing several lines of code from various JavaScript files.
+
+Here are the steps to reproduce this issue:
+
+1. Pin some pending or running jobs.
+2. Open the dropdown menu at the right location where the pinned jobs are displayed.
+3. Select the ""Cancel All"" option.
+
+However, when attempting to follow these steps, the error message is displayed in the console and no job cancellation occurs.",Tree Management,1639,65
+BRC49,1081239,9431812,hsteen@mozilla.com,"site: https://www.cmbchina.com
+cmbchina.com sends desktop content to firefox os
+
+:: steps to reproduce
+
+this site intends to send mobile browsers to a mobile site, but doesn't know that firefox os devices are smartphones. hence the browser on firefox os phones get desktop content instead of mobile.
+
+the browser detection is handled with this javascript inside the main page: 
+
+<script type=""text/javascript"">
+if(/applewebkit.*mobile/i.test(navigator.useragent) || (/midp|symbianos|nokia|samsung|lg|nec|tcl|alcatel|bird|dbtel|dopod|philips|haier|lenovo|mot-|nokia|sonyericsson|sie-|amoi|zte/.test(navigator.useragent))){
+	if(window.location.href.indexof(""?from=mweb"")<0){		try{
+			if(/android|webos|iphone|ipod|blackberry/i.test(navigator.useragent)){
+				window.location.href=""http://m.cmbchina.com/"";
+			}else if(/ipad/i.test(navigator.useragent)){
+			}else{
+				window.location.href=""http://m.cmbchina.com/""
+			}
+		}catch(e){}
+	}
+}
+
+
+:: expected result
+
+mobile content
+
+:: actual result
+
+desktop site
+
+:: additional information
+
+software version: 2.0
+reporter's user agent: mozilla/5.0 (mobile; rv:18.1) gecko/18.1 firefox/18.1",True,True,True,True,True,"Here are the steps to reproduce:
+
+**Steps to Reproduce**
+
+This site intends to send mobile browsers to a mobile site, but doesn't know that Firefox OS devices are smartphones. Hence the browser on Firefox OS phones get desktop content instead of mobile.
+
+(Note: The rest of the text appears to be additional information, such as expected and actual results, software version, and reporter's user agent.)","The ""Expected Results"" section is:
+
+**Expected Result**
+Mobile content","Here is the ""Actual Results"" section:
+
+:: Actual Result
+desktop site","Here is a rewritten version of the text in paragraph format:
+
+cmbchina.com, a website intended for mobile devices, has an unexpected issue with Firefox OS devices. Despite being designed to redirect mobile browsers to a mobile site, it appears that the site does not recognize Firefox OS devices as smartphones and instead serves desktop content to them.
+
+The root of the problem lies in the browser detection code used by cmbchina.com. The JavaScript code on the main page checks for certain mobile user agents (e.g., AppleWebKit, Nokia, Samsung) and, if detected, redirects users to a mobile site at m.cmbchina.com. However, this code does not account for Firefox OS devices, which are considered smartphones.
+
+When a user with a Firefox OS device attempts to access cmbchina.com, the browser detection code fails to recognize it as a smartphone, and instead serves the desktop version of the website. This results in an unexpected experience for users who expect to see mobile-optimized content.
+
+Here is a summary of the issue:
+
+* Expected result: Mobile site
+* Actual result: Desktop site
+* Additional information:
+	+ Software version: 2.0
+	+ Reporter's user agent: Mozilla/5.0 (Mobile; rv:18.1) Gecko/18.1 Firefox/18.1",Web Compatibility,2647,99
+BRC50,1750152,15732623,excloudymat@gmail.com,"user agent: mozilla/5.0 (macintosh; intel mac os x 10.15; rv:96.0) gecko/20100101 firefox/96.0
+
+steps to reproduce:
+
+1. go to bing.com
+2. open settings
+3. make changes to any settings except the ones relating to ""home page"" at the bottom. for instance, set a zip code or change language
+4. save settings
+
+
+actual results:
+
+go back to open settings in bing - your changes have been lost. it does this whether you're logged in or not, regardless of operating system, and only in firefox 96
+
+
+expected results:
+
+settings should persist within that session.",True,True,True,True,True,"Here is the extracted section:
+
+**Steps to Reproduce**
+
+1. Go to bing.com
+2. Open settings
+3. Make changes to any settings except the ones relating to ""home page"" at the bottom. For instance, set a zip code or change language
+4. Save settings","The ""Expected Results"" section is:
+
+Settings should persist within that session.","Here is the extracted ""Actual Results"" section:
+
+**Actual Results**
+
+Go back to open settings in Bing - your changes have been lost. It does this whether you're logged in or not, regardless of operating system, and only in Firefox 96.","Here is the rewritten text in paragraph format:
+
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:96.0) Gecko/20100101 Firefox/96.0, a user agent, reports an issue with Bing's settings feature. The user follows these steps to reproduce the problem: First, they visit Bing.com and open the Settings menu. Next, they make changes to any of the available settings options, except for the ""Home Page"" setting at the bottom of the page. For example, they might set a new zip code or change the language. Finally, they save their changes.
+
+However, when they go back to the Settings menu in Bing, all of their changes have been lost. This issue persists regardless of whether the user is logged in or not, and it only occurs when using Firefox 96 on Mac OS X 10.15. The expected result is that the settings should persist within that session.
+
+In other words, the problem is that when a user makes changes to their Bing settings (except for the ""Home Page"" setting), those changes are not saved or remembered when they return to the Settings menu. This is unexpected behavior, as users typically expect their settings choices to be preserved during the same browsing session.",Web Compatibility,2976,91
+BRC51,1358069,12250326,stitch.happy@yahoo.com,"created attachment 8859946
+bugzillaattempselectplatformversionproblem.png
+
+user agent: mozilla/5.0 (windows nt 6.1; wow64; rv:52.0) gecko/20100101 firefox/52.0
+build id: 20170323105023
+
+steps to reproduce:
+
+selected product: support.mozilla.org - lithium
+selected component: knowlege base software
+
+
+actual results:
+
+was able to enter all the info required on the input screen, but when i clicked ""submit bug"" i got a screen that insisted i provide os version.  went back to input screen and could not find a field to enter this data.  ""version"" input field is absent.
+
+
+expected results:
+
+once i entered all the required data on all available inputs, i should have been able to click on submit bug and successfully post the bug.",True,True,True,True,True,"Here are the ""Steps to Reproduce"":
+
+Was able to enter all the info required on the input screen, but when I clicked ""submit bug"" I got a screen that insisted I provide OS version. Went back to input screen and could not find a field to enter this data. ""Version"" input field is absent.","The ""Expected Results"" section is:
+
+Once I entered all the required data on all available inputs, I should have been able to click on submit bug and successfully post the bug.","Here is the extracted section titled ""Actual Results"":
+
+Was able to enter all the info required on the input screen, but when I clicked ""submit bug"" I got a screen that insisted I provide OS version. Went back to input screen and could not find a field to enter this data. The ""version"" input field is absent.","Here is the rewritten text in paragraph format:
+
+I attempted to report a bug using the Bugzilla platform version 5.0 on Windows NT 6.1 (WOW64) with Gecko/20100101 Firefox/52.0 as my user agent. My browser's build ID was 20170323105023.
+
+To reproduce the issue, I followed these steps: I selected the product ""Support"" and component ""Knowledge Base Software"" on the Lithium-powered support.mozilla.org website.
+
+However, when I clicked the ""Submit Bug"" button after entering all required information on the input screen, I was surprised to see a new screen asking me to provide my operating system version. The issue is that there was no ""Version"" input field available for me to enter this data. Instead, it seemed like the screen was expecting me to provide this information.
+
+In contrast, my expected result would have been that after entering all required data on the available inputs, I should be able to successfully post the bug by clicking the ""Submit Bug"" button. Unfortunately, this did not happen, and I encountered an unexpected issue.",bugzilla.mozilla.org,772,108
+BRC52,1429398,12957873,bzbarsky@mit.edu,"steps to reproduce:
+
+1)  start firefox 57.
+2)  load https://bugzilla.mozilla.org/show_bug.cgi?id=1419771
+3)  make the window narrow enough that a horizontal scrollbar appears
+    (see bug 1429290).
+4)  try to scroll down via the page-down key, or hitting space while having the
+    focus on the viewport.
+
+expected results: scrolling works.
+
+actual results: scrolling does not work.  needless to say, this is super-annoying. multi-finger gestures to go-to-end and whatnot also do not work correctly, which makes getting to the comment textarea a huge pain. 
+
+as soon as i make the window wide enough that the horizontal scrolbar disappears, scrolling starts to work again.
+
+i haven't dug into the exact styles involved, but certainly this rule:
+
+    @media screen and (min-width: 1024px) {
+        #wrapper {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+is what makes the scrolling work in a wider window.  if i turn off that ""height: 100%"" in inspector, i get an extra scrollbar inside the viewport scrollbars (just like i have with a narrower window) and scrolling stops working correctly.
+
+please either stop assuming that windows are more than 1024px wide, or at least test on windows that are narrower than that.",True,True,True,True,True,"Here is the section titled ""Steps to Reproduce"":
+
+1) Start Firefox 57.
+2) Load https://bugzilla.mozilla.org/show_bug.cgi? id=1419771
+3) Make the window narrow enough that a horizontal scrollbar appears (see bug 1429290).
+4) Try to scroll down via the page-down key, or hitting space while having the focus on the viewport.","Here is the extracted ""Expected Results"" section:
+
+**Expected Results**
+scrolling works.","Here is the section titled ""Actual Results"":
+
+Actual results: scrolling does not work. Needless to say, this is super-annoying. Multi-finger gestures to go-to-end and whatnot also do not work correctly, which makes getting to the comment textarea a huge pain.
+
+As soon as I make the window wide enough that the horizontal scrollbar disappears, scrolling starts to work again.","Here's a rewritten version of your steps to reproduce the issue:
+
+To replicate this bug, follow these steps: Start by opening Firefox 57 and navigating to the Bugzilla page at https://bugzilla.mozilla.org/show_bug.cgi?id=1419771. Next, resize the window to be narrow enough that a horizontal scrollbar appears (as described in bug 1429290). Once you have the scrollbar, attempt to scroll down using either the Page Down key or the Space bar while focusing on the viewport. Unfortunately, scrolling does not work as expected.
+
+In fact, it's super-annoying because other gestures like multi-finger scrolling also fail to function correctly, making it a hassle to access the comment textarea. The only way to get scrolling working again is to widen the window so that the horizontal scrollbar disappears.
+
+The problem seems to be related to the CSS rule `@media screen and (min-width: 1024px) { #wrapper { overflow: hidden; width: 100%; height: 100%; } }`. When this rule is applied, scrolling works fine in a wider window. However, if you disable the `height: 100%` property in the inspector, an additional scrollbar appears within the viewport scrollbars (just like with a narrower window), and scrolling stops working correctly.
+
+As a result, it would be helpful if Mozilla either stopped assuming that windows are always greater than 1024px wide or tested on windows of varying widths to ensure that their bugzilla page works as expected across different screen sizes.",bugzilla.mozilla.org,745,190
+BRC53,1202230,10700751,fredy@fredy.gr,"steps to reproduce:
+1. launch the buddy up app.
+2. tap on the ""gear"" button at the right top corner of the screen.
+3. tap on the ""create account or sign in"" button
+4. tap on ""don't have an account? register"" button.
+5. type a valid email address, username and password
+6. tap on ""create account"" button.
+
+expected result:
+""confirm account"" page appears with a ""cancel sign up"" button.
+actual result:
+blank page appears
+
+note:
+user can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.
+
+console errors:
+    typeerror: cancel_button is null email_confirmation_controller.js:47:7
+    error: (main/email_confirmation.html) [line 2, column 10]
+    error: unable to call `_`, which is undefined or falsey
+
+regression searching results:
+https://github.com/mozilla/buddyup/commit/9acf86651442106df4e1ba9a90cdbe6aac7b3795 (no bug, works fine)
+(some commits that can not be tested)
+https://github.com/mozilla/buddyup/commit/6f191663ac6b1f5cc999193ef83576d64c71e51d (first testable commit with the bug)",True,True,True,True,True,"Here is the extracted section titled ""Steps to Reproduce"":
+
+**Steps to Reproduce**
+
+1. Launch the Buddy Up app.
+2. Tap on the ""gear"" button at the right top corner of the screen.
+3. Tap on the ""create account or sign in"" button
+4. Tap on ""don't have an account? register"" button.
+5. Type a valid email address, username and password.
+6. Tap on ""create account"" button.
+
+Expected result: The ""confirm account"" page appears with a ""cancel sign up"" button.
+
+Actual result: A blank page appears.","Here is the section titled ""Expected Results"":
+
+""confirm account"" page appears with a ""cancel sign up"" button.","Here is the section titled ""Actual Results"":
+
+actual result:
+blank page appears
+note: 
+user can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.","Here is a rewritten version of the text in paragraph format:
+
+When attempting to create an account on the Buddy Up app, users may encounter an unexpected issue. After launching the app and tapping on the ""Gear"" button in the top right corner, selecting the option to ""Create Account or Sign In"", and then choosing to register for a new account, users are presented with a blank page instead of the expected ""Confirm Account"" page. Furthermore, attempts to dismiss this page by restarting the app or verifying the account through an email link do not resolve the issue. The only solution appears to be re-installing the app.
+
+To reproduce this issue, one must follow these steps:
+
+1. Launch the Buddy Up app.
+2. Tap on the ""Gear"" button in the top right corner of the screen.
+3. Select the option to ""Create Account or Sign In"".
+4. Choose the ""Don't have an account? Register"" button.
+5. Enter a valid email address, username, and password.
+6. Tap on the ""Create Account"" button.
+
+The expected result is that the ""Confirm Account"" page should appear with a ""Cancel Sign Up"" button; however, in this case, the actual result is a blank page. This issue has been linked to console errors, including a TypeError: ""cancel_button is null"" and an error on line 2, column 10 of email_confirmation.html.
+
+Regrettably, searching for regression testing results reveals that this issue was introduced in commit #6f191663ac6b1f5cc999193ef83576d64c71e51d, which is the first testable commit with the bug.",support.mozilla.org,3404,152
+BRC54,1382287,12487259,danbergeron@netscape.net,"user agent: mozilla/5.0 (windows nt 6.1; rv:54.0) gecko/20100101 firefox/54.0
+build id: 20170628075643
+
+steps to reproduce:
+
+1. tried sign in at ""https://support.mozilla.org/en-us/users/login""
+2. tried password isn't working link ""https://support.mozilla.org/en-us/users/pwreset"" entered email ""danbergeron@netscape.net""
+3. tried forgot username link ""https://support.mozilla.org/en-us/users/forgot-username"" entered email ""danbergeron@netscape.net""
+4. tried didn't receive confirmation email link ""https://support.mozilla.org/en-us/users/resendconfirmation"" entered email ""danbergeron@netscape.net""
+
+
+actual results:
+
+1. received ""please enter a correct username and password. note that both fields are case-sensitive.""
+2 received ""we've sent an email to any account using this address. please follow the link in the email to reset your password."" email not received in spam or inbox.
+3. received ""we've sent an email with the username to any account using danbergeron@netscape.net."" linked to ""https://support.mozilla.org/en-us/users/auth"". email not received in spam or inbox. 
+4. received ""
+confirmation email sent successfully.
+
+before you can log in, you need to confirm your email address. we've sent a new confirmation email to any account using danbergeron@netscape.net. to confirm the email address, just follow the link in the email."" email not received in spam or inbox. 
+
+
+
+expected results:
+
+none of the steps led to expected results of successful logon.",True,True,True,True,True,"Here are the ""Steps to Reproduce"" extracted from the text:
+
+1. Tried signing in at https://support.mozilla.org/en-us/users/login
+2. Tried password isn't working link https://support.mozilla.org/en-us/users/pwreset, entered email danbergeron@netscape.net
+3. Tried forgot username link https://support.mozilla.org/en-us/users/forgot-username, entered email danbergeron@netscape.net
+4. Tried didn't receive confirmation email link https://support.mozilla.org/en-us/users/resendconfirmation, entered email danbergeron@netscape.net","The ""Expected Results"" section is:
+
+Expected Results:
+None of the steps led to expected results of successful login.","Here is the section titled ""Actual Results"":
+
+1. Received ""please enter a correct username and password. note that both fields are case-sensitive.""
+2. Received ""we've sent an email to any account using this address. please follow the link in the email to reset your password."" Email not received in spam or inbox.
+3. Received ""we've sent an email with the username to any account using danbergeron@netscape.net."" Linked to ""https://support.mozilla.org/en-US/users/auth"". Email not received in spam or inbox.
+4. Received """" confirmation email sent successfully. before you can log in, you need to confirm your email address. we've sent a new confirmation email to any account using danbergeron@netscape.net. to confirm the email address, just follow the link in the email."" Email not received in spam or inbox.","Here is a rewritten version of the user agent and steps to reproduce in paragraph format:
+
+Mozilla/5.0 (Windows NT 6.1; rv:54.0) Gecko/20100101 Firefox/54.0 Build ID: 20170628075643 was used as the user agent to test the Mozilla Support login process. The following steps were taken to attempt to log in:
+
+The first step was to try signing in at the ""https://support.mozilla.org/en-us/users/login"" page using a valid username and password. However, this resulted in an error message stating that the entered username and password were incorrect, with a note that both fields are case-sensitive.
+
+Next, an attempt was made to reset the password by following the link provided on the login page (""https://support.mozilla.org/en-us/users/pwreset""). After entering the email address ""danbergeron@netscape.net"", no confirmation email was received in either the spam or inbox folders. Instead, an error message was displayed stating that a new email had been sent to any account using this address.
+
+The next step involved attempting to recover a forgotten username by following the link provided on the login page (""https://support.mozilla.org/en-us/users/forgot-username""). After entering the email address ""danbergeron@netscape.net"", an error message was displayed stating that an email had been sent with the username, but no confirmation email was received.
+
+Finally, an attempt was made to resend a confirmation email by following the link provided on the login page (""https://support.mozilla.org/en-us/users/resendconfirmation""). This resulted in another error message stating that the confirmation email had been sent successfully, but no email was received in either the spam or inbox folders.
+
+Despite these attempts, none of the steps led to the expected result of successful logon.",support.mozilla.org,2256,184
