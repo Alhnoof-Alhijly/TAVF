@@ -1,0 +1,462 @@
+[
+  {
+    "task_id": "BRC01",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "### steps to reproduce\n\n1. browse to a site in fenix nightly\n2. select share from the options menu\n3. select a device from send to device\n\n### expected behavior\nthe site should open on the device you selected\n\n### actual behavior\nan error is displayed `unable to send`\n### device information\n\n* firefox version: 127.0a1\n* android device model: samsung s24+\n* android os version: android 14\n\n### any additional information?\nthis is not reproducible in 125 release or 126 beta"
+    },
+    "reference": {
+      "bug_id": "1895711",
+      "product": "Application Services",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n1. Browse to a site in Fenix Nightly.\n2. Select \"Share\" from the Options menu.\n3. Select a device from \"Send to Device\".",
+      "expected_result": "The \"Expected Results\" section is:\n\n### Expected Results\nthe site should open on the device you selected",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\n### Actual Behavior\nan error is displayed `unable to send`"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 82
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC03",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/601.7.7 (khtml, like gecko) version/9.1.2 safari/601.7.7\n\nsteps to reproduce:\n\ncreate a answer file and include the following line\n$answer{'use_email_as_login'} = '1';\n\nrun ./checksetup.pl ./answers\n\n\nactual results:\n\nyou get the following output:\ninitializing \"product/component changes\" email_setting ...\ninitializing \"dependency tree changes\" email_setting ...\nderiving regex group memberships...\nlogin names may not contain the \"@\" sign unless you are setting your\nlogin name to be identical to your email address.\n\nand in data/params.json you find the line\n   \"use_email_as_login\" : 0,\n\n\n\nexpected results:\n\ncreation without an error and data/params.json with the following line\n   \"use_email_as_login\" : 1,"
+    },
+    "reference": {
+      "bug_id": "1296831",
+      "product": "Bugzilla",
+      "steps_to_reproduce": "Here is the extracted \"Steps to Reproduce\" section:\n\n**Steps to Reproduce**\n\n1. Create an answer file and include the following line:\n```\n$answer{'use_email_as_login'} = '1';\n```\n2. Run `./checksetup.pl ./answers`\n\nLet me know if you need anything else!",
+      "expected_result": "The section titled \"Expected Results\" is:\n\nCreation without an error and data/params.json with the following line:\n\"use_email_as_login\": 1,",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nyou get the following output:\ninitializing \"product/component changes\" email_setting ...\ninitializing \"dependency tree changes\" email_setting ...\nderiving regex group memberships...\nlogin names may not contain the \"@\" sign unless you are setting your\nlogin name to be identical to your email address.\nand in data/params.json you find the line\n    \"use_email_as_login\" : 0,"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 102
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC06",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\nafter moving to the new recent 100.x series (i think it was then), thunderbird switched to some newfangled rich text editor for calendar events. every time i save an event and come back, newlines are added all over the place leaving everything a confusing mess.\n\ni type some nice paragraph such as the following (not the exact text):\n\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n\n\nactual results:\n\nthunderbird decided to randomly add line breaks, such as:\n\nblah blah foo\nbar (and more foo bar); this \n\nis foo; this is bar\nfoo and\n\n\nbar\nbar and foo\n\ncurrently i have no way to predict where thunderbird is going to throw in line breaks.\n\n\nexpected results:\n\ni should have got back:\n\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n(we're not even talking about rich formatting!!)\n\nwhy does everyone try to re-implement a word process and break things royally? if you'd just provide plain text and not screw up the lines, that would be 10 times better than this.\n\nor you could allow us to enter raw markdown and then show it rendered in the view (using a common library), like stack overflow does.\n\nwhy oh why are you adding line breaks all over the place every time i edit a calendar event?"
+    },
+    "reference": {
+      "bug_id": "1792078",
+      "product": "Calendar",
+      "steps_to_reproduce": "Here is the section titled \"Steps to Reproduce\":\n\n(after moving to the new recent 100.x series, Thunderbird switched to some newfangled rich text editor for calendar events.)\n\n... (no specific steps mentioned)\n\nNote that there are no specific steps provided in this section, only a general description of what happened.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\nExpected results:\ni should have got back:\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n(we're not even talking about rich formatting!!)",
+      "actual_result": "Here is the extracted \"Actual Results\" section:\n\nthunderbird decided to randomly add line breaks, such as:\nblah blah foo\nbar (and more foo bar); this \nis foo; this is bar\nfoo and \n\nbar\nbar and foo"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 239
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC07",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; linux x86_64; rv:81.0) gecko/20100101 firefox/81.0\n\nsteps to reproduce:\n\n0. open the chat tab\n1. connect to your matrix account (e.g. @username:matrix.org)\n2. click on \"join chat\" button\n3. enter a room name from a different homeserver (e.g. #maildev:mozilla.org)\n\n\nactual results:\n\nthe chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)\n\n\nexpected results:\n\nif a server name is specified, join chat shouldn't append the account server name."
+    },
+    "reference": {
+      "bug_id": "1657797",
+      "product": "Chat Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n0. Open the chat tab\n1. Connect to your Matrix account (e.g. @username:matrix.org)\n2. Click on \"Join Chat\" button\n3. Enter a room name from a different homeserver (e.g. #maildev:mozilla.org)",
+      "expected_result": "Here are the \"Expected Results\" extracted from the text:\n\n**Expected Results**\nIf a server name is specified, join chat shouldn't append the account server name.",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nActual Results:\nthe chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 69
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC08",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\n1) load a phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)\n2) click on \"edit related revisions\" in the toolbox on the right.\n3) click on \"edit child revisions\".\n4) select \"all objects\" in the dropdown that starts out with \"created by me\" (just to make sure the list is not empty).\n5) click the label of the first thing in the list.  this is the part that says \"dnnnnn: bug mmmmm - something\"\n\nexpected results: the revision you clicked is added to the \"current child revisions\" bit at the bottom of the dialog.\n\nactual results: the dialog just closes.  only clicking the \"select\" button works to add things to \"current child revisions\".\n\nthis used to work; per https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430 it no longer working is due to a change in phabricator, not in firefox."
+    },
+    "reference": {
+      "bug_id": "1568643",
+      "product": "Conduit",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1) Load a Phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)\n2) Click on \"Edit related revisions\" in the toolbox on the right.\n3) Click on \"Edit child revisions\".\n4) Select \"All objects\" in the dropdown that starts out with \"Created by me\" (just to make sure the list is not empty).\n5) Click the label of the first thing in the list. (This is the part that says \"dnnnnn: Bug mmmmm - something\")",
+      "expected_result": "Here are the \"Expected Results\" extracted from the text:\n\n**Expected Results**: the revision you clicked is added to the \"current child revisions\" bit at the bottom of the dialog.",
+      "actual_result": "Here is the extracted \"Actual Results\" section:\n\nActual results: the dialog just closes. Only clicking the \"select\" button works to add things to \"current child revisions\"."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 132
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC10",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9123077\ntrr.debug.log\n\nuser agent: mozilla/5.0 (macintosh; intel mac os x 10.14; rv:72.0) gecko/20100101 firefox/72.0\n\nsteps to reproduce:\n\nenable trr with default configuration and go to https://1.1.1.1/help\n\n\nactual results:\n\nthe site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.\n\n\nexpected results:\n\nif it's a problem with javascript, i'd expect it to go away after closing a tab, but nothing shows up in the performance console."
+    },
+    "reference": {
+      "bug_id": "1611651",
+      "product": "Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n**Steps to Reproduce:**\n\n1. Enable TRR (Trusted Recursive Resolver) with default configuration.\n2. Go to `https://1.1.1.1/help`.",
+      "expected_result": "The \"Expected Results\" section is:\n\nIf it's a problem with JavaScript, I'd expect it to go away after closing a tab, but nothing shows up in the Performance Console.",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nactual results:\nthe site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 85
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC13",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:81.0) gecko/20100101 firefox/81.0\n\nsteps to reproduce:\n\nupdate from android gradle plugin 3.5 to 4.0 and try to compile an app using glean to generate code.\n\nsee https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.\n\n\nactual results:\n\nglean code is not generated\n\n\nexpected results:\n\nglean code should be generated"
+    },
+    "reference": {
+      "bug_id": "1657758",
+      "product": "Data Platform and Tools",
+      "steps_to_reproduce": "Here is the extracted section:\n\n**Steps to Reproduce**\n\n1. Update from Android Gradle Plugin 3.5 to 4.0.\n2. Try to compile an app using Glean to generate code.\n\n**See:** https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.",
+      "expected_result": "The \"Expected Results\" section is:\n\n```\nExpected Results:\nGlean code should be generated\n```",
+      "actual_result": "Here is the extracted section:\n\nActual Results:\nGlean code is not generated"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 61
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC14",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "**steps to reproduce**\n1. go to `about:config` and turn off `devtools.webconsole.input.autocomplete`\n1. open the console\n1. type `deb`\n1. hit ctrl+space to display the completion text  (should be `ugger`)\n1. type `u`\n1. hit `tab`\n\n\n**expected results**\n\nthe input get completed to `debugger`\n\n**actual results**\n\nthe input get completed to `debuugger`\n\n---\n\nthis is because the completion text wasn't updated"
+    },
+    "reference": {
+      "bug_id": "1579366",
+      "product": "DevTools",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Go to `about:config` and turn off `devtools.webconsole.input.autocomplete`.\n2. Open the console.\n3. Type `deb`.\n4. Hit Ctrl+Space to display the completion text (should be `ugger`).\n5. Type `u`.\n6. Hit Tab.\n\nLet me know if you need anything else!",
+      "expected_result": "The \"Expected Results\" section is:\n\n* the input get completed to `debugger`",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\nthe input get completed to `debuugger`"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 60
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC16",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:99.0) gecko/20100101 firefox/99.0\n\nsteps to reproduce:\n\nlaunch firefox 100.0.1 x64 on windows 11 build 22000.613 (april release) or 22000.675 (may release)\n\n\nactual results:\n\nbrowser window comes up, but browser is unresponsive.  trying to visit any site fails, browser hangs\n\n\nexpected results:\n\nable to view site"
+    },
+    "reference": {
+      "bug_id": "1770098",
+      "product": "External Software Affecting Firefox",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n**Steps to Reproduce:**\n\n1. Launch Firefox 100.0.1 x64 on Windows 11 build 22000.613 (April release) or 22000.675 (May release).",
+      "expected_result": "The extracted \"Expected Results\" section is:\n\n**Expected Results**\nAble to view a site",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\n\"Browser window comes up, but browser is unresponsive. Trying to visit any site fails, browser hangs.\""
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 53
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC18",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "**[affected versions]:**\n- firefox nightly 115.0a1 (build id: 20230508214159)\n- firefox nightly 114.0b1 (build id: 20230508175934)\n\n**[affected platforms]:**\n- windows 10 x64\n- linux ubuntu 20.04 x64\n- macos 12.4\n\n**[prerequisites]:**\n- have a vpn client connected to a us server ( make sure the `browser.search.region` pref is set accordingly).\n- have the firefox nightly 115.0a1 build installed.\n- set the following prefs:\n`browser.urlbar.weather.featuregate` = `true`\n(windows only) `browser.urlbar.weather.ignorevpn` = `true`\n\n**[steps to reproduce]:**\n1. open the browser from the prerequisites.\n2. type the “weather” string in the address bar.\n3. click the feedback button.\n4. click any of the first 2 options (“report inaccurate location” or “show less frequently”).\n5. click the feedback button again.\n6. click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).\n7. observe the behavior.\n\n**[expected result]:**\n- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.\n\n**[actual result]:**\n- nothing happens, the weather result remains displayed.\n\n**[notes]:**\n- we noticed that even though the dismiss buttons don’t work, the telemetry is incremented with each click for `firefox-suggest-weather-command-not-relevant` and `firefox-suggest-weather-command-not-interested` (depending on which one is clicked).\n- here is the [screen recording](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing) of the issue."
+    },
+    "reference": {
+      "bug_id": "1832105",
+      "product": "Firefox",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n**Steps to Reproduce:**\n\n1. Open the browser from the prerequisites.\n2. Type the “weather” string in the address bar.\n3. Click the feedback button.\n4. Click any of the first 2 options (“report inaccurate location” or “show less frequently”).\n5. Click the feedback button again.\n6. Click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).\n7. Observe the behavior.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n**[expected result]:**\n- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.",
+      "actual_result": "Here is the \"Actual Results\" section:\n\n**[actual result]:**\n- nothing happens, the weather result remains displayed."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 208
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC21",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "build: 51abcc7ca\ndevice: ipad pro\nios: 9.2.1\n\nsteps to reproduce:\n1. launch fennec\n2. open 12 new tabs by tapping the '+' symbol\n3. select the last tab\n4. double tap on the home button and close fennec\n5. open fennec\n\nactual results:\n- the last tab which is selected is not in view. the scroll is positioned at the first tab.\n\nexpected results:\n- the selected tab should be in view."
+    },
+    "reference": {
+      "bug_id": "1333754",
+      "product": "Firefox for iOS",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Launch Fennec.\n2. Open 12 new tabs by tapping the '+' symbol.\n3. Select the last tab.\n4. Double tap on the home button and close Fennec.\n5. Open Fennec again.",
+      "expected_result": "Here is the extracted \"Expected Results\" section:\n\n* The selected tab should be in view.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\n* The last tab which is selected is not in view. The scroll is positioned at the first tab."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 72
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC24",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9309175\nandroid13.mp4\n\n### steps to reproduce\n1. install focus nightly 110.0a1 on an android 13 device\n2. open youtube.com, or vimeo.com.\n3. start a video, then access the fullscreen option.\n\n### expected behavior\nthe video is displayed in fullscreen without issues.\n\n### actual behavior\nthe video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.\nnot reproducible on the latest fenix nightly 110.0a1.\n\n### device information\n* focus version: all (110.0a1 nightly from 12/20, beta 109.0b2, rc 108.1.0 - builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks \n* android device: google pixel 6 (android 13)\n* not reproducible on: oppo reno 6 (android 12)\n* works fine on the rc 108.1.0 build from playstore"
+    },
+    "reference": {
+      "bug_id": "1806652",
+      "product": "Focus",
+      "steps_to_reproduce": "Here is the extracted section titled \"Steps to Reproduce\":\n\n### Steps to Reproduce\n1. install focus nightly 110.0a1 on an Android 13 device\n2. open youtube.com, or vimeo.com.\n3. start a video, then access the fullscreen option.",
+      "expected_result": "Here is the extracted section titled \"Expected Results\":\n\n### expected behavior\nthe video is displayed in fullscreen without issues.",
+      "actual_result": "The \"Actual Results\" section is:\n\n### actual behavior\nthe video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 139
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC26",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9106176\ndevice-2019-11-04-152302.mp4\n\nuser agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:70.0) gecko/20100101 firefox/70.0\n\nsteps to reproduce:\n\nenter some text in an input field on a website (search field at https://startpage.com for example). try to go back a few characters by using the arrow keys at the bottom of the screen (i believe this is a cyanogenmode/lineageos specific feature. that feature works as expected in every other app, including the on-board (webview-based) browser app.)\n\nphone: nexus 5x\nos: lineageos 15.1 (aka android 8.1)\nkeyboard: aosp keyboard\n\n\nactual results:\n\nthe cursor keeps jumping back to the end of the current word. holding down the left arrow key i can finally get it to skip to a prior word.\nusing the right arrow key it skips to the end of the current word again, not just a single character.\n\nthis behaviour doesn't occur when i disable all next word suggestions/autocorrection in the aosp keyboard. this is not a usable workaround though.\n\n\nexpected results:\n\nthe arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.\n\nthis works in every other android app except firefox."
+    },
+    "reference": {
+      "bug_id": "1593683",
+      "product": "GeckoView",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n* Enter some text in an input field on a website (e.g., search field at https://startpage.com).\n* Try to go back a few characters by using the arrow keys at the bottom of the screen.",
+      "expected_result": "The \"Expected Results\" section is:\n\n\"The arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.\nThis works in every other Android app except Firefox.\"",
+      "actual_result": "Here are the \"Actual Results\" extracted from the text:\n\nThe cursor keeps jumping back to the end of the current word. Holding down the left arrow key, I can finally get it to skip to a prior word.\nUsing the right arrow key, it skips to the end of the current word again, not just a single character."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 189
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC28",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:84.0) gecko/20100101 firefox/84.0\n\nsteps to reproduce:\n\npgp encrypted email encrypted for my key is in my inbox, and will not display on new versions of thunderbird. previous versions with enigmail are unaffected. i've tested this on thunderbird 78 on windows, thunderbird 78 on linux, and a debug build on linux from trunk.\n\n\nactual results:\n\nthe message fails to display. openpgp icon shows \"message cannot be decrypted: there are unknown problems with this decrypted message.\" the debug console shows \"rnp_op_verify_execute returned unexpected: 285212674\".\n\nthe debug output is as follows:\n[mem_dst_write() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-common.cpp:991] attempt to alloc more then allowed\n[process_pgp_source() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-parse.cpp:2483] failed to output data\nconsole.debug: \"rnp_op_verify_execute returned unexpected: 285212674\"\n\n\nexpected results:\n\nthe message should successfully decrypt and its content should be displayed."
+    },
+    "reference": {
+      "bug_id": "1686984",
+      "product": "MailNews Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\":\n\nPGP encrypted email encrypted for my key is in my inbox, and will not display on new versions of Thunderbird. Previous versions with Enigmail are unaffected. I've tested this on Thunderbird 78 on Windows, Thunderbird 78 on Linux, and a debug build on Linux from trunk.",
+      "expected_result": "The expected results are:\n\n* The message should successfully decrypt.\n* Its content should be displayed.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nThe message fails to display. OpenPGP icon shows \"Message cannot be decrypted: there are unknown problems with this decrypted message.\" The debug console shows:\n\n* \"rnp_op_verify_execute returned unexpected: 285212674\".\n* `[mem_dst_write() ...] attempt to alloc more then allowed`\n* `[process_pgp_source() ...] failed to output data`\n\nLet me know if you need anything else!"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 127
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC30",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9238939\nfirefox suggest label.png\n\n**[affected versions]:**\n- firefox nightly 93.0a1 (build id: 20210901091701) \n\n**[affected platforms]:**\n- windows 10 x64\n- macos 10.15.7\n- linux mint 20\n\n**[prerequisites]:**\n- have [nightly ro](https://ftp.mozilla.org/pub/firefox/nightly/2021/08/2021-08-21-21-21-31-mozilla-central-l10n/) build downloaded or installed.\n\n**[steps to reproduce]:**\n1. open the nightly ro l10n build.\n2. open a new tab page, type any keyword that will trigger a history result.\n3. observe the \"firefox suggest\" string.\n\n**[expected results]:**\n- the \"firefox suggest\" string is correctly displayed.\n    \n**[actual results]:**\n- the \"-firefox-suggest-brand-name\" string is displayed.\n\n**[notes]:**\n- so far i have managed to reproduce the issue only on ro build. not sure if the issue is also reproducible on other l10n builds.\n- on other l10n builds, the \"firefox suggest\" string is correctly displayed if the string is not yet localized.\n- attached is a screenshot of the issue."
+    },
+    "reference": {
+      "bug_id": "1728595",
+      "product": "Mozilla Localizations",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n**[steps to reproduce]:**\n\n1. Open the nightly RO L10n build.\n2. Open a new tab page, type any keyword that will trigger a history result.\n3. Observe the \"firefox suggest\" string.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n**[expected results]:**\n- the \"firefox suggest\" string is correctly displayed.",
+      "actual_result": "Here are the **Actual Results** extracted from the text:\n\n**[actual results]:**\n- the \"-firefox-suggest-brand-name\" string is displayed."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 140
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC36",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\nsee detailed steps and logging in this cypress.io github bug: https://github.com/cypress-io/cypress/issues/23897\n\nclose cypress\nupdate to firefox 105 (latest at the time i write this)\nopen cypress\nchoose e2e\nselect firefox v105\nclick start e2e testing in firefox\nobserve ff physically opens but the page is empty\n\n\nactual results:\n\nff physically opens but the page is empty\n\n\nexpected results:\n\nff physically opens, cypress is connected and cypress ui is presented"
+    },
+    "reference": {
+      "bug_id": "1792088",
+      "product": "Remote Protocol",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Close Cypress.\n2. Update to Firefox 105 (latest at the time I write this).\n3. Open Cypress.\n4. Choose E2E.\n5. Select Firefox v105.\n6. Click \"Start E2E testing in Firefox\".\n7. Observe FF physically opens but the page is empty.",
+      "expected_result": "The \"Expected Results\" section is:\n\n* FF physically opens, Cypress is connected and Cypress UI is presented.",
+      "actual_result": "Here is the extracted section:\n\nActual Results:\nFF physically opens but the page is empty"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 72
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC40",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; linux x86_64; rv:86.0) gecko/20100101 firefox/86.0\n\nsteps to reproduce:\n\ni started a local test instance (make build, make setup, make run). connected to it with a superuser. clicked on the \"go to user management\" link which links to \"/users\".\n\n\nactual results:\n\ngot a 404. logs only show this:\n\n> info 2020-12-21 13:08:40,101 django.server \"get /api/_auth/ http/1.1\" 200 483\n\n\nexpected results:\n\ni expected to end up on some user management page."
+    },
+    "reference": {
+      "bug_id": "1683665",
+      "product": "Tecken",
+      "steps_to_reproduce": "Here is the extracted section:\n\n**Steps to Reproduce**\n\nI started a local test instance (make build, make setup, make run). Connected to it with a superuser. Clicked on the \"Go to User Management\" link which links to \"/users\".",
+      "expected_result": "The \"Expected Results\" section is:\n\nI expected to end up on some user management page.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nGot a 404. Logs only show this:\n\n> info 2020-12-21 13:08:40,101 django.server \"get /api/_auth/ http/1.1\" 200 483"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 73
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC44",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9172109\nzipped example screenshots\n\nuser agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/84.0.4147.135 safari/537.36 edg/84.0.522.63\n\nsteps to reproduce:\n\n1. enable high-contrast mode in windows 10, by doing the following:\n1.1. open windows settings (windows+i).\n1.2. go to ease of access -> high-contrast.\n1.3. turn on the high-contrast mode, using the respective toggle.\n1.4. from the \"high-contrast theme\" combo-box, select \"high-contrast black\".\n2. install and launch thunderbird 78.2.\n\n\nactual results:\n\nobserve how some dialogs and windows of thunderbird do not obey the colors defined by the currently active high-contrast black theme. mostly, where the background should be black, it is gray instead. i'll attach some example screenshots in a zip archive.\n\nexamples of such windows include, but may not be limited to, the following:\n- the main window of thunderbird.\n- the dialogs for subscribing to imap folders and rss feeds.\n- the dialogs for the properties of rss and mail folders.\n- the dialog for customizing the toolbars in thunderbird.\n- the dialog for creating a new folder.\n- the dialog/window for adding an account to thunderbird.\n\n\nexpected results:\n\nin such dialogs and windows as in the examples above, the background color should be black, instead of being gray as it is now."
+    },
+    "reference": {
+      "bug_id": "1661229",
+      "product": "Thunderbird",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Enable high-contrast mode in Windows 10 by doing the following:\n   1.1. Open Windows settings (Windows+i).\n   1.2. Go to Ease of Access -> High Contrast.\n   1.3. Turn on the high-contrast mode using the respective toggle.\n   1.4. From the \"High-Contrast Theme\" combo-box, select \"High-Contrast Black\".\n2. Install and launch Thunderbird 78.2.",
+      "expected_result": "Here are the expected results:\n\n* In such dialogs and windows (e.g. main window, subscription dialogs, folder properties dialogs, toolbar customization dialog, new folder creation dialog, account addition dialog), the background color should be black, instead of being gray.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nObserve how some dialogs and windows of Thunderbird do not obey the colors defined by the currently active high-contrast black theme. Mostly, where the background should be black, it is gray instead. I'll attach some example screenshots in a zip archive.\n\nExamples of such windows include, but may not be limited to, the following:\n\n* The main window of Thunderbird.\n* The dialogs for subscribing to IMAP folders and RSS feeds.\n* The dialogs for the properties of RSS and mail folders.\n* The dialog for customizing the toolbars in Thunderbird.\n* The dialog for creating a new folder.\n* The dialog/window for adding an account to Thunderbird."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 209
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC46",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:123.0) gecko/20100101 firefox/123.0\n\nsteps to reproduce:\n\ni after refreshing firefox, i could not import any compressed backup bookmarks. i created new a new profiles and and could not import a compressed bookmark that was valid. i created a new profile and could not import a valid html backup bookmark. community support has not responded to offer any further steps to take after i tried to import a valid html file yet so i am am reporting it here. i really need to get this issue fixed and firefox support is greatly lacking in timely, accurate resolution. i have not tried booting windows in safe mode.\n\n\nactual results:\n\nsee above and need to add in addition, that when importing valid compressed backup bookmarks, i get the message, \"unable to process backup file\". when i import a valid backup bookmark html file, nothing happens---and no error message appears.\n\n\nexpected results:\n\nas expected, any valid bookmark file should be imported."
+    },
+    "reference": {
+      "bug_id": "1884308",
+      "product": "Toolkit",
+      "steps_to_reproduce": "Here is the extracted \"Steps to Reproduce\" section:\n\nI after refreshing Firefox, I could not import any compressed backup bookmarks. I created a new profile and couldn't import a compressed bookmark that was valid. I created a new profile and couldn't import a valid HTML backup bookmark. I have not tried booting Windows in safe mode.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\nExpected results:\nAs expected, any valid bookmark file should be imported.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nSee above and need to add in addition, that when importing valid compressed backup bookmarks, I get the message, \"unable to process backup file\". When I import a valid backup bookmark HTML file, nothing happens---and no error message appears."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 165
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC53",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n1. launch the buddy up app.\n2. tap on the \"gear\" button at the right top corner of the screen.\n3. tap on the \"create account or sign in\" button\n4. tap on \"don't have an account? register\" button.\n5. type a valid email address, username and password\n6. tap on \"create account\" button.\n\nexpected result:\n\"confirm account\" page appears with a \"cancel sign up\" button.\nactual result:\nblank page appears\n\nnote:\nuser can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.\n\nconsole errors:\n    typeerror: cancel_button is null email_confirmation_controller.js:47:7\n    error: (main/email_confirmation.html) [line 2, column 10]\n    error: unable to call `_`, which is undefined or falsey\n\nregression searching results:\nhttps://github.com/mozilla/buddyup/commit/9acf86651442106df4e1ba9a90cdbe6aac7b3795 (no bug, works fine)\n(some commits that can not be tested)\nhttps://github.com/mozilla/buddyup/commit/6f191663ac6b1f5cc999193ef83576d64c71e51d (first testable commit with the bug)"
+    },
+    "reference": {
+      "bug_id": "1202230",
+      "product": "support.mozilla.org",
+      "steps_to_reproduce": "Here is the extracted section titled \"Steps to Reproduce\":\n\n**Steps to Reproduce**\n\n1. Launch the Buddy Up app.\n2. Tap on the \"gear\" button at the right top corner of the screen.\n3. Tap on the \"create account or sign in\" button\n4. Tap on \"don't have an account? register\" button.\n5. Type a valid email address, username and password.\n6. Tap on \"create account\" button.\n\nExpected result: The \"confirm account\" page appears with a \"cancel sign up\" button.\n\nActual result: A blank page appears.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n\"confirm account\" page appears with a \"cancel sign up\" button.",
+      "actual_result": "Here is the section titled \"Actual Results\":\n\nactual result:\nblank page appears\nnote: \nuser can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 152
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  }
+]

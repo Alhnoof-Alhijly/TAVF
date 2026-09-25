@@ -1,0 +1,182 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TAVF Unified Task Schema",
+  "description": "A unified schema for the three experimental tasks.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "task_type",
+    "source",
+    "input",
+    "reference",
+    "metadata",
+    "expected_output"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_type": {
+      "enum": [
+        "user_story_refinement",
+        "bug_report_refinement",
+        "test_case_generation"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input": {
+      "type": "object"
+    },
+    "reference": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "expected_output": {
+      "type": "object",
+      "required": ["type", "gold_reference"],
+      "properties": {
+        "type": {
+          "enum": [
+            "refined_user_story",
+            "refined_bug_report",
+            "python_test_cases"
+          ]
+        },
+        "gold_reference": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task_type": {
+            "const": "user_story_refinement"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "required": ["original_text"],
+            "properties": {
+              "original_text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "reference": {
+            "required": [
+              "original_source_file",
+              "original_line_number"
+            ]
+          },
+          "expected_output": {
+            "properties": {
+              "type": {
+                "const": "refined_user_story"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task_type": {
+            "const": "bug_report_refinement"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "required": ["original_text"],
+            "properties": {
+              "original_text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "reference": {
+            "required": [
+              "bug_id",
+              "product",
+              "steps_to_reproduce",
+              "expected_result",
+              "actual_result"
+            ]
+          },
+          "expected_output": {
+            "properties": {
+              "type": {
+                "const": "refined_bug_report"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task_type": {
+            "const": "test_case_generation"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "required": [
+              "description",
+              "python_solution"
+            ],
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "python_solution": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "reference": {
+            "required": [
+              "task_num",
+              "func_name",
+              "blocks",
+              "target_lines"
+            ]
+          },
+          "metadata": {
+            "required": ["difficulty"]
+          },
+          "expected_output": {
+            "properties": {
+              "type": {
+                "const": "python_test_cases"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

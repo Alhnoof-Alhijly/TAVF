@@ -1,0 +1,402 @@
+[
+  {
+    "task_id": "USC03",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project."
+    },
+    "reference": {
+      "original_source_file": "g03-loudoun.txt",
+      "original_line_number": 41
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 33
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC05",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a user, I want to be able to browse through the list of facolities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint."
+    },
+    "reference": {
+      "original_source_file": "g04-recycling.txt",
+      "original_line_number": 48
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 39
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC07",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an API User, I want to be able to normalise measures by GDP, so I work with datasets in reference to their contextual constraints."
+    },
+    "reference": {
+      "original_source_file": "g05-openspending.txt",
+      "original_line_number": 71
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 25
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC10",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a ResearcherGovernment Publisher, I want to add reference data on inflation to my spending dataset, so that the spending lines in my dataset is more understandable."
+    },
+    "reference": {
+      "original_source_file": "g08-frictionless.txt",
+      "original_line_number": 29
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC11",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a site visitor, I want to view a section of the website that teaches me the basics of what Scrum is, so that I can learn that quickly."
+    },
+    "reference": {
+      "original_source_file": "g10-scrumalliance.txt",
+      "original_line_number": 79
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 29
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC12",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Trainer, I want to include additional details in my profile page about me, so that others can learn about me and decide if I am the right trainer for them."
+    },
+    "reference": {
+      "original_source_file": "g10-scrumalliance.txt",
+      "original_line_number": 5
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 32
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC14",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a team member, I want to understand how work moves between UX/content > visual design > front end dev for a sprint cycle."
+    },
+    "reference": {
+      "original_source_file": "g11-nsf.txt",
+      "original_line_number": 73
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 24
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC19",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Consumer, I want to see a publisher's profile, so that that I can discover their packages and get a sense of how active and good they are."
+    },
+    "reference": {
+      "original_source_file": "g14-datahub.txt",
+      "original_line_number": 52
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 29
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC20",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Consumer, I want to download the data package in one file, so that that I don't have to download descriptor and each resource by hand."
+    },
+    "reference": {
+      "original_source_file": "g14-datahub.txt",
+      "original_line_number": 31
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC21",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a developer, I want to determine if we can use the in-built Fedora 4 event audit services."
+    },
+    "reference": {
+      "original_source_file": "g16-mis.txt",
+      "original_line_number": 7
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 18
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC22",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a collection curator, I want to view the permission on my objects all together."
+    },
+    "reference": {
+      "original_source_file": "g16-mis.txt",
+      "original_line_number": 66
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 15
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC25",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a supervisor, I want to view what my researchers were doing on a given date or period of time."
+    },
+    "reference": {
+      "original_source_file": "g18-neurohub.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 20
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC26",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a lab administrator, I want to theme the Web interface graphics/colours."
+    },
+    "reference": {
+      "original_source_file": "g18-neurohub.txt",
+      "original_line_number": 7
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 12
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC27",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an OlderPerson, I want to buy ALFRED in a senior shop with special client support."
+    },
+    "reference": {
+      "original_source_file": "g19-alfred.txt",
+      "original_line_number": 16
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 16
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC29",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a administrator, I want to refund sponsorship money that was processed via stripe, so that people get their monies back."
+    },
+    "reference": {
+      "original_source_file": "g21-badcamp.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 21
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC32",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an archivemanager, I want to know in advance the conservation period of data, so that I can better organize the service by adapting the preservation actions."
+    },
+    "reference": {
+      "original_source_file": "g22-rdadmp.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC33",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a user, I want backend changes to support loading enum value lists from the database."
+    },
+    "reference": {
+      "original_source_file": "g23-archivesspace.txt",
+      "original_line_number": 17
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 16
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC38",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a DAMS manager, I want to indicate the source-capture information for a file where it is useful to do so."
+    },
+    "reference": {
+      "original_source_file": "g25-duraspace.txt",
+      "original_line_number": 54
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 21
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC41",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a library staff member, I want to deliver streaming media from within the repository, so that I can deliver such content in the manner expected and ensure continued access to said content."
+    },
+    "reference": {
+      "original_source_file": "g27-culrepo.txt",
+      "original_line_number": 59
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 33
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC42",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a DB/IR administrator, I want to have the system recognize/categorize document type (e.g. historical report still published, expired historical report, single topic dataset, broad topic dataset, report with subtopic, computer file), so that report/dataset is processed and displayed properly."
+    },
+    "reference": {
+      "original_source_file": "g27-culrepo.txt",
+      "original_line_number": 65
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 40
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  }
+]

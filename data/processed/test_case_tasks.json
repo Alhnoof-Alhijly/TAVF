@@ -1,0 +1,442 @@
+[
+  {
+    "task_id": "TCC02",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an alphanumeric string `s`. (Alphanumeric string is a string\nconsisting of lowercase English letters and digits).\n\nYou have to find a permutation of the string where no letter is followed by\nanother letter and no digit is followed by another digit. That is, no two\nadjacent characters have the same type.\n\nReturn the reformatted string or return an empty string if it is impossible to\nreformat the string.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def reformat(self, s: str) -> str:\n    A=[]\n    for c in s:\n      if c.isalpha():\n        A.append(c)\n    B=[]\n    for c in s:\n      if c.isdigit():\n        B.append(c)\n\n    if len(A) < len(B):\n      A, B = B, A\n    if len(A) - len(B) > 1:\n      return ''\n\n    ans = []\n\n    for i in range(len(B)):\n      ans.append(A[i])\n      ans.append(B[i])\n\n    if len(A) == len(B) + 1:\n      ans.append(A[-1])\n    return ''.join(ans)\n"
+    },
+    "reference": {
+      "task_num": 1417,
+      "func_name": "reformat",
+      "blocks": "[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 0.99}]",
+      "target_lines": "[16, 20, 23, 25, 34]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC03",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "A password is said to be strong if it satisfies all the following criteria:\n\n* It has at least `8` characters.\n* It contains at least one lowercase letter.\n* It contains at least one uppercase letter.\n* It contains at least one digit.\n* It contains at least one special character. The special characters are the characters in the following string: `\"!@#$%^&*()-+\"`.\n* It does not contain `2` of the same character in adjacent positions (i.e., `\"aab\"` violates this condition, but `\"aba\"` does not).\n\nGiven a string `password`, return `true` if it is a strong password.\nOtherwise, return `false`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def strongPasswordCheckerII(self, password: str) -> bool:\n    if len(password) < 8:\n      return False\n    if not any(c.islower() for c in password):\n      return False\n    if not any(c.isupper() for c in password):\n      return False\n    if not any(c.isdigit() for c in password):\n      return False\n    if not any(\"!@#$%^&*()-+\".find(c) != -1 for c in password):\n      return False\n    return all(a != b for a, b in zip(password, password[1:]))\n"
+    },
+    "reference": {
+      "task_num": 2299,
+      "func_name": "strongPasswordCheckerII",
+      "blocks": "[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.05660377358490566}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 17, 'end': 18, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 2, 'eg_cov_prob': 0.018867924528301886}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[14, 16, 18, 20, 22]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC04",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "On an `8 x 8` chessboard, there is exactly one white rook `'R'` and some\nnumber of white bishops `'B'`, black pawns `'p'`, and empty squares `'.'`.\n\nWhen the rook moves, it chooses one of four cardinal directions (north, east,\nsouth, or west), then moves in that direction until it chooses to stop,\nreaches the edge of the board, captures a black pawn, or is blocked by a white\nbishop. A rook is considered attacking a pawn if the rook can capture the pawn\non the rook's turn. The number of available captures for the white rook is the\nnumber of pawns that the rook is attacking.\n\nReturn the number of available captures for the white rook.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def numRookCaptures(self, board: List[List[str]]) -> int:\n    ans = 0\n\n    for i in range(8):\n      for j in range(8):\n        if board[i][j] == 'R':\n          i0 = i\n          j0 = j\n\n    for d in [[1, 0], [0, 1], [-1, 0], [0, -1]]:\n      i = i0 + d[0]\n      j = j0 + d[1]\n      while 0 <= i < 8 and 0 <= j < 8:\n        if board[i][j] == 'p':\n          ans += 1\n        if board[i][j] != '.':\n          break\n        i += d[0]\n        j += d[1]\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 999,
+      "func_name": "numRookCaptures",
+      "blocks": "[{'type': 'if', 'start': 17, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 25, 'end': 26, 'difficulty': 1, 'eg_cov_prob': 0.82}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[18, 19, 26, 28]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC06",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an `m x n` binary matrix `mat`, return the number of special positions\nin `mat`.\n\nA position `(i, j)` is called special if `mat[i][j] == 1` and all other\nelements in row `i` and column `j` are `0` (rows and columns are 0-indexed).\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def numSpecial(self, mat: List[List[int]]) -> int:\n    m = len(mat)\n    n = len(mat[0])\n    ans = 0\n    rowOnes = [0] * m\n    colOnes = [0] * n\n\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j] == 1:\n          rowOnes[i] += 1\n          colOnes[j] += 1\n\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j] == 1 and rowOnes[i] == 1 and colOnes[j] == 1:\n          ans += 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1582,
+      "func_name": "numSpecial",
+      "blocks": "[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[22, 23, 28]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC07",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an integer `n`. There is an undirected graph with `n` vertices,\nnumbered from `0` to `n - 1`. You are given a 2D integer array `edges` where\n`edges[i] = [ai, bi]` denotes that there exists an undirected edge connecting\nvertices `ai` and `bi`.\n\nReturn the number of complete connected components of the graph.\n\nA connected component is a subgraph of a graph in which there exists a path\nbetween any two vertices, and no vertex of the subgraph shares an edge with a\nvertex outside of the subgraph.\n\nA connected component is said to be complete if there exists an edge between\nevery pair of its vertices.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass UnionFind:\n  def __init__(self, n: int):\n    self.id = list(range(n))\n    self.rank = [0] * n\n    self.nodeCount = [1] * n\n    self.edgeCount = [0] * n\n\n  def unionByRank(self, u: int, v: int) -> None:\n    i = self.find(u)\n    j = self.find(v)\n    self.edgeCount[i] += 1\n    if i == j:\n      return\n    if self.rank[i] < self.rank[j]:\n      self.id[i] = j\n      self.edgeCount[j] += self.edgeCount[i]\n      self.nodeCount[j] += self.nodeCount[i]\n    elif self.rank[i] > self.rank[j]:\n      self.id[j] = i\n      self.edgeCount[i] += self.edgeCount[j]\n      self.nodeCount[i] += self.nodeCount[j]\n    else:\n      self.id[i] = j\n      self.edgeCount[j] += self.edgeCount[i]\n      self.nodeCount[j] += self.nodeCount[i]\n      self.rank[j] += 1\n\n  def find(self, u: int) -> int:\n    if self.id[u] != u:\n      self.id[u] = self.find(self.id[u])\n    return self.id[u]\n\n  def isComplete(self, u):\n    return self.nodeCount[u] * (self.nodeCount[u] - 1) // 2 == self.edgeCount[u]\n\n\nclass Solution:\n  def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:\n    ans = 0\n    uf = UnionFind(n)\n    parents = set()\n\n    for u, v in edges:\n      uf.unionByRank(u, v)\n\n    for i in range(n):\n      parent = uf.find(i)\n      if parent not in parents and uf.isComplete(parent):\n        ans += 1\n        parents.add(parent)\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 2685,
+      "func_name": "countCompleteComponents",
+      "blocks": "[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 24, 'end': 27, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 28, 'end': 31, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'else', 'start': 32, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 58, 'end': 60, 'difficulty': 2, 'eg_cov_prob': 0.20754716981132076}]",
+      "target_lines": "[23, 25, 26, 27, 29, 30, 31, 33, 34, 35, 36, 40, 59, 60]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC08",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D\narray of size `rows x columns`, where `heights[row][col]` represents the\nheight of cell `(row, col)`. You are situated in the top-left cell, `(0, 0)`,\nand you hope to travel to the bottom-right cell, `(rows-1, columns-1)` (i.e.,\n0-indexed). You can move up, down, left, or right, and you wish to find a\nroute that requires the minimum effort.\n\nA route's effort is the maximum absolute difference in heights between two\nconsecutive cells of the route.\n\nReturn the minimum effort required to travel from the top-left cell to the\nbottom-right cell.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minimumEffortPath(self, heights: List[List[int]]) -> int:\n    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))\n    m = len(heights)\n    n = len(heights[0])\n    diff = [[math.inf] * n for _ in range(m)]\n    seen = set()\n\n    minHeap = [(0, 0, 0)]\n    diff[0][0] = 0\n\n    while minHeap:\n      d, i, j = heapq.heappop(minHeap)\n      if i == m - 1 and j == n - 1:\n        return d\n      seen.add((i, j))\n      for dx, dy in dirs:\n        x = i + dx\n        y = j + dy\n        if x < 0 or x == m or y < 0 or y == n:\n          continue\n        if (x, y) in seen:\n          continue\n        newDiff = abs(heights[i][j] - heights[x][y])\n        maxDiff = max(diff[i][j], newDiff)\n        if diff[x][y] > maxDiff:\n          diff[x][y] = maxDiff\n          heapq.heappush(minHeap, (diff[x][y], x, y))\n"
+    },
+    "reference": {
+      "task_num": 1631,
+      "func_name": "minimumEffortPath",
+      "blocks": "[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[25, 31, 33, 37, 38]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC10",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where\n`edges[i] = [fromi, toi, weighti]` represents a bidirectional and weighted\nedge between cities `fromi` and `toi`, and given the integer\n`distanceThreshold`.\n\nReturn the city with the smallest number of cities that are reachable through\nsome path and whose distance is at most `distanceThreshold`, If there are\nmultiple such cities, return the city with the greatest number.\n\nNotice that the distance of a path connecting cities i and j is equal to the\nsum of the edges' weights along that path.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:\n    ans = -1\n    minCitiesCount = n\n    dist = self._floydWarshall(n, edges, distanceThreshold)\n\n    for i in range(n):\n      citiesCount = sum(dist[i][j] <= distanceThreshold for j in range(n))\n      if citiesCount <= minCitiesCount:\n        ans = i\n        minCitiesCount = citiesCount\n\n    return ans\n\n  def _floydWarshall(self, n: int, edges: List[List[int]], distanceThreshold: int) -> List[List[int]]:\n    dist = [[distanceThreshold + 1] * n for _ in range(n)]\n\n    for i in range(n):\n      dist[i][i] = 0\n\n    for u, v, w in edges:\n      dist[u][v] = w\n      dist[v][u] = w\n\n    for k in range(n):\n      for i in range(n):\n        for j in range(n):\n          dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])\n\n    return dist\n"
+    },
+    "reference": {
+      "task_num": 1334,
+      "func_name": "findTheCity",
+      "blocks": "[{'type': 'if', 'start': 19, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[20, 21]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC11",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a map of a server center, represented as a `m * n` integer\nmatrix `grid`, where 1 means that on that cell there is a server and 0 means\nthat it is no server. Two servers are said to communicate if they are on the\nsame row or on the same column.  \n\nReturn the number of servers that communicate with any other server.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def countServers(self, grid: List[List[int]]) -> int:\n    m = len(grid)\n    n = len(grid[0])\n    ans = 0\n    rows = [0] * m\n    cols = [0] * n\n\n    for i in range(m):\n      for j in range(n):\n        if grid[i][j] == 1:\n          rows[i] += 1\n          cols[j] += 1\n\n    for i in range(m):\n      for j in range(n):\n        if grid[i][j] == 1 and (rows[i] > 1 or cols[j] > 1):\n          ans += 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1267,
+      "func_name": "countServers",
+      "blocks": "[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[22, 23, 28]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC13",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a network of `n` nodes, labeled from `1` to `n`. You are also\ngiven `times`, a list of travel times as directed edges `times[i] = (ui, vi,\nwi)`, where `ui` is the source node, `vi` is the target node, and `wi` is the\ntime it takes for a signal to travel from source to target.\n\nWe will send a signal from a given node `k`. Return the minimum time it takes\nfor all the `n` nodes to receive the signal. If it is impossible for all the\n`n` nodes to receive the signal, return `-1`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:\n    graph = [[] for _ in range(n)]\n\n    for u, v, w in times:\n      graph[u - 1].append((v - 1, w))\n\n    return self._dijkstra(graph, k - 1)\n\n  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> int:\n    dist = [math.inf] * len(graph)\n\n    dist[src] = 0\n    minHeap = [(dist[src], src)]\n\n    while minHeap:\n      d, u = heapq.heappop(minHeap)\n      if d > dist[u]:\n        continue\n      for v, w in graph[u]:\n        if d + w < dist[v]:\n          dist[v] = d + w\n          heapq.heappush(minHeap, (dist[v], v))\n\n    maxDist = max(dist)\n    return maxDist if maxDist != math.inf else -1\n"
+    },
+    "reference": {
+      "task_num": 743,
+      "func_name": "networkDelayTime",
+      "blocks": "[{'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.95}, {'type': 'if', 'start': 31, 'end': 33, 'difficulty': 1, 'eg_cov_prob': 0.97}]",
+      "target_lines": "[29, 32, 33]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC15",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given a string `s` containing an out-of-order English representation of digits\n`0-9`, return the digits in ascending order.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def originalDigits(self, s: str) -> str:\n    count = [0] * 10\n\n    for c in s:\n      if c == 'z':\n        count[0] += 1\n      if c == 'o':\n        count[1] += 1\n      if c == 'w':\n        count[2] += 1\n      if c == 'h':\n        count[3] += 1\n      if c == 'u':\n        count[4] += 1\n      if c == 'f':\n        count[5] += 1\n      if c == 'x':\n        count[6] += 1\n      if c == 's':\n        count[7] += 1\n      if c == 'g':\n        count[8] += 1\n      if c == 'i':\n        count[9] += 1\n\n    count[1] -= count[0] + count[2] + count[4]\n    count[3] -= count[8]\n    count[5] -= count[4]\n    count[7] -= count[6]\n    count[9] -= count[5] + count[6] + count[8]\n\n    return ''.join(chr(i + ord('0')) for i, c in enumerate(count) for j in range(c))\n"
+    },
+    "reference": {
+      "task_num": 423,
+      "func_name": "originalDigits",
+      "blocks": "[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 18, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 26, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[17, 19, 21, 23, 25, 27, 29, 31, 33, 35]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC16",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an integer array nums, return all the triplets `[nums[i], nums[j],\nnums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] +\nnums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def threeSum(self, nums: List[int]) -> List[List[int]]:\n    if len(nums) < 3:\n      return []\n\n    ans = []\n\n    nums.sort()\n\n    for i in range(len(nums) - 2):\n      if i > 0 and nums[i] == nums[i - 1]:\n        continue\n\n      l = i + 1\n      r = len(nums) - 1\n      while l < r:\n        summ = nums[i] + nums[l] + nums[r]\n        if summ == 0:\n          ans.append((nums[i], nums[l], nums[r]))\n          l += 1\n          r -= 1\n          while nums[l] == nums[l - 1] and l < r:\n            l += 1\n          while nums[r] == nums[r + 1] and l < r:\n            r -= 1\n        elif summ < 0:\n          l += 1\n        else:\n          r -= 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 15,
+      "func_name": "threeSum",
+      "blocks": "[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 1, 'eg_cov_prob': 0.83}, {'type': 'if', 'start': 28, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 36, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[14, 22, 29, 30, 31, 32, 33, 34, 35, 37, 39]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC18",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an integer n, return the smallest prime palindrome greater than or equal\nto `n`.\n\nAn integer is prime if it has exactly two divisors: `1` and itself. Note that\n`1` is not a prime number.\n\n* For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.\n\nAn integer is a palindrome if it reads the same from left to right as it does\nfrom right to left.\n\n* For example, `101` and `12321` are palindromes.\n\nThe test cases are generated so that the answer always exists and is in the\nrange `[2, 2 * 108]`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def primePalindrome(self, n: int) -> int:\n    def getPalindromes(n: int):\n      length = n // 2\n      for i in range(10**(length - 1), 10**length):\n        s = str(i)\n        for j in range(10):\n          yield int(s + str(j) + s[::-1])\n\n    def isPrime(num: int) -> bool:\n      for i in range(2, int(num**0.5 + 1)):\n        if num % i == 0:\n          return False\n      return True\n\n    if n <= 2:\n      return 2\n    if n == 3:\n      return 3\n    if n <= 5:\n      return 5\n    if n <= 7:\n      return 7\n    if n <= 11:\n      return 11\n\n    nLength = len(str(n))\n\n    while True:\n      for num in getPalindromes(nLength):\n        if num >= n and isPrime(num):\n          return num\n      nLength += 1\n"
+    },
+    "reference": {
+      "task_num": 866,
+      "func_name": "primePalindrome",
+      "blocks": "[{'type': 'if', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 41, 'end': 42, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[23, 27, 29, 31, 33, 35, 42]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC19",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "There are `n` 1-indexed robots, each having a position on a line, health, and\nmovement direction.\n\nYou are given 0-indexed integer arrays `positions`, `healths`, and a string\n`directions` (`directions[i]` is either 'L' for left or 'R' for right). All\nintegers in `positions` are unique.\n\nAll robots start moving on the line simultaneously at the same speed in their\ngiven directions. If two robots ever share the same position while moving,\nthey will collide.\n\nIf two robots collide, the robot with lower health is removed from the line,\nand the health of the other robot decreases by one. The surviving robot\ncontinues in the same direction it was going. If both robots have the same\nhealth, they are both removed from the line.\n\nYour task is to determine the health of the robots that survive the\ncollisions, in the same order that the robots were given, i.e. final heath of\nrobot 1 (if survived), final health of robot 2 (if survived), and so on. If\nthere are no survivors, return an empty array.\n\nReturn an array containing the health of the remaining robots (in the order\nthey were given in the input), after no further collisions can occur.\n\nNote: The positions may be unsorted.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\nfrom dataclasses import dataclass\n\n@dataclass\nclass Robot:\n  index: int\n  position: int\n  health: int\n  direction: str\n\n\nclass Solution:\n  def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:\n    robots = sorted([Robot(index, position, health, direction) for index, (position, health, direction) in enumerate(zip(positions, healths, directions))], key=lambda robot: robot.position)\n    stack: List[Robot] = []\n\n    for robot in robots:\n      if robot.direction == 'R':\n        stack.append(robot)\n        continue\n      while stack and stack[-1].direction == 'R' and robot.health > 0:\n        if stack[-1].health == robot.health:\n          stack.pop()\n          robot.health = 0\n        elif stack[-1].health < robot.health:\n          stack.pop()\n          robot.health -= 1\n        else:\n          stack[-1].health -= 1\n          robot.health = 0\n      if robot.health > 0:\n        stack.append(robot)\n\n    stack.sort(key=lambda robot: robot.index)\n    return [robot.health for robot in stack]\n"
+    },
+    "reference": {
+      "task_num": 2751,
+      "func_name": "survivedRobotsHealths",
+      "blocks": "[{'type': 'if', 'start': 26, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 32, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 33, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[27, 28, 31, 32, 34, 35, 37, 38, 40]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC21",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a 0-indexed array of strings `words`. Each string consists of\nlowercase English letters only. No letter occurs more than once in any string\nof `words`.\n\nTwo strings `s1` and `s2` are said to be connected if the set of letters of\n`s2` can be obtained from the set of letters of `s1` by any one of the\nfollowing operations:\n\n* Adding exactly one letter to the set of the letters of `s1`.\n* Deleting exactly one letter from the set of the letters of `s1`.\n* Replacing exactly one letter from the set of the letters of `s1` with any letter, including itself.\n\nThe array `words` can be divided into one or more non-intersecting groups. A\nstring belongs to a group if any one of the following is true:\n\n* It is connected to at least one other string of the group.\n* It is the only string present in the group.\n\nNote that the strings in `words` should be grouped in such a manner that a\nstring belonging to a group cannot be connected to a string present in any\nother group. It can be proved that such an arrangement is always unique.\n\nReturn an array `ans` of size `2` where:\n\n* `ans[0]` is the maximum number of groups `words` can be divided into, and\n* `ans[1]` is the size of the largest group.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass UnionFind:\n  def __init__(self, n: int):\n    self.count = n\n    self.id = list(range(n))\n    self.sz = [1] * n\n\n  def unionBySize(self, u: int, v: int) -> None:\n    i = self._find(u)\n    j = self._find(v)\n    if i == j:\n      return\n    if self.sz[i] < self.sz[j]:\n      self.sz[j] += self.sz[i]\n      self.id[i] = j\n    else:\n      self.sz[i] += self.sz[j]\n      self.id[j] = i\n    self.count -= 1\n\n  def _find(self, u: int) -> int:\n    if self.id[u] != u:\n      self.id[u] = self._find(self.id[u])\n    return self.id[u]\n\n\nclass Solution:\n  def groupStrings(self, words: List[str]) -> List[int]:\n    uf = UnionFind(len(words))\n\n    def getMask(s: str) -> int:\n      mask = 0\n      for c in s:\n        mask |= 1 << ord(c) - ord('a')\n      return mask\n\n    def getAddedMasks(mask: int):\n      for i in range(26):\n        if not (mask >> i & 1):\n          yield mask | 1 << i\n\n    def getDeletedMasks(mask: int):\n      for i in range(26):\n        if mask >> i & 1:\n          yield mask ^ 1 << i\n\n    maskToIndex = {getMask(word): i for i, word in enumerate(words)}\n    deletedMaskToIndex = {}\n\n    for i, word in enumerate(words):\n      mask = getMask(word)\n      for m in getAddedMasks(mask):\n        if m in maskToIndex:\n          uf.unionBySize(i, maskToIndex[m])\n      for m in getDeletedMasks(mask):\n        if m in maskToIndex:\n          uf.unionBySize(i, maskToIndex[m])\n        if m in deletedMaskToIndex:\n          uf.unionBySize(i, deletedMaskToIndex[m])\n        else:\n          deletedMaskToIndex[m] = i\n\n    return [uf.count, max(uf.sz)]\n"
+    },
+    "reference": {
+      "task_num": 2157,
+      "func_name": "groupStrings",
+      "blocks": "[{'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 24, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 25, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 48, 'end': 49, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 53, 'end': 54, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 62, 'end': 63, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 65, 'end': 66, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 67, 'end': 68, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 69, 'end': 70, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[21, 23, 24, 26, 27, 32, 49, 54, 63, 66, 68, 70]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC22",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an integer `n` denoting the number of nodes of a weighted\ndirected graph. The nodes are numbered from `0` to `n - 1`.\n\nYou are also given a 2D integer array `edges` where `edges[i] = [fromi, toi,\nweighti]` denotes that there exists a directed edge from `fromi` to `toi` with\nweight `weighti`.\n\nLastly, you are given three distinct integers `src1`, `src2`, and `dest`\ndenoting three distinct nodes of the graph.\n\nReturn the minimum weight of a subgraph of the graph such that it is possible\nto reach `dest` from both `src1` and `src2` via a set of edges of this\nsubgraph. In case such a subgraph does not exist, return `-1`.\n\nA subgraph is a graph whose vertices and edges are subsets of the original\ngraph. The weight of a subgraph is the sum of weights of its constituent\nedges.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minimumWeight(self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int) -> int:\n    graph = [[] for _ in range(n)]\n    reversedGraph = [[] for _ in range(n)]\n\n    for u, v, w in edges:\n      graph[u].append((v, w))\n      reversedGraph[v].append((u, w))\n\n    fromSrc1 = self._dijkstra(graph, src1)\n    fromSrc2 = self._dijkstra(graph, src2)\n    fromDest = self._dijkstra(reversedGraph, dest)\n    minWeight = min(a + b + c for a, b, c in zip(fromSrc1, fromSrc2, fromDest))\n    if minWeight == math.inf:\n      return -1\n    else:\n      return minWeight\n\n  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> List[int]:\n    dist = [math.inf] * len(graph)\n\n    dist[src] = 0\n    minHeap = [(dist[src], src)]\n\n    while minHeap:\n      d, u = heapq.heappop(minHeap)\n      if d > dist[u]:\n        continue\n      for v, w in graph[u]:\n        if d + w < dist[v]:\n          dist[v] = d + w\n          heapq.heappush(minHeap, (dist[v], v))\n\n    return dist\n"
+    },
+    "reference": {
+      "task_num": 2203,
+      "func_name": "minimumWeight",
+      "blocks": "[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 1, 'eg_cov_prob': 0.7735849056603774}, {'type': 'else', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.22641509433962265}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 2, 'eg_cov_prob': 0.37735849056603776}, {'type': 'if', 'start': 40, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.8490566037735849}]",
+      "target_lines": "[25, 27, 38, 41, 42]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC23",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an array `nums` consisting of non-negative integers. You are\nalso given a `queries` array, where `queries[i] = [xi, mi]`.\n\nThe answer to the `ith` query is the maximum bitwise `XOR` value of `xi` and\nany element of `nums` that does not exceed `mi`. In other words, the answer is\n`max(nums[j] XOR xi)` for all `j` such that `nums[j] <= mi`. If all elements\nin `nums` are larger than `mi`, then the answer is `-1`.\n\nReturn an integer array `answer` where `answer.length == queries.length` and\n`answer[i]` is the answer to the `ith` query.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator, Optional\n\nclass TrieNode:\n  def __init__(self):\n    self.children: List[Optional[TrieNode]] = [None] * 2\n\n\nclass BitTrie:\n  def __init__(self, maxBit: int):\n    self.maxBit = maxBit\n    self.root = TrieNode()\n\n  def insert(self, num: int) -> None:\n    node = self.root\n    for i in range(self.maxBit, -1, -1):\n      bit = num >> i & 1\n      if not node.children[bit]:\n        node.children[bit] = TrieNode()\n      node = node.children[bit]\n\n  def getMaxXor(self, num: int) -> int:\n    maxXor = 0\n    node = self.root\n    for i in range(self.maxBit, -1, -1):\n      bit = num >> i & 1\n      toggleBit = bit ^ 1\n      if node.children[toggleBit]:\n        maxXor = maxXor | 1 << i\n        node = node.children[toggleBit]\n      elif node.children[bit]:\n        node = node.children[bit]\n      else:\n        return 0\n    return maxXor\n\n\nclass IndexedQuery:\n  def __init__(self, queryIndex: int, x: int, m: int):\n    self.queryIndex = queryIndex\n    self.x = x\n    self.m = m\n\n  def __iter__(self):\n    yield self.queryIndex\n    yield self.x\n    yield self.m\n\n\nclass Solution:\n  def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n    ans = [-1] * len(queries)\n    maxBit = int(math.log2(max(max(nums), max(x for x, _ in queries))))\n    bitTrie = BitTrie(maxBit)\n\n    nums.sort()\n\n    i = 0\n    for queryIndex, x, m in sorted([IndexedQuery(i, x, m) for i, (x, m) in enumerate(queries)], key=lambda iq: iq.m):\n      while i < len(nums) and nums[i] <= m:\n        bitTrie.insert(nums[i])\n        i += 1\n      if i > 0 and nums[i - 1] <= m:\n        ans[queryIndex] = bitTrie.getMaxXor(x)\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1707,
+      "func_name": "maximizeXor",
+      "blocks": "[{'type': 'if', 'start': 25, 'end': 26, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 70, 'end': 71, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 40, 'end': 41, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[26, 36, 37, 39, 41, 71]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC25",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Strings `s1` and `s2` are `k`-similar (for some non-negative integer `k`) if\nwe can swap the positions of two letters in `s1` exactly `k` times so that the\nresulting string equals `s2`.\n\nGiven two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and\n`s2` are `k`-similar.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def kSimilarity(self, s1: str, s2: str) -> int:\n    ans = 0\n    q = collections.deque([s1])\n    seen = {s1}\n\n    while q:\n      for _ in range(len(q)):\n        curr = q.popleft()\n        if curr == s2:\n          return ans\n        for child in self._getChildren(curr, s2):\n          if child in seen:\n            continue\n          q.append(child)\n          seen.add(child)\n      ans += 1\n\n    return -1\n\n  def _getChildren(self, curr: str, target: str) -> List[str]:\n    children = []\n    s = list(curr)\n    i = 0\n    while curr[i] == target[i]:\n      i += 1\n\n    for j in range(i + 1, len(s)):\n      if s[j] == target[i]:\n        s[i], s[j] = s[j], s[i]\n        children.append(''.join(s))\n        s[i], s[j] = s[j], s[i]\n\n    return children\n"
+    },
+    "reference": {
+      "task_num": 854,
+      "func_name": "kSimilarity",
+      "blocks": "[{'type': 'if', 'start': 39, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.9}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 23, 'end': 24, 'difficulty': 1, 'eg_cov_prob': 0.73}]",
+      "target_lines": "[21, 24, 40, 41, 42]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC27",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an array `rectangles` where `rectangles[i] = [xi, yi, ai, bi]`\nrepresents an axis-aligned rectangle. The bottom-left point of the rectangle\nis `(xi, yi)` and the top-right point of it is `(ai, bi)`.\n\nReturn `true` if all the rectangles together form an exact cover of a\nrectangular region.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator, Set\n\nclass Solution:\n  def isRectangleCover(self, rectangles: List[List[int]]) -> bool:\n    area = 0\n    x1 = math.inf\n    y1 = math.inf\n    x2 = -math.inf\n    y2 = -math.inf\n    corners: Set[Tuple[int, int]] = set()\n\n    for x, y, a, b in rectangles:\n      area += (a - x) * (b - y)\n      x1 = min(x1, x)\n      y1 = min(y1, y)\n      x2 = max(x2, a)\n      y2 = max(y2, b)\n\n      for point in [(x, y), (x, b), (a, y), (a, b)]:\n        if point in corners:\n          corners.remove(point)\n        else:\n          corners.add(point)\n\n    if len(corners) != 4:\n      return False\n    if (x1, y1) not in corners or (x1, y2) not in corners or (x2, y1) not in corners or (x2, y2) not in corners:\n      return False\n    return area == (x2 - x1) * (y2 - y1)\n"
+    },
+    "reference": {
+      "task_num": 391,
+      "func_name": "isRectangleCover",
+      "blocks": "[{'type': 'if', 'start': 33, 'end': 34, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 36, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.47}, {'type': 'else', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[29, 31, 34, 36]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC28",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively,\nreturn the median of the two sorted arrays.\n\nThe overall run time complexity should be `O(log (m+n))`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n    n1 = len(nums1)\n    n2 = len(nums2)\n    if n1 > n2:\n      return self.findMedianSortedArrays(nums2, nums1)\n\n    l = 0\n    r = n1\n\n    while l <= r:\n      partition1 = (l + r) // 2\n      partition2 = (n1 + n2 + 1) // 2 - partition1\n      maxLeft1 = -2**31 if partition1 == 0 else nums1[partition1 - 1]\n      maxLeft2 = -2**31 if partition2 == 0 else nums2[partition2 - 1]\n      minRight1 = 2**31 - 1 if partition1 == n1 else nums1[partition1]\n      minRight2 = 2**31 - 1 if partition2 == n2 else nums2[partition2]\n      if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:\n        if (n1 + n2) % 2 == 0:\n          return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) * 0.5\n        else:\n          return max(maxLeft1, maxLeft2)\n      elif maxLeft1 > minRight2:\n        r = partition1 - 1\n      else:\n        l = partition1 + 1\n"
+    },
+    "reference": {
+      "task_num": 4,
+      "func_name": "findMedianSortedArrays",
+      "blocks": "[{'type': 'if', 'start': 15, 'end': 16, 'difficulty': 1, 'eg_cov_prob': 0.53}, {'type': 'if', 'start': 28, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 29, 'end': 30, 'difficulty': 1, 'eg_cov_prob': 0.51}, {'type': 'else', 'start': 31, 'end': 32, 'difficulty': 1, 'eg_cov_prob': 0.49}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 1, 'eg_cov_prob': 0.92}, {'type': 'else', 'start': 35, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.91}]",
+      "target_lines": "[16, 29, 30, 32, 34, 36]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC30",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and\nflip it and all the four neighbors of it if they exist (Flip is changing `1`\nto `0` and `0` to `1`). A pair of cells are called neighbors if they share one\nedge.\n\nReturn the minimum number of steps required to convert `mat` to a zero matrix\nor `-1` if you cannot.\n\nA binary matrix is a matrix with all cells equal to `0` or `1` only.\n\nA zero matrix is a matrix with all cells equal to `0`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minFlips(self, mat: List[List[int]]) -> int:\n    m = len(mat)\n    n = len(mat[0])\n    hash = self._getHash(mat, m, n)\n    if hash == 0:\n      return 0\n\n    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))\n    step = 0\n    q = collections.deque([hash])\n    seen = {hash}\n\n    while q:\n      step += 1\n      for _ in range(len(q)):\n        curr = q.popleft()\n        for i in range(m):\n          for j in range(n):\n            next = curr ^ 1 << (i * n + j)\n            for dx, dy in dirs:\n              x = i + dx\n              y = j + dy\n              if x < 0 or x == m or y < 0 or y == n:\n                continue\n              next ^= 1 << (x * n + y)\n            if next == 0:\n              return step\n            if next in seen:\n              continue\n            q.append(next)\n            seen.add(next)\n\n    return -1\n\n  def _getHash(self, mat: List[List[int]], m: int, n: int) -> int:\n    hash = 0\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j]:\n          hash |= 1 << (i * n + j)\n    return hash\n"
+    },
+    "reference": {
+      "task_num": 1284,
+      "func_name": "minFlips",
+      "blocks": "[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 2, 'eg_cov_prob': 0.09}, {'type': 'if', 'start': 50, 'end': 51, 'difficulty': 1, 'eg_cov_prob': 0.91}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 1, 'eg_cov_prob': 0.64}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.61}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 1, 'eg_cov_prob': 0.91}]",
+      "target_lines": "[17, 35, 38, 40, 51]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  }
+]

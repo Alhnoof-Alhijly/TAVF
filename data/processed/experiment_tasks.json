@@ -1,0 +1,1302 @@
+[
+  {
+    "task_id": "USC03",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project."
+    },
+    "reference": {
+      "original_source_file": "g03-loudoun.txt",
+      "original_line_number": 41
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 33
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC05",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a user, I want to be able to browse through the list of facolities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint."
+    },
+    "reference": {
+      "original_source_file": "g04-recycling.txt",
+      "original_line_number": 48
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 39
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC07",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an API User, I want to be able to normalise measures by GDP, so I work with datasets in reference to their contextual constraints."
+    },
+    "reference": {
+      "original_source_file": "g05-openspending.txt",
+      "original_line_number": 71
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 25
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC10",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a ResearcherGovernment Publisher, I want to add reference data on inflation to my spending dataset, so that the spending lines in my dataset is more understandable."
+    },
+    "reference": {
+      "original_source_file": "g08-frictionless.txt",
+      "original_line_number": 29
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC11",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a site visitor, I want to view a section of the website that teaches me the basics of what Scrum is, so that I can learn that quickly."
+    },
+    "reference": {
+      "original_source_file": "g10-scrumalliance.txt",
+      "original_line_number": 79
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 29
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC12",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Trainer, I want to include additional details in my profile page about me, so that others can learn about me and decide if I am the right trainer for them."
+    },
+    "reference": {
+      "original_source_file": "g10-scrumalliance.txt",
+      "original_line_number": 5
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 32
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC14",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a team member, I want to understand how work moves between UX/content > visual design > front end dev for a sprint cycle."
+    },
+    "reference": {
+      "original_source_file": "g11-nsf.txt",
+      "original_line_number": 73
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 24
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC19",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Consumer, I want to see a publisher's profile, so that that I can discover their packages and get a sense of how active and good they are."
+    },
+    "reference": {
+      "original_source_file": "g14-datahub.txt",
+      "original_line_number": 52
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 29
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC20",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Consumer, I want to download the data package in one file, so that that I don't have to download descriptor and each resource by hand."
+    },
+    "reference": {
+      "original_source_file": "g14-datahub.txt",
+      "original_line_number": 31
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC21",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a developer, I want to determine if we can use the in-built Fedora 4 event audit services."
+    },
+    "reference": {
+      "original_source_file": "g16-mis.txt",
+      "original_line_number": 7
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 18
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC22",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a collection curator, I want to view the permission on my objects all together."
+    },
+    "reference": {
+      "original_source_file": "g16-mis.txt",
+      "original_line_number": 66
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 15
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC25",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a supervisor, I want to view what my researchers were doing on a given date or period of time."
+    },
+    "reference": {
+      "original_source_file": "g18-neurohub.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 20
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC26",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a lab administrator, I want to theme the Web interface graphics/colours."
+    },
+    "reference": {
+      "original_source_file": "g18-neurohub.txt",
+      "original_line_number": 7
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 12
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC27",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an OlderPerson, I want to buy ALFRED in a senior shop with special client support."
+    },
+    "reference": {
+      "original_source_file": "g19-alfred.txt",
+      "original_line_number": 16
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 16
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC29",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a administrator, I want to refund sponsorship money that was processed via stripe, so that people get their monies back."
+    },
+    "reference": {
+      "original_source_file": "g21-badcamp.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 21
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC32",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As an archivemanager, I want to know in advance the conservation period of data, so that I can better organize the service by adapting the preservation actions."
+    },
+    "reference": {
+      "original_source_file": "g22-rdadmp.txt",
+      "original_line_number": 20
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 27
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC33",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a user, I want backend changes to support loading enum value lists from the database."
+    },
+    "reference": {
+      "original_source_file": "g23-archivesspace.txt",
+      "original_line_number": 17
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 16
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC38",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a DAMS manager, I want to indicate the source-capture information for a file where it is useful to do so."
+    },
+    "reference": {
+      "original_source_file": "g25-duraspace.txt",
+      "original_line_number": 54
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 21
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC41",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a library staff member, I want to deliver streaming media from within the repository, so that I can deliver such content in the manner expected and ensure continued access to said content."
+    },
+    "reference": {
+      "original_source_file": "g27-culrepo.txt",
+      "original_line_number": 59
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 33
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "USC42",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a DB/IR administrator, I want to have the system recognize/categorize document type (e.g. historical report still published, expired historical report, single topic dataset, broad topic dataset, report with subtopic, computer file), so that report/dataset is processed and displayed properly."
+    },
+    "reference": {
+      "original_source_file": "g27-culrepo.txt",
+      "original_line_number": 65
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 40
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC01",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "### steps to reproduce\n\n1. browse to a site in fenix nightly\n2. select share from the options menu\n3. select a device from send to device\n\n### expected behavior\nthe site should open on the device you selected\n\n### actual behavior\nan error is displayed `unable to send`\n### device information\n\n* firefox version: 127.0a1\n* android device model: samsung s24+\n* android os version: android 14\n\n### any additional information?\nthis is not reproducible in 125 release or 126 beta"
+    },
+    "reference": {
+      "bug_id": "1895711",
+      "product": "Application Services",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n1. Browse to a site in Fenix Nightly.\n2. Select \"Share\" from the Options menu.\n3. Select a device from \"Send to Device\".",
+      "expected_result": "The \"Expected Results\" section is:\n\n### Expected Results\nthe site should open on the device you selected",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\n### Actual Behavior\nan error is displayed `unable to send`"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 82
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC03",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (macintosh; intel mac os x 10_11_6) applewebkit/601.7.7 (khtml, like gecko) version/9.1.2 safari/601.7.7\n\nsteps to reproduce:\n\ncreate a answer file and include the following line\n$answer{'use_email_as_login'} = '1';\n\nrun ./checksetup.pl ./answers\n\n\nactual results:\n\nyou get the following output:\ninitializing \"product/component changes\" email_setting ...\ninitializing \"dependency tree changes\" email_setting ...\nderiving regex group memberships...\nlogin names may not contain the \"@\" sign unless you are setting your\nlogin name to be identical to your email address.\n\nand in data/params.json you find the line\n   \"use_email_as_login\" : 0,\n\n\n\nexpected results:\n\ncreation without an error and data/params.json with the following line\n   \"use_email_as_login\" : 1,"
+    },
+    "reference": {
+      "bug_id": "1296831",
+      "product": "Bugzilla",
+      "steps_to_reproduce": "Here is the extracted \"Steps to Reproduce\" section:\n\n**Steps to Reproduce**\n\n1. Create an answer file and include the following line:\n```\n$answer{'use_email_as_login'} = '1';\n```\n2. Run `./checksetup.pl ./answers`\n\nLet me know if you need anything else!",
+      "expected_result": "The section titled \"Expected Results\" is:\n\nCreation without an error and data/params.json with the following line:\n\"use_email_as_login\": 1,",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nyou get the following output:\ninitializing \"product/component changes\" email_setting ...\ninitializing \"dependency tree changes\" email_setting ...\nderiving regex group memberships...\nlogin names may not contain the \"@\" sign unless you are setting your\nlogin name to be identical to your email address.\nand in data/params.json you find the line\n    \"use_email_as_login\" : 0,"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 102
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC06",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\nafter moving to the new recent 100.x series (i think it was then), thunderbird switched to some newfangled rich text editor for calendar events. every time i save an event and come back, newlines are added all over the place leaving everything a confusing mess.\n\ni type some nice paragraph such as the following (not the exact text):\n\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n\n\nactual results:\n\nthunderbird decided to randomly add line breaks, such as:\n\nblah blah foo\nbar (and more foo bar); this \n\nis foo; this is bar\nfoo and\n\n\nbar\nbar and foo\n\ncurrently i have no way to predict where thunderbird is going to throw in line breaks.\n\n\nexpected results:\n\ni should have got back:\n\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n(we're not even talking about rich formatting!!)\n\nwhy does everyone try to re-implement a word process and break things royally? if you'd just provide plain text and not screw up the lines, that would be 10 times better than this.\n\nor you could allow us to enter raw markdown and then show it rendered in the view (using a common library), like stack overflow does.\n\nwhy oh why are you adding line breaks all over the place every time i edit a calendar event?"
+    },
+    "reference": {
+      "bug_id": "1792078",
+      "product": "Calendar",
+      "steps_to_reproduce": "Here is the section titled \"Steps to Reproduce\":\n\n(after moving to the new recent 100.x series, Thunderbird switched to some newfangled rich text editor for calendar events.)\n\n... (no specific steps mentioned)\n\nNote that there are no specific steps provided in this section, only a general description of what happened.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\nExpected results:\ni should have got back:\nblah blah foo bar (and more foo bar); this is foo; this is bar\nfoo and bar\nbar and foo\n(we're not even talking about rich formatting!!)",
+      "actual_result": "Here is the extracted \"Actual Results\" section:\n\nthunderbird decided to randomly add line breaks, such as:\nblah blah foo\nbar (and more foo bar); this \nis foo; this is bar\nfoo and \n\nbar\nbar and foo"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 239
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC07",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; linux x86_64; rv:81.0) gecko/20100101 firefox/81.0\n\nsteps to reproduce:\n\n0. open the chat tab\n1. connect to your matrix account (e.g. @username:matrix.org)\n2. click on \"join chat\" button\n3. enter a room name from a different homeserver (e.g. #maildev:mozilla.org)\n\n\nactual results:\n\nthe chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)\n\n\nexpected results:\n\nif a server name is specified, join chat shouldn't append the account server name."
+    },
+    "reference": {
+      "bug_id": "1657797",
+      "product": "Chat Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n0. Open the chat tab\n1. Connect to your Matrix account (e.g. @username:matrix.org)\n2. Click on \"Join Chat\" button\n3. Enter a room name from a different homeserver (e.g. #maildev:mozilla.org)",
+      "expected_result": "Here are the \"Expected Results\" extracted from the text:\n\n**Expected Results**\nIf a server name is specified, join chat shouldn't append the account server name.",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nActual Results:\nthe chat join a room called #room_name:server_name:account_server_name.tld (e.g. #maildev:mozilla.org:matrix.org)"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 69
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC08",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\n1) load a phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)\n2) click on \"edit related revisions\" in the toolbox on the right.\n3) click on \"edit child revisions\".\n4) select \"all objects\" in the dropdown that starts out with \"created by me\" (just to make sure the list is not empty).\n5) click the label of the first thing in the list.  this is the part that says \"dnnnnn: bug mmmmm - something\"\n\nexpected results: the revision you clicked is added to the \"current child revisions\" bit at the bottom of the dialog.\n\nactual results: the dialog just closes.  only clicking the \"select\" button works to add things to \"current child revisions\".\n\nthis used to work; per https://mozilla.logbot.info/phabricator/20190711#c16456076-c16456430 it no longer working is due to a change in phabricator, not in firefox."
+    },
+    "reference": {
+      "bug_id": "1568643",
+      "product": "Conduit",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1) Load a Phabricator revision (e.g. https://phabricator.services.mozilla.com/d39234)\n2) Click on \"Edit related revisions\" in the toolbox on the right.\n3) Click on \"Edit child revisions\".\n4) Select \"All objects\" in the dropdown that starts out with \"Created by me\" (just to make sure the list is not empty).\n5) Click the label of the first thing in the list. (This is the part that says \"dnnnnn: Bug mmmmm - something\")",
+      "expected_result": "Here are the \"Expected Results\" extracted from the text:\n\n**Expected Results**: the revision you clicked is added to the \"current child revisions\" bit at the bottom of the dialog.",
+      "actual_result": "Here is the extracted \"Actual Results\" section:\n\nActual results: the dialog just closes. Only clicking the \"select\" button works to add things to \"current child revisions\"."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 132
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC10",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9123077\ntrr.debug.log\n\nuser agent: mozilla/5.0 (macintosh; intel mac os x 10.14; rv:72.0) gecko/20100101 firefox/72.0\n\nsteps to reproduce:\n\nenable trr with default configuration and go to https://1.1.1.1/help\n\n\nactual results:\n\nthe site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop.\n\n\nexpected results:\n\nif it's a problem with javascript, i'd expect it to go away after closing a tab, but nothing shows up in the performance console."
+    },
+    "reference": {
+      "bug_id": "1611651",
+      "product": "Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n**Steps to Reproduce:**\n\n1. Enable TRR (Trusted Recursive Resolver) with default configuration.\n2. Go to `https://1.1.1.1/help`.",
+      "expected_result": "The \"Expected Results\" section is:\n\nIf it's a problem with JavaScript, I'd expect it to go away after closing a tab, but nothing shows up in the Performance Console.",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\nactual results:\nthe site loads but ff starts consuming 100% cpu and remains to do so even after closing the tab. it seems to be asking for ipv6{a,b}.cloudflare-dns.com in a loop."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 85
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC13",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:81.0) gecko/20100101 firefox/81.0\n\nsteps to reproduce:\n\nupdate from android gradle plugin 3.5 to 4.0 and try to compile an app using glean to generate code.\n\nsee https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.\n\n\nactual results:\n\nglean code is not generated\n\n\nexpected results:\n\nglean code should be generated"
+    },
+    "reference": {
+      "bug_id": "1657758",
+      "product": "Data Platform and Tools",
+      "steps_to_reproduce": "Here is the extracted section:\n\n**Steps to Reproduce**\n\n1. Update from Android Gradle Plugin 3.5 to 4.0.\n2. Try to compile an app using Glean to generate code.\n\n**See:** https://github.com/mozilla-mobile/fenix/pull/13271 for an example with logs, where all generated classes cannot be found.",
+      "expected_result": "The \"Expected Results\" section is:\n\n```\nExpected Results:\nGlean code should be generated\n```",
+      "actual_result": "Here is the extracted section:\n\nActual Results:\nGlean code is not generated"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 61
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC14",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "**steps to reproduce**\n1. go to `about:config` and turn off `devtools.webconsole.input.autocomplete`\n1. open the console\n1. type `deb`\n1. hit ctrl+space to display the completion text  (should be `ugger`)\n1. type `u`\n1. hit `tab`\n\n\n**expected results**\n\nthe input get completed to `debugger`\n\n**actual results**\n\nthe input get completed to `debuugger`\n\n---\n\nthis is because the completion text wasn't updated"
+    },
+    "reference": {
+      "bug_id": "1579366",
+      "product": "DevTools",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Go to `about:config` and turn off `devtools.webconsole.input.autocomplete`.\n2. Open the console.\n3. Type `deb`.\n4. Hit Ctrl+Space to display the completion text (should be `ugger`).\n5. Type `u`.\n6. Hit Tab.\n\nLet me know if you need anything else!",
+      "expected_result": "The \"Expected Results\" section is:\n\n* the input get completed to `debugger`",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\nthe input get completed to `debuugger`"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 60
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC16",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:99.0) gecko/20100101 firefox/99.0\n\nsteps to reproduce:\n\nlaunch firefox 100.0.1 x64 on windows 11 build 22000.613 (april release) or 22000.675 (may release)\n\n\nactual results:\n\nbrowser window comes up, but browser is unresponsive.  trying to visit any site fails, browser hangs\n\n\nexpected results:\n\nable to view site"
+    },
+    "reference": {
+      "bug_id": "1770098",
+      "product": "External Software Affecting Firefox",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n**Steps to Reproduce:**\n\n1. Launch Firefox 100.0.1 x64 on Windows 11 build 22000.613 (April release) or 22000.675 (May release).",
+      "expected_result": "The extracted \"Expected Results\" section is:\n\n**Expected Results**\nAble to view a site",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\n\"Browser window comes up, but browser is unresponsive. Trying to visit any site fails, browser hangs.\""
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 53
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC18",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "**[affected versions]:**\n- firefox nightly 115.0a1 (build id: 20230508214159)\n- firefox nightly 114.0b1 (build id: 20230508175934)\n\n**[affected platforms]:**\n- windows 10 x64\n- linux ubuntu 20.04 x64\n- macos 12.4\n\n**[prerequisites]:**\n- have a vpn client connected to a us server ( make sure the `browser.search.region` pref is set accordingly).\n- have the firefox nightly 115.0a1 build installed.\n- set the following prefs:\n`browser.urlbar.weather.featuregate` = `true`\n(windows only) `browser.urlbar.weather.ignorevpn` = `true`\n\n**[steps to reproduce]:**\n1. open the browser from the prerequisites.\n2. type the “weather” string in the address bar.\n3. click the feedback button.\n4. click any of the first 2 options (“report inaccurate location” or “show less frequently”).\n5. click the feedback button again.\n6. click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).\n7. observe the behavior.\n\n**[expected result]:**\n- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.\n\n**[actual result]:**\n- nothing happens, the weather result remains displayed.\n\n**[notes]:**\n- we noticed that even though the dismiss buttons don’t work, the telemetry is incremented with each click for `firefox-suggest-weather-command-not-relevant` and `firefox-suggest-weather-command-not-interested` (depending on which one is clicked).\n- here is the [screen recording](https://drive.google.com/file/d/13loddmqfvyxnldjqibkkeotfnxlm8nn6/view?usp=sharing) of the issue."
+    },
+    "reference": {
+      "bug_id": "1832105",
+      "product": "Firefox",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n**Steps to Reproduce:**\n\n1. Open the browser from the prerequisites.\n2. Type the “weather” string in the address bar.\n3. Click the feedback button.\n4. Click any of the first 2 options (“report inaccurate location” or “show less frequently”).\n5. Click the feedback button again.\n6. Click any of the dismiss options from the sub-menu (“not relevant” or “not interested”).\n7. Observe the behavior.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n**[expected result]:**\n- the weather suggestion is removed from the address bar panel and a thank you message with the “got it” button is displayed.",
+      "actual_result": "Here is the \"Actual Results\" section:\n\n**[actual result]:**\n- nothing happens, the weather result remains displayed."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 208
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC21",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "build: 51abcc7ca\ndevice: ipad pro\nios: 9.2.1\n\nsteps to reproduce:\n1. launch fennec\n2. open 12 new tabs by tapping the '+' symbol\n3. select the last tab\n4. double tap on the home button and close fennec\n5. open fennec\n\nactual results:\n- the last tab which is selected is not in view. the scroll is positioned at the first tab.\n\nexpected results:\n- the selected tab should be in view."
+    },
+    "reference": {
+      "bug_id": "1333754",
+      "product": "Firefox for iOS",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Launch Fennec.\n2. Open 12 new tabs by tapping the '+' symbol.\n3. Select the last tab.\n4. Double tap on the home button and close Fennec.\n5. Open Fennec again.",
+      "expected_result": "Here is the extracted \"Expected Results\" section:\n\n* The selected tab should be in view.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\n* The last tab which is selected is not in view. The scroll is positioned at the first tab."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 72
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC24",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9309175\nandroid13.mp4\n\n### steps to reproduce\n1. install focus nightly 110.0a1 on an android 13 device\n2. open youtube.com, or vimeo.com.\n3. start a video, then access the fullscreen option.\n\n### expected behavior\nthe video is displayed in fullscreen without issues.\n\n### actual behavior\nthe video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen.\nnot reproducible on the latest fenix nightly 110.0a1.\n\n### device information\n* focus version: all (110.0a1 nightly from 12/20, beta 109.0b2, rc 108.1.0 - builds from https://firefox-ci-tc.services.mozilla.com/tasks/index/mobile.v3.firefox-android.apks \n* android device: google pixel 6 (android 13)\n* not reproducible on: oppo reno 6 (android 12)\n* works fine on the rc 108.1.0 build from playstore"
+    },
+    "reference": {
+      "bug_id": "1806652",
+      "product": "Focus",
+      "steps_to_reproduce": "Here is the extracted section titled \"Steps to Reproduce\":\n\n### Steps to Reproduce\n1. install focus nightly 110.0a1 on an Android 13 device\n2. open youtube.com, or vimeo.com.\n3. start a video, then access the fullscreen option.",
+      "expected_result": "Here is the extracted section titled \"Expected Results\":\n\n### expected behavior\nthe video is displayed in fullscreen without issues.",
+      "actual_result": "The \"Actual Results\" section is:\n\n### actual behavior\nthe video is displayed in fullscreen, but the screen is white. the video continues to play, audio can be still heard, but no video. tapping on the device's home button, triggers the pip, that is still with blank screen."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 139
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC26",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9106176\ndevice-2019-11-04-152302.mp4\n\nuser agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:70.0) gecko/20100101 firefox/70.0\n\nsteps to reproduce:\n\nenter some text in an input field on a website (search field at https://startpage.com for example). try to go back a few characters by using the arrow keys at the bottom of the screen (i believe this is a cyanogenmode/lineageos specific feature. that feature works as expected in every other app, including the on-board (webview-based) browser app.)\n\nphone: nexus 5x\nos: lineageos 15.1 (aka android 8.1)\nkeyboard: aosp keyboard\n\n\nactual results:\n\nthe cursor keeps jumping back to the end of the current word. holding down the left arrow key i can finally get it to skip to a prior word.\nusing the right arrow key it skips to the end of the current word again, not just a single character.\n\nthis behaviour doesn't occur when i disable all next word suggestions/autocorrection in the aosp keyboard. this is not a usable workaround though.\n\n\nexpected results:\n\nthe arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.\n\nthis works in every other android app except firefox."
+    },
+    "reference": {
+      "bug_id": "1593683",
+      "product": "GeckoView",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n* Enter some text in an input field on a website (e.g., search field at https://startpage.com).\n* Try to go back a few characters by using the arrow keys at the bottom of the screen.",
+      "expected_result": "The \"Expected Results\" section is:\n\n\"The arrow keys control the cursor position like the left and right arrow keys do on a physical keyboard.\nThis works in every other Android app except Firefox.\"",
+      "actual_result": "Here are the \"Actual Results\" extracted from the text:\n\nThe cursor keeps jumping back to the end of the current word. Holding down the left arrow key, I can finally get it to skip to a prior word.\nUsing the right arrow key, it skips to the end of the current word again, not just a single character."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 189
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC28",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; ubuntu; linux x86_64; rv:84.0) gecko/20100101 firefox/84.0\n\nsteps to reproduce:\n\npgp encrypted email encrypted for my key is in my inbox, and will not display on new versions of thunderbird. previous versions with enigmail are unaffected. i've tested this on thunderbird 78 on windows, thunderbird 78 on linux, and a debug build on linux from trunk.\n\n\nactual results:\n\nthe message fails to display. openpgp icon shows \"message cannot be decrypted: there are unknown problems with this decrypted message.\" the debug console shows \"rnp_op_verify_execute returned unexpected: 285212674\".\n\nthe debug output is as follows:\n[mem_dst_write() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-common.cpp:991] attempt to alloc more then allowed\n[process_pgp_source() /home/electricworry/projects/thunderbird/source/comm/third_party/rnp/src/librepgp/stream-parse.cpp:2483] failed to output data\nconsole.debug: \"rnp_op_verify_execute returned unexpected: 285212674\"\n\n\nexpected results:\n\nthe message should successfully decrypt and its content should be displayed."
+    },
+    "reference": {
+      "bug_id": "1686984",
+      "product": "MailNews Core",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\":\n\nPGP encrypted email encrypted for my key is in my inbox, and will not display on new versions of Thunderbird. Previous versions with Enigmail are unaffected. I've tested this on Thunderbird 78 on Windows, Thunderbird 78 on Linux, and a debug build on Linux from trunk.",
+      "expected_result": "The expected results are:\n\n* The message should successfully decrypt.\n* Its content should be displayed.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nThe message fails to display. OpenPGP icon shows \"Message cannot be decrypted: there are unknown problems with this decrypted message.\" The debug console shows:\n\n* \"rnp_op_verify_execute returned unexpected: 285212674\".\n* `[mem_dst_write() ...] attempt to alloc more then allowed`\n* `[process_pgp_source() ...] failed to output data`\n\nLet me know if you need anything else!"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 127
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC30",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9238939\nfirefox suggest label.png\n\n**[affected versions]:**\n- firefox nightly 93.0a1 (build id: 20210901091701) \n\n**[affected platforms]:**\n- windows 10 x64\n- macos 10.15.7\n- linux mint 20\n\n**[prerequisites]:**\n- have [nightly ro](https://ftp.mozilla.org/pub/firefox/nightly/2021/08/2021-08-21-21-21-31-mozilla-central-l10n/) build downloaded or installed.\n\n**[steps to reproduce]:**\n1. open the nightly ro l10n build.\n2. open a new tab page, type any keyword that will trigger a history result.\n3. observe the \"firefox suggest\" string.\n\n**[expected results]:**\n- the \"firefox suggest\" string is correctly displayed.\n    \n**[actual results]:**\n- the \"-firefox-suggest-brand-name\" string is displayed.\n\n**[notes]:**\n- so far i have managed to reproduce the issue only on ro build. not sure if the issue is also reproducible on other l10n builds.\n- on other l10n builds, the \"firefox suggest\" string is correctly displayed if the string is not yet localized.\n- attached is a screenshot of the issue."
+    },
+    "reference": {
+      "bug_id": "1728595",
+      "product": "Mozilla Localizations",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n**[steps to reproduce]:**\n\n1. Open the nightly RO L10n build.\n2. Open a new tab page, type any keyword that will trigger a history result.\n3. Observe the \"firefox suggest\" string.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n**[expected results]:**\n- the \"firefox suggest\" string is correctly displayed.",
+      "actual_result": "Here are the **Actual Results** extracted from the text:\n\n**[actual results]:**\n- the \"-firefox-suggest-brand-name\" string is displayed."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 140
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC36",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n\nsee detailed steps and logging in this cypress.io github bug: https://github.com/cypress-io/cypress/issues/23897\n\nclose cypress\nupdate to firefox 105 (latest at the time i write this)\nopen cypress\nchoose e2e\nselect firefox v105\nclick start e2e testing in firefox\nobserve ff physically opens but the page is empty\n\n\nactual results:\n\nff physically opens but the page is empty\n\n\nexpected results:\n\nff physically opens, cypress is connected and cypress ui is presented"
+    },
+    "reference": {
+      "bug_id": "1792088",
+      "product": "Remote Protocol",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Close Cypress.\n2. Update to Firefox 105 (latest at the time I write this).\n3. Open Cypress.\n4. Choose E2E.\n5. Select Firefox v105.\n6. Click \"Start E2E testing in Firefox\".\n7. Observe FF physically opens but the page is empty.",
+      "expected_result": "The \"Expected Results\" section is:\n\n* FF physically opens, Cypress is connected and Cypress UI is presented.",
+      "actual_result": "Here is the extracted section:\n\nActual Results:\nFF physically opens but the page is empty"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 72
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC40",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (x11; linux x86_64; rv:86.0) gecko/20100101 firefox/86.0\n\nsteps to reproduce:\n\ni started a local test instance (make build, make setup, make run). connected to it with a superuser. clicked on the \"go to user management\" link which links to \"/users\".\n\n\nactual results:\n\ngot a 404. logs only show this:\n\n> info 2020-12-21 13:08:40,101 django.server \"get /api/_auth/ http/1.1\" 200 483\n\n\nexpected results:\n\ni expected to end up on some user management page."
+    },
+    "reference": {
+      "bug_id": "1683665",
+      "product": "Tecken",
+      "steps_to_reproduce": "Here is the extracted section:\n\n**Steps to Reproduce**\n\nI started a local test instance (make build, make setup, make run). Connected to it with a superuser. Clicked on the \"Go to User Management\" link which links to \"/users\".",
+      "expected_result": "The \"Expected Results\" section is:\n\nI expected to end up on some user management page.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nGot a 404. Logs only show this:\n\n> info 2020-12-21 13:08:40,101 django.server \"get /api/_auth/ http/1.1\" 200 483"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 73
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC44",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "created attachment 9172109\nzipped example screenshots\n\nuser agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/84.0.4147.135 safari/537.36 edg/84.0.522.63\n\nsteps to reproduce:\n\n1. enable high-contrast mode in windows 10, by doing the following:\n1.1. open windows settings (windows+i).\n1.2. go to ease of access -> high-contrast.\n1.3. turn on the high-contrast mode, using the respective toggle.\n1.4. from the \"high-contrast theme\" combo-box, select \"high-contrast black\".\n2. install and launch thunderbird 78.2.\n\n\nactual results:\n\nobserve how some dialogs and windows of thunderbird do not obey the colors defined by the currently active high-contrast black theme. mostly, where the background should be black, it is gray instead. i'll attach some example screenshots in a zip archive.\n\nexamples of such windows include, but may not be limited to, the following:\n- the main window of thunderbird.\n- the dialogs for subscribing to imap folders and rss feeds.\n- the dialogs for the properties of rss and mail folders.\n- the dialog for customizing the toolbars in thunderbird.\n- the dialog for creating a new folder.\n- the dialog/window for adding an account to thunderbird.\n\n\nexpected results:\n\nin such dialogs and windows as in the examples above, the background color should be black, instead of being gray as it is now."
+    },
+    "reference": {
+      "bug_id": "1661229",
+      "product": "Thunderbird",
+      "steps_to_reproduce": "Here are the \"Steps to Reproduce\" extracted from the text:\n\n1. Enable high-contrast mode in Windows 10 by doing the following:\n   1.1. Open Windows settings (Windows+i).\n   1.2. Go to Ease of Access -> High Contrast.\n   1.3. Turn on the high-contrast mode using the respective toggle.\n   1.4. From the \"High-Contrast Theme\" combo-box, select \"High-Contrast Black\".\n2. Install and launch Thunderbird 78.2.",
+      "expected_result": "Here are the expected results:\n\n* In such dialogs and windows (e.g. main window, subscription dialogs, folder properties dialogs, toolbar customization dialog, new folder creation dialog, account addition dialog), the background color should be black, instead of being gray.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nObserve how some dialogs and windows of Thunderbird do not obey the colors defined by the currently active high-contrast black theme. Mostly, where the background should be black, it is gray instead. I'll attach some example screenshots in a zip archive.\n\nExamples of such windows include, but may not be limited to, the following:\n\n* The main window of Thunderbird.\n* The dialogs for subscribing to IMAP folders and RSS feeds.\n* The dialogs for the properties of RSS and mail folders.\n* The dialog for customizing the toolbars in Thunderbird.\n* The dialog for creating a new folder.\n* The dialog/window for adding an account to Thunderbird."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 209
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC46",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "user agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:123.0) gecko/20100101 firefox/123.0\n\nsteps to reproduce:\n\ni after refreshing firefox, i could not import any compressed backup bookmarks. i created new a new profiles and and could not import a compressed bookmark that was valid. i created a new profile and could not import a valid html backup bookmark. community support has not responded to offer any further steps to take after i tried to import a valid html file yet so i am am reporting it here. i really need to get this issue fixed and firefox support is greatly lacking in timely, accurate resolution. i have not tried booting windows in safe mode.\n\n\nactual results:\n\nsee above and need to add in addition, that when importing valid compressed backup bookmarks, i get the message, \"unable to process backup file\". when i import a valid backup bookmark html file, nothing happens---and no error message appears.\n\n\nexpected results:\n\nas expected, any valid bookmark file should be imported."
+    },
+    "reference": {
+      "bug_id": "1884308",
+      "product": "Toolkit",
+      "steps_to_reproduce": "Here is the extracted \"Steps to Reproduce\" section:\n\nI after refreshing Firefox, I could not import any compressed backup bookmarks. I created a new profile and couldn't import a compressed bookmark that was valid. I created a new profile and couldn't import a valid HTML backup bookmark. I have not tried booting Windows in safe mode.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\nExpected results:\nAs expected, any valid bookmark file should be imported.",
+      "actual_result": "Here is the extracted section:\n\n**Actual Results**\n\nSee above and need to add in addition, that when importing valid compressed backup bookmarks, I get the message, \"unable to process backup file\". When I import a valid backup bookmark HTML file, nothing happens---and no error message appears."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 165
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC53",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "steps to reproduce:\n1. launch the buddy up app.\n2. tap on the \"gear\" button at the right top corner of the screen.\n3. tap on the \"create account or sign in\" button\n4. tap on \"don't have an account? register\" button.\n5. type a valid email address, username and password\n6. tap on \"create account\" button.\n\nexpected result:\n\"confirm account\" page appears with a \"cancel sign up\" button.\nactual result:\nblank page appears\n\nnote:\nuser can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app.\n\nconsole errors:\n    typeerror: cancel_button is null email_confirmation_controller.js:47:7\n    error: (main/email_confirmation.html) [line 2, column 10]\n    error: unable to call `_`, which is undefined or falsey\n\nregression searching results:\nhttps://github.com/mozilla/buddyup/commit/9acf86651442106df4e1ba9a90cdbe6aac7b3795 (no bug, works fine)\n(some commits that can not be tested)\nhttps://github.com/mozilla/buddyup/commit/6f191663ac6b1f5cc999193ef83576d64c71e51d (first testable commit with the bug)"
+    },
+    "reference": {
+      "bug_id": "1202230",
+      "product": "support.mozilla.org",
+      "steps_to_reproduce": "Here is the extracted section titled \"Steps to Reproduce\":\n\n**Steps to Reproduce**\n\n1. Launch the Buddy Up app.\n2. Tap on the \"gear\" button at the right top corner of the screen.\n3. Tap on the \"create account or sign in\" button\n4. Tap on \"don't have an account? register\" button.\n5. Type a valid email address, username and password.\n6. Tap on \"create account\" button.\n\nExpected result: The \"confirm account\" page appears with a \"cancel sign up\" button.\n\nActual result: A blank page appears.",
+      "expected_result": "Here is the section titled \"Expected Results\":\n\n\"confirm account\" page appears with a \"cancel sign up\" button.",
+      "actual_result": "Here is the section titled \"Actual Results\":\n\nactual result:\nblank page appears\nnote: \nuser can not dismiss that page even after restarting the app or by verifying the account (by following the link in the sent email), the only way is to re-install the app."
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 152
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC02",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an alphanumeric string `s`. (Alphanumeric string is a string\nconsisting of lowercase English letters and digits).\n\nYou have to find a permutation of the string where no letter is followed by\nanother letter and no digit is followed by another digit. That is, no two\nadjacent characters have the same type.\n\nReturn the reformatted string or return an empty string if it is impossible to\nreformat the string.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def reformat(self, s: str) -> str:\n    A=[]\n    for c in s:\n      if c.isalpha():\n        A.append(c)\n    B=[]\n    for c in s:\n      if c.isdigit():\n        B.append(c)\n\n    if len(A) < len(B):\n      A, B = B, A\n    if len(A) - len(B) > 1:\n      return ''\n\n    ans = []\n\n    for i in range(len(B)):\n      ans.append(A[i])\n      ans.append(B[i])\n\n    if len(A) == len(B) + 1:\n      ans.append(A[-1])\n    return ''.join(ans)\n"
+    },
+    "reference": {
+      "task_num": 1417,
+      "func_name": "reformat",
+      "blocks": "[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 0.99}]",
+      "target_lines": "[16, 20, 23, 25, 34]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC03",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "A password is said to be strong if it satisfies all the following criteria:\n\n* It has at least `8` characters.\n* It contains at least one lowercase letter.\n* It contains at least one uppercase letter.\n* It contains at least one digit.\n* It contains at least one special character. The special characters are the characters in the following string: `\"!@#$%^&*()-+\"`.\n* It does not contain `2` of the same character in adjacent positions (i.e., `\"aab\"` violates this condition, but `\"aba\"` does not).\n\nGiven a string `password`, return `true` if it is a strong password.\nOtherwise, return `false`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def strongPasswordCheckerII(self, password: str) -> bool:\n    if len(password) < 8:\n      return False\n    if not any(c.islower() for c in password):\n      return False\n    if not any(c.isupper() for c in password):\n      return False\n    if not any(c.isdigit() for c in password):\n      return False\n    if not any(\"!@#$%^&*()-+\".find(c) != -1 for c in password):\n      return False\n    return all(a != b for a, b in zip(password, password[1:]))\n"
+    },
+    "reference": {
+      "task_num": 2299,
+      "func_name": "strongPasswordCheckerII",
+      "blocks": "[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.05660377358490566}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 17, 'end': 18, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 2, 'eg_cov_prob': 0.018867924528301886}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[14, 16, 18, 20, 22]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC04",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "On an `8 x 8` chessboard, there is exactly one white rook `'R'` and some\nnumber of white bishops `'B'`, black pawns `'p'`, and empty squares `'.'`.\n\nWhen the rook moves, it chooses one of four cardinal directions (north, east,\nsouth, or west), then moves in that direction until it chooses to stop,\nreaches the edge of the board, captures a black pawn, or is blocked by a white\nbishop. A rook is considered attacking a pawn if the rook can capture the pawn\non the rook's turn. The number of available captures for the white rook is the\nnumber of pawns that the rook is attacking.\n\nReturn the number of available captures for the white rook.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def numRookCaptures(self, board: List[List[str]]) -> int:\n    ans = 0\n\n    for i in range(8):\n      for j in range(8):\n        if board[i][j] == 'R':\n          i0 = i\n          j0 = j\n\n    for d in [[1, 0], [0, 1], [-1, 0], [0, -1]]:\n      i = i0 + d[0]\n      j = j0 + d[1]\n      while 0 <= i < 8 and 0 <= j < 8:\n        if board[i][j] == 'p':\n          ans += 1\n        if board[i][j] != '.':\n          break\n        i += d[0]\n        j += d[1]\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 999,
+      "func_name": "numRookCaptures",
+      "blocks": "[{'type': 'if', 'start': 17, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 25, 'end': 26, 'difficulty': 1, 'eg_cov_prob': 0.82}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[18, 19, 26, 28]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC06",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an `m x n` binary matrix `mat`, return the number of special positions\nin `mat`.\n\nA position `(i, j)` is called special if `mat[i][j] == 1` and all other\nelements in row `i` and column `j` are `0` (rows and columns are 0-indexed).\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def numSpecial(self, mat: List[List[int]]) -> int:\n    m = len(mat)\n    n = len(mat[0])\n    ans = 0\n    rowOnes = [0] * m\n    colOnes = [0] * n\n\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j] == 1:\n          rowOnes[i] += 1\n          colOnes[j] += 1\n\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j] == 1 and rowOnes[i] == 1 and colOnes[j] == 1:\n          ans += 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1582,
+      "func_name": "numSpecial",
+      "blocks": "[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[22, 23, 28]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC07",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an integer `n`. There is an undirected graph with `n` vertices,\nnumbered from `0` to `n - 1`. You are given a 2D integer array `edges` where\n`edges[i] = [ai, bi]` denotes that there exists an undirected edge connecting\nvertices `ai` and `bi`.\n\nReturn the number of complete connected components of the graph.\n\nA connected component is a subgraph of a graph in which there exists a path\nbetween any two vertices, and no vertex of the subgraph shares an edge with a\nvertex outside of the subgraph.\n\nA connected component is said to be complete if there exists an edge between\nevery pair of its vertices.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass UnionFind:\n  def __init__(self, n: int):\n    self.id = list(range(n))\n    self.rank = [0] * n\n    self.nodeCount = [1] * n\n    self.edgeCount = [0] * n\n\n  def unionByRank(self, u: int, v: int) -> None:\n    i = self.find(u)\n    j = self.find(v)\n    self.edgeCount[i] += 1\n    if i == j:\n      return\n    if self.rank[i] < self.rank[j]:\n      self.id[i] = j\n      self.edgeCount[j] += self.edgeCount[i]\n      self.nodeCount[j] += self.nodeCount[i]\n    elif self.rank[i] > self.rank[j]:\n      self.id[j] = i\n      self.edgeCount[i] += self.edgeCount[j]\n      self.nodeCount[i] += self.nodeCount[j]\n    else:\n      self.id[i] = j\n      self.edgeCount[j] += self.edgeCount[i]\n      self.nodeCount[j] += self.nodeCount[i]\n      self.rank[j] += 1\n\n  def find(self, u: int) -> int:\n    if self.id[u] != u:\n      self.id[u] = self.find(self.id[u])\n    return self.id[u]\n\n  def isComplete(self, u):\n    return self.nodeCount[u] * (self.nodeCount[u] - 1) // 2 == self.edgeCount[u]\n\n\nclass Solution:\n  def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:\n    ans = 0\n    uf = UnionFind(n)\n    parents = set()\n\n    for u, v in edges:\n      uf.unionByRank(u, v)\n\n    for i in range(n):\n      parent = uf.find(i)\n      if parent not in parents and uf.isComplete(parent):\n        ans += 1\n        parents.add(parent)\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 2685,
+      "func_name": "countCompleteComponents",
+      "blocks": "[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 24, 'end': 27, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 28, 'end': 31, 'difficulty': 1, 'eg_cov_prob': 0.8679245283018868}, {'type': 'else', 'start': 32, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.9245283018867925}, {'type': 'if', 'start': 58, 'end': 60, 'difficulty': 2, 'eg_cov_prob': 0.20754716981132076}]",
+      "target_lines": "[23, 25, 26, 27, 29, 30, 31, 33, 34, 35, 36, 40, 59, 60]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC08",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are a hiker preparing for an upcoming hike. You are given `heights`, a 2D\narray of size `rows x columns`, where `heights[row][col]` represents the\nheight of cell `(row, col)`. You are situated in the top-left cell, `(0, 0)`,\nand you hope to travel to the bottom-right cell, `(rows-1, columns-1)` (i.e.,\n0-indexed). You can move up, down, left, or right, and you wish to find a\nroute that requires the minimum effort.\n\nA route's effort is the maximum absolute difference in heights between two\nconsecutive cells of the route.\n\nReturn the minimum effort required to travel from the top-left cell to the\nbottom-right cell.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minimumEffortPath(self, heights: List[List[int]]) -> int:\n    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))\n    m = len(heights)\n    n = len(heights[0])\n    diff = [[math.inf] * n for _ in range(m)]\n    seen = set()\n\n    minHeap = [(0, 0, 0)]\n    diff[0][0] = 0\n\n    while minHeap:\n      d, i, j = heapq.heappop(minHeap)\n      if i == m - 1 and j == n - 1:\n        return d\n      seen.add((i, j))\n      for dx, dy in dirs:\n        x = i + dx\n        y = j + dy\n        if x < 0 or x == m or y < 0 or y == n:\n          continue\n        if (x, y) in seen:\n          continue\n        newDiff = abs(heights[i][j] - heights[x][y])\n        maxDiff = max(diff[i][j], newDiff)\n        if diff[x][y] > maxDiff:\n          diff[x][y] = maxDiff\n          heapq.heappush(minHeap, (diff[x][y], x, y))\n"
+    },
+    "reference": {
+      "task_num": 1631,
+      "func_name": "minimumEffortPath",
+      "blocks": "[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[25, 31, 33, 37, 38]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC10",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where\n`edges[i] = [fromi, toi, weighti]` represents a bidirectional and weighted\nedge between cities `fromi` and `toi`, and given the integer\n`distanceThreshold`.\n\nReturn the city with the smallest number of cities that are reachable through\nsome path and whose distance is at most `distanceThreshold`, If there are\nmultiple such cities, return the city with the greatest number.\n\nNotice that the distance of a path connecting cities i and j is equal to the\nsum of the edges' weights along that path.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:\n    ans = -1\n    minCitiesCount = n\n    dist = self._floydWarshall(n, edges, distanceThreshold)\n\n    for i in range(n):\n      citiesCount = sum(dist[i][j] <= distanceThreshold for j in range(n))\n      if citiesCount <= minCitiesCount:\n        ans = i\n        minCitiesCount = citiesCount\n\n    return ans\n\n  def _floydWarshall(self, n: int, edges: List[List[int]], distanceThreshold: int) -> List[List[int]]:\n    dist = [[distanceThreshold + 1] * n for _ in range(n)]\n\n    for i in range(n):\n      dist[i][i] = 0\n\n    for u, v, w in edges:\n      dist[u][v] = w\n      dist[v][u] = w\n\n    for k in range(n):\n      for i in range(n):\n        for j in range(n):\n          dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])\n\n    return dist\n"
+    },
+    "reference": {
+      "task_num": 1334,
+      "func_name": "findTheCity",
+      "blocks": "[{'type': 'if', 'start': 19, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[20, 21]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC11",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a map of a server center, represented as a `m * n` integer\nmatrix `grid`, where 1 means that on that cell there is a server and 0 means\nthat it is no server. Two servers are said to communicate if they are on the\nsame row or on the same column.  \n\nReturn the number of servers that communicate with any other server.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def countServers(self, grid: List[List[int]]) -> int:\n    m = len(grid)\n    n = len(grid[0])\n    ans = 0\n    rows = [0] * m\n    cols = [0] * n\n\n    for i in range(m):\n      for j in range(n):\n        if grid[i][j] == 1:\n          rows[i] += 1\n          cols[j] += 1\n\n    for i in range(m):\n      for j in range(n):\n        if grid[i][j] == 1 and (rows[i] > 1 or cols[j] > 1):\n          ans += 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1267,
+      "func_name": "countServers",
+      "blocks": "[{'type': 'if', 'start': 21, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 27, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[22, 23, 28]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC13",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a network of `n` nodes, labeled from `1` to `n`. You are also\ngiven `times`, a list of travel times as directed edges `times[i] = (ui, vi,\nwi)`, where `ui` is the source node, `vi` is the target node, and `wi` is the\ntime it takes for a signal to travel from source to target.\n\nWe will send a signal from a given node `k`. Return the minimum time it takes\nfor all the `n` nodes to receive the signal. If it is impossible for all the\n`n` nodes to receive the signal, return `-1`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:\n    graph = [[] for _ in range(n)]\n\n    for u, v, w in times:\n      graph[u - 1].append((v - 1, w))\n\n    return self._dijkstra(graph, k - 1)\n\n  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> int:\n    dist = [math.inf] * len(graph)\n\n    dist[src] = 0\n    minHeap = [(dist[src], src)]\n\n    while minHeap:\n      d, u = heapq.heappop(minHeap)\n      if d > dist[u]:\n        continue\n      for v, w in graph[u]:\n        if d + w < dist[v]:\n          dist[v] = d + w\n          heapq.heappush(minHeap, (dist[v], v))\n\n    maxDist = max(dist)\n    return maxDist if maxDist != math.inf else -1\n"
+    },
+    "reference": {
+      "task_num": 743,
+      "func_name": "networkDelayTime",
+      "blocks": "[{'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.95}, {'type': 'if', 'start': 31, 'end': 33, 'difficulty': 1, 'eg_cov_prob': 0.97}]",
+      "target_lines": "[29, 32, 33]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC15",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given a string `s` containing an out-of-order English representation of digits\n`0-9`, return the digits in ascending order.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def originalDigits(self, s: str) -> str:\n    count = [0] * 10\n\n    for c in s:\n      if c == 'z':\n        count[0] += 1\n      if c == 'o':\n        count[1] += 1\n      if c == 'w':\n        count[2] += 1\n      if c == 'h':\n        count[3] += 1\n      if c == 'u':\n        count[4] += 1\n      if c == 'f':\n        count[5] += 1\n      if c == 'x':\n        count[6] += 1\n      if c == 's':\n        count[7] += 1\n      if c == 'g':\n        count[8] += 1\n      if c == 'i':\n        count[9] += 1\n\n    count[1] -= count[0] + count[2] + count[4]\n    count[3] -= count[8]\n    count[5] -= count[4]\n    count[7] -= count[6]\n    count[9] -= count[5] + count[6] + count[8]\n\n    return ''.join(chr(i + ord('0')) for i, c in enumerate(count) for j in range(c))\n"
+    },
+    "reference": {
+      "task_num": 423,
+      "func_name": "originalDigits",
+      "blocks": "[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 18, 'end': 19, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 26, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[17, 19, 21, 23, 25, 27, 29, 31, 33, 35]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC16",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an integer array nums, return all the triplets `[nums[i], nums[j],\nnums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] +\nnums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def threeSum(self, nums: List[int]) -> List[List[int]]:\n    if len(nums) < 3:\n      return []\n\n    ans = []\n\n    nums.sort()\n\n    for i in range(len(nums) - 2):\n      if i > 0 and nums[i] == nums[i - 1]:\n        continue\n\n      l = i + 1\n      r = len(nums) - 1\n      while l < r:\n        summ = nums[i] + nums[l] + nums[r]\n        if summ == 0:\n          ans.append((nums[i], nums[l], nums[r]))\n          l += 1\n          r -= 1\n          while nums[l] == nums[l - 1] and l < r:\n            l += 1\n          while nums[r] == nums[r + 1] and l < r:\n            r -= 1\n        elif summ < 0:\n          l += 1\n        else:\n          r -= 1\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 15,
+      "func_name": "threeSum",
+      "blocks": "[{'type': 'if', 'start': 13, 'end': 14, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 21, 'end': 22, 'difficulty': 1, 'eg_cov_prob': 0.83}, {'type': 'if', 'start': 28, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 36, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[14, 22, 29, 30, 31, 32, 33, 34, 35, 37, 39]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC18",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an integer n, return the smallest prime palindrome greater than or equal\nto `n`.\n\nAn integer is prime if it has exactly two divisors: `1` and itself. Note that\n`1` is not a prime number.\n\n* For example, `2`, `3`, `5`, `7`, `11`, and `13` are all primes.\n\nAn integer is a palindrome if it reads the same from left to right as it does\nfrom right to left.\n\n* For example, `101` and `12321` are palindromes.\n\nThe test cases are generated so that the answer always exists and is in the\nrange `[2, 2 * 108]`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def primePalindrome(self, n: int) -> int:\n    def getPalindromes(n: int):\n      length = n // 2\n      for i in range(10**(length - 1), 10**length):\n        s = str(i)\n        for j in range(10):\n          yield int(s + str(j) + s[::-1])\n\n    def isPrime(num: int) -> bool:\n      for i in range(2, int(num**0.5 + 1)):\n        if num % i == 0:\n          return False\n      return True\n\n    if n <= 2:\n      return 2\n    if n == 3:\n      return 3\n    if n <= 5:\n      return 5\n    if n <= 7:\n      return 7\n    if n <= 11:\n      return 11\n\n    nLength = len(str(n))\n\n    while True:\n      for num in getPalindromes(nLength):\n        if num >= n and isPrime(num):\n          return num\n      nLength += 1\n"
+    },
+    "reference": {
+      "task_num": 866,
+      "func_name": "primePalindrome",
+      "blocks": "[{'type': 'if', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 30, 'end': 31, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 32, 'end': 33, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 22, 'end': 23, 'difficulty': 0, 'eg_cov_prob': 0.99}, {'type': 'if', 'start': 41, 'end': 42, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[23, 27, 29, 31, 33, 35, 42]"
+    },
+    "metadata": {
+      "difficulty": 2
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC19",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "There are `n` 1-indexed robots, each having a position on a line, health, and\nmovement direction.\n\nYou are given 0-indexed integer arrays `positions`, `healths`, and a string\n`directions` (`directions[i]` is either 'L' for left or 'R' for right). All\nintegers in `positions` are unique.\n\nAll robots start moving on the line simultaneously at the same speed in their\ngiven directions. If two robots ever share the same position while moving,\nthey will collide.\n\nIf two robots collide, the robot with lower health is removed from the line,\nand the health of the other robot decreases by one. The surviving robot\ncontinues in the same direction it was going. If both robots have the same\nhealth, they are both removed from the line.\n\nYour task is to determine the health of the robots that survive the\ncollisions, in the same order that the robots were given, i.e. final heath of\nrobot 1 (if survived), final health of robot 2 (if survived), and so on. If\nthere are no survivors, return an empty array.\n\nReturn an array containing the health of the remaining robots (in the order\nthey were given in the input), after no further collisions can occur.\n\nNote: The positions may be unsorted.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\nfrom dataclasses import dataclass\n\n@dataclass\nclass Robot:\n  index: int\n  position: int\n  health: int\n  direction: str\n\n\nclass Solution:\n  def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:\n    robots = sorted([Robot(index, position, health, direction) for index, (position, health, direction) in enumerate(zip(positions, healths, directions))], key=lambda robot: robot.position)\n    stack: List[Robot] = []\n\n    for robot in robots:\n      if robot.direction == 'R':\n        stack.append(robot)\n        continue\n      while stack and stack[-1].direction == 'R' and robot.health > 0:\n        if stack[-1].health == robot.health:\n          stack.pop()\n          robot.health = 0\n        elif stack[-1].health < robot.health:\n          stack.pop()\n          robot.health -= 1\n        else:\n          stack[-1].health -= 1\n          robot.health = 0\n      if robot.health > 0:\n        stack.append(robot)\n\n    stack.sort(key=lambda robot: robot.index)\n    return [robot.health for robot in stack]\n"
+    },
+    "reference": {
+      "task_num": 2751,
+      "func_name": "survivedRobotsHealths",
+      "blocks": "[{'type': 'if', 'start': 26, 'end': 28, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 30, 'end': 32, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 33, 'end': 35, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 36, 'end': 38, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[27, 28, 31, 32, 34, 35, 37, 38, 40]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC21",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given a 0-indexed array of strings `words`. Each string consists of\nlowercase English letters only. No letter occurs more than once in any string\nof `words`.\n\nTwo strings `s1` and `s2` are said to be connected if the set of letters of\n`s2` can be obtained from the set of letters of `s1` by any one of the\nfollowing operations:\n\n* Adding exactly one letter to the set of the letters of `s1`.\n* Deleting exactly one letter from the set of the letters of `s1`.\n* Replacing exactly one letter from the set of the letters of `s1` with any letter, including itself.\n\nThe array `words` can be divided into one or more non-intersecting groups. A\nstring belongs to a group if any one of the following is true:\n\n* It is connected to at least one other string of the group.\n* It is the only string present in the group.\n\nNote that the strings in `words` should be grouped in such a manner that a\nstring belonging to a group cannot be connected to a string present in any\nother group. It can be proved that such an arrangement is always unique.\n\nReturn an array `ans` of size `2` where:\n\n* `ans[0]` is the maximum number of groups `words` can be divided into, and\n* `ans[1]` is the size of the largest group.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass UnionFind:\n  def __init__(self, n: int):\n    self.count = n\n    self.id = list(range(n))\n    self.sz = [1] * n\n\n  def unionBySize(self, u: int, v: int) -> None:\n    i = self._find(u)\n    j = self._find(v)\n    if i == j:\n      return\n    if self.sz[i] < self.sz[j]:\n      self.sz[j] += self.sz[i]\n      self.id[i] = j\n    else:\n      self.sz[i] += self.sz[j]\n      self.id[j] = i\n    self.count -= 1\n\n  def _find(self, u: int) -> int:\n    if self.id[u] != u:\n      self.id[u] = self._find(self.id[u])\n    return self.id[u]\n\n\nclass Solution:\n  def groupStrings(self, words: List[str]) -> List[int]:\n    uf = UnionFind(len(words))\n\n    def getMask(s: str) -> int:\n      mask = 0\n      for c in s:\n        mask |= 1 << ord(c) - ord('a')\n      return mask\n\n    def getAddedMasks(mask: int):\n      for i in range(26):\n        if not (mask >> i & 1):\n          yield mask | 1 << i\n\n    def getDeletedMasks(mask: int):\n      for i in range(26):\n        if mask >> i & 1:\n          yield mask ^ 1 << i\n\n    maskToIndex = {getMask(word): i for i, word in enumerate(words)}\n    deletedMaskToIndex = {}\n\n    for i, word in enumerate(words):\n      mask = getMask(word)\n      for m in getAddedMasks(mask):\n        if m in maskToIndex:\n          uf.unionBySize(i, maskToIndex[m])\n      for m in getDeletedMasks(mask):\n        if m in maskToIndex:\n          uf.unionBySize(i, maskToIndex[m])\n        if m in deletedMaskToIndex:\n          uf.unionBySize(i, deletedMaskToIndex[m])\n        else:\n          deletedMaskToIndex[m] = i\n\n    return [uf.count, max(uf.sz)]\n"
+    },
+    "reference": {
+      "task_num": 2157,
+      "func_name": "groupStrings",
+      "blocks": "[{'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 22, 'end': 24, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 25, 'end': 27, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 31, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 48, 'end': 49, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 53, 'end': 54, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 62, 'end': 63, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 65, 'end': 66, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 67, 'end': 68, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 69, 'end': 70, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[21, 23, 24, 26, 27, 32, 49, 54, 63, 66, 68, 70]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC22",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an integer `n` denoting the number of nodes of a weighted\ndirected graph. The nodes are numbered from `0` to `n - 1`.\n\nYou are also given a 2D integer array `edges` where `edges[i] = [fromi, toi,\nweighti]` denotes that there exists a directed edge from `fromi` to `toi` with\nweight `weighti`.\n\nLastly, you are given three distinct integers `src1`, `src2`, and `dest`\ndenoting three distinct nodes of the graph.\n\nReturn the minimum weight of a subgraph of the graph such that it is possible\nto reach `dest` from both `src1` and `src2` via a set of edges of this\nsubgraph. In case such a subgraph does not exist, return `-1`.\n\nA subgraph is a graph whose vertices and edges are subsets of the original\ngraph. The weight of a subgraph is the sum of weights of its constituent\nedges.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minimumWeight(self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int) -> int:\n    graph = [[] for _ in range(n)]\n    reversedGraph = [[] for _ in range(n)]\n\n    for u, v, w in edges:\n      graph[u].append((v, w))\n      reversedGraph[v].append((u, w))\n\n    fromSrc1 = self._dijkstra(graph, src1)\n    fromSrc2 = self._dijkstra(graph, src2)\n    fromDest = self._dijkstra(reversedGraph, dest)\n    minWeight = min(a + b + c for a, b, c in zip(fromSrc1, fromSrc2, fromDest))\n    if minWeight == math.inf:\n      return -1\n    else:\n      return minWeight\n\n  def _dijkstra(self, graph: List[List[Tuple[int, int]]], src: int) -> List[int]:\n    dist = [math.inf] * len(graph)\n\n    dist[src] = 0\n    minHeap = [(dist[src], src)]\n\n    while minHeap:\n      d, u = heapq.heappop(minHeap)\n      if d > dist[u]:\n        continue\n      for v, w in graph[u]:\n        if d + w < dist[v]:\n          dist[v] = d + w\n          heapq.heappush(minHeap, (dist[v], v))\n\n    return dist\n"
+    },
+    "reference": {
+      "task_num": 2203,
+      "func_name": "minimumWeight",
+      "blocks": "[{'type': 'if', 'start': 24, 'end': 25, 'difficulty': 1, 'eg_cov_prob': 0.7735849056603774}, {'type': 'else', 'start': 26, 'end': 27, 'difficulty': 2, 'eg_cov_prob': 0.22641509433962265}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 2, 'eg_cov_prob': 0.37735849056603776}, {'type': 'if', 'start': 40, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.8490566037735849}]",
+      "target_lines": "[25, 27, 38, 41, 42]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC23",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an array `nums` consisting of non-negative integers. You are\nalso given a `queries` array, where `queries[i] = [xi, mi]`.\n\nThe answer to the `ith` query is the maximum bitwise `XOR` value of `xi` and\nany element of `nums` that does not exceed `mi`. In other words, the answer is\n`max(nums[j] XOR xi)` for all `j` such that `nums[j] <= mi`. If all elements\nin `nums` are larger than `mi`, then the answer is `-1`.\n\nReturn an integer array `answer` where `answer.length == queries.length` and\n`answer[i]` is the answer to the `ith` query.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator, Optional\n\nclass TrieNode:\n  def __init__(self):\n    self.children: List[Optional[TrieNode]] = [None] * 2\n\n\nclass BitTrie:\n  def __init__(self, maxBit: int):\n    self.maxBit = maxBit\n    self.root = TrieNode()\n\n  def insert(self, num: int) -> None:\n    node = self.root\n    for i in range(self.maxBit, -1, -1):\n      bit = num >> i & 1\n      if not node.children[bit]:\n        node.children[bit] = TrieNode()\n      node = node.children[bit]\n\n  def getMaxXor(self, num: int) -> int:\n    maxXor = 0\n    node = self.root\n    for i in range(self.maxBit, -1, -1):\n      bit = num >> i & 1\n      toggleBit = bit ^ 1\n      if node.children[toggleBit]:\n        maxXor = maxXor | 1 << i\n        node = node.children[toggleBit]\n      elif node.children[bit]:\n        node = node.children[bit]\n      else:\n        return 0\n    return maxXor\n\n\nclass IndexedQuery:\n  def __init__(self, queryIndex: int, x: int, m: int):\n    self.queryIndex = queryIndex\n    self.x = x\n    self.m = m\n\n  def __iter__(self):\n    yield self.queryIndex\n    yield self.x\n    yield self.m\n\n\nclass Solution:\n  def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n    ans = [-1] * len(queries)\n    maxBit = int(math.log2(max(max(nums), max(x for x, _ in queries))))\n    bitTrie = BitTrie(maxBit)\n\n    nums.sort()\n\n    i = 0\n    for queryIndex, x, m in sorted([IndexedQuery(i, x, m) for i, (x, m) in enumerate(queries)], key=lambda iq: iq.m):\n      while i < len(nums) and nums[i] <= m:\n        bitTrie.insert(nums[i])\n        i += 1\n      if i > 0 and nums[i - 1] <= m:\n        ans[queryIndex] = bitTrie.getMaxXor(x)\n\n    return ans\n"
+    },
+    "reference": {
+      "task_num": 1707,
+      "func_name": "maximizeXor",
+      "blocks": "[{'type': 'if', 'start': 25, 'end': 26, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 37, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 70, 'end': 71, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 38, 'end': 39, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'else', 'start': 40, 'end': 41, 'difficulty': 2, 'eg_cov_prob': 0.0}]",
+      "target_lines": "[26, 36, 37, 39, 41, 71]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC25",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Strings `s1` and `s2` are `k`-similar (for some non-negative integer `k`) if\nwe can swap the positions of two letters in `s1` exactly `k` times so that the\nresulting string equals `s2`.\n\nGiven two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and\n`s2` are `k`-similar.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def kSimilarity(self, s1: str, s2: str) -> int:\n    ans = 0\n    q = collections.deque([s1])\n    seen = {s1}\n\n    while q:\n      for _ in range(len(q)):\n        curr = q.popleft()\n        if curr == s2:\n          return ans\n        for child in self._getChildren(curr, s2):\n          if child in seen:\n            continue\n          q.append(child)\n          seen.add(child)\n      ans += 1\n\n    return -1\n\n  def _getChildren(self, curr: str, target: str) -> List[str]:\n    children = []\n    s = list(curr)\n    i = 0\n    while curr[i] == target[i]:\n      i += 1\n\n    for j in range(i + 1, len(s)):\n      if s[j] == target[i]:\n        s[i], s[j] = s[j], s[i]\n        children.append(''.join(s))\n        s[i], s[j] = s[j], s[i]\n\n    return children\n"
+    },
+    "reference": {
+      "task_num": 854,
+      "func_name": "kSimilarity",
+      "blocks": "[{'type': 'if', 'start': 39, 'end': 42, 'difficulty': 1, 'eg_cov_prob': 0.9}, {'type': 'if', 'start': 20, 'end': 21, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 23, 'end': 24, 'difficulty': 1, 'eg_cov_prob': 0.73}]",
+      "target_lines": "[21, 24, 40, 41, 42]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC27",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given an array `rectangles` where `rectangles[i] = [xi, yi, ai, bi]`\nrepresents an axis-aligned rectangle. The bottom-left point of the rectangle\nis `(xi, yi)` and the top-right point of it is `(ai, bi)`.\n\nReturn `true` if all the rectangles together form an exact cover of a\nrectangular region.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator, Set\n\nclass Solution:\n  def isRectangleCover(self, rectangles: List[List[int]]) -> bool:\n    area = 0\n    x1 = math.inf\n    y1 = math.inf\n    x2 = -math.inf\n    y2 = -math.inf\n    corners: Set[Tuple[int, int]] = set()\n\n    for x, y, a, b in rectangles:\n      area += (a - x) * (b - y)\n      x1 = min(x1, x)\n      y1 = min(y1, y)\n      x2 = max(x2, a)\n      y2 = max(y2, b)\n\n      for point in [(x, y), (x, b), (a, y), (a, b)]:\n        if point in corners:\n          corners.remove(point)\n        else:\n          corners.add(point)\n\n    if len(corners) != 4:\n      return False\n    if (x1, y1) not in corners or (x1, y2) not in corners or (x2, y1) not in corners or (x2, y2) not in corners:\n      return False\n    return area == (x2 - x1) * (y2 - y1)\n"
+    },
+    "reference": {
+      "task_num": 391,
+      "func_name": "isRectangleCover",
+      "blocks": "[{'type': 'if', 'start': 33, 'end': 34, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 35, 'end': 36, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 28, 'end': 29, 'difficulty': 1, 'eg_cov_prob': 0.47}, {'type': 'else', 'start': 30, 'end': 31, 'difficulty': 0, 'eg_cov_prob': 1.0}]",
+      "target_lines": "[29, 31, 34, 36]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC28",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively,\nreturn the median of the two sorted arrays.\n\nThe overall run time complexity should be `O(log (m+n))`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n    n1 = len(nums1)\n    n2 = len(nums2)\n    if n1 > n2:\n      return self.findMedianSortedArrays(nums2, nums1)\n\n    l = 0\n    r = n1\n\n    while l <= r:\n      partition1 = (l + r) // 2\n      partition2 = (n1 + n2 + 1) // 2 - partition1\n      maxLeft1 = -2**31 if partition1 == 0 else nums1[partition1 - 1]\n      maxLeft2 = -2**31 if partition2 == 0 else nums2[partition2 - 1]\n      minRight1 = 2**31 - 1 if partition1 == n1 else nums1[partition1]\n      minRight2 = 2**31 - 1 if partition2 == n2 else nums2[partition2]\n      if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:\n        if (n1 + n2) % 2 == 0:\n          return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) * 0.5\n        else:\n          return max(maxLeft1, maxLeft2)\n      elif maxLeft1 > minRight2:\n        r = partition1 - 1\n      else:\n        l = partition1 + 1\n"
+    },
+    "reference": {
+      "task_num": 4,
+      "func_name": "findMedianSortedArrays",
+      "blocks": "[{'type': 'if', 'start': 15, 'end': 16, 'difficulty': 1, 'eg_cov_prob': 0.53}, {'type': 'if', 'start': 28, 'end': 32, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 29, 'end': 30, 'difficulty': 1, 'eg_cov_prob': 0.51}, {'type': 'else', 'start': 31, 'end': 32, 'difficulty': 1, 'eg_cov_prob': 0.49}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 1, 'eg_cov_prob': 0.92}, {'type': 'else', 'start': 35, 'end': 36, 'difficulty': 1, 'eg_cov_prob': 0.91}]",
+      "target_lines": "[16, 29, 30, 32, 34, 36]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC30",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and\nflip it and all the four neighbors of it if they exist (Flip is changing `1`\nto `0` and `0` to `1`). A pair of cells are called neighbors if they share one\nedge.\n\nReturn the minimum number of steps required to convert `mat` to a zero matrix\nor `-1` if you cannot.\n\nA binary matrix is a matrix with all cells equal to `0` or `1` only.\n\nA zero matrix is a matrix with all cells equal to `0`.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def minFlips(self, mat: List[List[int]]) -> int:\n    m = len(mat)\n    n = len(mat[0])\n    hash = self._getHash(mat, m, n)\n    if hash == 0:\n      return 0\n\n    dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))\n    step = 0\n    q = collections.deque([hash])\n    seen = {hash}\n\n    while q:\n      step += 1\n      for _ in range(len(q)):\n        curr = q.popleft()\n        for i in range(m):\n          for j in range(n):\n            next = curr ^ 1 << (i * n + j)\n            for dx, dy in dirs:\n              x = i + dx\n              y = j + dy\n              if x < 0 or x == m or y < 0 or y == n:\n                continue\n              next ^= 1 << (x * n + y)\n            if next == 0:\n              return step\n            if next in seen:\n              continue\n            q.append(next)\n            seen.add(next)\n\n    return -1\n\n  def _getHash(self, mat: List[List[int]], m: int, n: int) -> int:\n    hash = 0\n    for i in range(m):\n      for j in range(n):\n        if mat[i][j]:\n          hash |= 1 << (i * n + j)\n    return hash\n"
+    },
+    "reference": {
+      "task_num": 1284,
+      "func_name": "minFlips",
+      "blocks": "[{'type': 'if', 'start': 16, 'end': 17, 'difficulty': 2, 'eg_cov_prob': 0.09}, {'type': 'if', 'start': 50, 'end': 51, 'difficulty': 1, 'eg_cov_prob': 0.91}, {'type': 'if', 'start': 37, 'end': 38, 'difficulty': 1, 'eg_cov_prob': 0.64}, {'type': 'if', 'start': 39, 'end': 40, 'difficulty': 1, 'eg_cov_prob': 0.61}, {'type': 'if', 'start': 34, 'end': 35, 'difficulty': 1, 'eg_cov_prob': 0.91}]",
+      "target_lines": "[17, 35, 38, 40, 51]"
+    },
+    "metadata": {
+      "difficulty": 3
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  }
+]
