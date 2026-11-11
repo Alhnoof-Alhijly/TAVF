@@ -23,7 +23,7 @@ The same LLM and the same task inputs will be used for both methods.
 
 The experimental dataset contains:
 
-- 20 User Story tasks
+- 20 User Story Refinement tasks
 - 20 Bug Report tasks
 - 20 Test Case tasks
 
@@ -31,7 +31,7 @@ Total: 60 tasks.
 
 ## Datasets
 
-- User Stories: Dalpiaz User Story datasets
+- User Story Refinement: Dalpiaz User Story datasets
 - Bug Reports: BugsRepo
 - Test Cases: TestEval
 

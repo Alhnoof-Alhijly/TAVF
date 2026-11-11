@@ -7,6 +7,9 @@
 **Input:**  
 An original user story selected from the Dalpiaz user-story dataset.
 
+**TAVF Prompt Instruction:**
+Refine the supplied original user story, preserving its intent and source facts.
+
 **Expected Output:**  
 A refined version of the same user story that preserves the original intent while improving its quality.
 
@@ -22,7 +25,7 @@ The refined user story should:
 Not available.
 
 **Evaluation Method:**  
-The generated output will be evaluated using a task-specific user-story quality rubric.
+The refined user story will be evaluated using a task-specific user-story quality rubric.
 
 
 ## 2. Bug Report Refinement

@@ -1,13 +1,15 @@
 Role:
 You are a software requirements analyst.
 
+Task: User Story Refinement
+
 Task Instruction:
-Generate a refined user story from the supplied original story, preserving its intent and source facts. Do not invent roles, goals, benefits, or requirements. If a required element is absent, use "Not provided" for that element.
+Refine the supplied original user story, preserving its intent and source facts. Do not invent roles, goals, benefits, or requirements. If a required element is absent, use "Not provided" for that element.
 
 Context:
 Original User Story:
 {original_text}
 
 Output Format:
-Return only one user story in Connextra format:
+Return only one refined user story in Connextra format:
 As a [role], I want [goal], so that [benefit].

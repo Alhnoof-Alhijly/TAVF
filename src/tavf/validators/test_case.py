@@ -1,14 +1,11 @@
-"""Static test checks; generated code and reference code are never executed.
-
-TestEval's exec-based evaluator is unsuitable for untrusted code isolation.
-There is no isolated runner or trusted assertion/input oracle here. Those
-checks remain not_verified, even when syntax and visible assertions look good.
-Reference implementations alone do not establish expected assertion values.
-"""
+"""Static test checks with explicit opt-in Docker execution and explicit trusted assertion examples."""
 
 import ast
 import inspect
 from collections.abc import Mapping
+
+from tavf.validators.execution import validate_execution
+from tavf.validators.assertions import check_assertions
 
 
 def _signature(function, bound=False):
@@ -170,7 +167,8 @@ def _input_validity(tree, context):
     return "passed", "Resolved call signatures match; input-domain constraints remain unverified.", details
 
 
-def validate_test_case(artifact: str, task_input: Mapping | None = None) -> dict:
+def validate_test_case(artifact: str, task_input: Mapping | None = None, *,
+                       execute: bool = False, trusted_oracle: dict | None = None) -> dict:
     """Return valid, issues, evidence for the four approved checks.
 
     Optional task_input uses the existing description/python_solution fields.
@@ -178,7 +176,11 @@ def validate_test_case(artifact: str, task_input: Mapping | None = None) -> dict
     constraints or executable oracles. Evidence status is passed,
     failed, or not_verified. Unverified checks produce missing_information
     issues; detected structural defects are fixable. valid requires all four
-    checks to pass, so it remains False without safe execution and an oracle.
+    checks to pass. execute=True opts into isolated Docker execution; the default
+    never launches Docker. trusted_oracle explicitly supplies caller-trusted examples:
+    {'source': 'curated examples', 'cases': [{'call': 'target(1)', 'expected': 1}]}.
+    Only direct equality assertions with literal inputs/expected values are checked.
+    Task metadata, reference code and execution success do not establish trust.
     """
     if not isinstance(artifact, str):
         raise TypeError("Test case artifact must be a string.")
@@ -222,32 +224,23 @@ def validate_test_case(artifact: str, task_input: Mapping | None = None) -> dict
     record("Input Validity", input_status, input_message,
            "fixable" if input_status == "failed" else "missing_information",
            available_context_fields=context_fields, **input_details)
-    record("Execution Success", "not_verified",
-           "No isolated execution environment is configured; generated code was not executed.",
-           "missing_information")
-
-    if tree is None:
-        record("Assertion Validity", "not_verified",
-               "Assertions cannot be inspected until syntax is corrected; no trusted oracle is available.",
-               "missing_information")
+    if execute and tree is not None:
+        reference = context.get("python_solution", "")
+        execution = validate_execution(artifact, reference if isinstance(reference, str) else "")
+        status = execution.pop("status")
+        message = execution.pop("message")
+        record("Execution Success", status, message,
+               "fixable" if status == "failed" else "missing_information", **execution)
     else:
-        assertion_lines = sorted({
-            node.lineno for node in ast.walk(tree)
-            if isinstance(node, ast.Assert) or (
-                isinstance(node, ast.Call)
-                and isinstance(node.func, ast.Attribute)
-                and isinstance(node.func.value, ast.Name)
-                and node.func.value.id == "self"
-                and node.func.attr.startswith("assert")
-            )
-        })
-        if not assertion_lines:
-            record("Assertion Validity", "failed",
-                   "No statically visible assert statements or self.assert* calls; dynamic helpers are not inspected.",
-                   "fixable", assertion_lines=[])
-        else:
-            record("Assertion Validity", "not_verified",
-                   "Assertion-like syntax is present; correctness requires a trusted oracle. Passing execution would not prove correctness.",
-                   "missing_information", assertion_lines=assertion_lines)
+        record("Execution Success", "not_verified",
+               "Execution is disabled or generated syntax is invalid; code was not executed.",
+               "missing_information")
+
+    assertion_status, assertion_message, assertion_details = check_assertions(
+        tree, input_details, evidence[2], trusted_oracle,
+    )
+    record("Assertion Validity", assertion_status, assertion_message,
+           "fixable" if assertion_status == "failed" else "missing_information",
+           **assertion_details)
 
     return {"valid": not issues, "issues": issues, "evidence": evidence}

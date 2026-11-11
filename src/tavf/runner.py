@@ -12,7 +12,8 @@ from tavf.task_identifier import identify_task
 from utils.llm_client import LLMClient
 
 
-def run_task(task: Mapping, client=None) -> dict:
+def run_task(task: Mapping, client=None, *, execute: bool = False,
+             trusted_oracle: dict | None = None) -> dict:
     """Run one JSON-ready task with a shared client for initial and revised output.
 
     Inject an LLMClient backed by a mock provider for offline use. Invalid task
@@ -20,9 +21,14 @@ def run_task(task: Mapping, client=None) -> dict:
     a failed record retaining task, prompt, and all available history. Provider
     exception details are never copied into the record. No files are written.
     Internal validation, feedback and revision routing are owned by refinement.
+    Test-case execute/trusted_oracle options apply to every version. Docker is
+    disabled by default; trusted examples must be explicitly supplied by callers.
     """
     task_type = identify_task(task)
-    prompt = build_prompt(task_type, task.get("input"))
+    if task_type == "test_case_generation":
+        prompt = build_prompt(task_type, task.get("input"), task_reference=task.get("reference"))
+    else:
+        prompt = build_prompt(task_type, task.get("input"))
     task_snapshot = deepcopy(dict(task))
     # Reject non-JSON task data before any potentially paid request.
     json.dumps(task_snapshot, allow_nan=False)
@@ -62,7 +68,8 @@ def run_task(task: Mapping, client=None) -> dict:
     try:
         # Components 4 and 5 run inside refinement before any revision request;
         # refinement then repeats them after each successful attempt.
-        refinement = refine_output(task_type, task["input"], initial, client)
+        refinement = refine_output(task_type, task["input"], initial, client,
+                                   execute=execute, trusted_oracle=trusted_oracle)
     except (ValueError, TypeError):
         record["stop_reason"] = "refinement_setup_failed"
         record["errors"].append({"stage": "refinement", "message": "Refinement setup failed; check client configuration and generation metadata."})

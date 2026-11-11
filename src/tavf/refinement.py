@@ -17,16 +17,18 @@ MAX_REFINEMENT_ATTEMPTS = 2
 PROMPT_FILE = Path(__file__).resolve().parents[2] / "prompts/tavf/refinement.txt"
 
 
-def _validate(task_type, output, original_input):
+def _validate(task_type, output, original_input, *, execute=False, trusted_oracle=None):
     if task_type == "user_story_refinement":
         return validate_user_story(output)
     if task_type == "bug_report_refinement":
         return validate_bug_report(output, original_input["original_text"])
-    return validate_test_case(output, original_input)
+    return validate_test_case(output, original_input, execute=execute,
+                              trusted_oracle=trusted_oracle)
 
 
 def refine_output(task_type: str, task_input: Mapping,
-                  initial_generation: Mapping, client) -> dict:
+                  initial_generation: Mapping, client, *, execute: bool = False,
+                  trusted_oracle: dict | None = None) -> dict:
     """Revalidate and refine at most twice using the initial generation's client.
 
     Callers must supply the same configured client used for initial generation;
@@ -34,6 +36,8 @@ def refine_output(task_type: str, task_input: Mapping,
     versions includes the initial artifact and every successful revision, each
     with metadata, validation and full feedback. attempts also retains failed
     requests with sanitized errors. No missing-information issue is instructed.
+    Explicit test-case execution and oracle options apply equally to initial
+    validation and every revision; other task validators do not receive them.
     """
     if not isinstance(task_type, str) or task_type not in PROMPT_TEMPLATE_REGISTRY:
         raise ValueError(f"Unsupported task_type: {task_type!r}.")
@@ -61,7 +65,8 @@ def refine_output(task_type: str, task_input: Mapping,
     versions, attempts = [], []
 
     def preserve(generation, attempt):
-        validation = _validate(task_type, generation["output"], original_input)
+        validation = _validate(task_type, generation["output"], original_input,
+                               execute=execute, trusted_oracle=trusted_oracle)
         versions.append({
             "attempt": attempt,
             "generation": deepcopy(dict(generation)),

@@ -11,5 +11,5 @@ Task Description:
 Reference Implementation:
 {python_solution}
 
-Output Format:
+{target_context}Output Format:
 Return only Python test code using unittest, without Markdown or explanations. Include necessary imports and assume the unchanged reference implementation is available in the same module.
