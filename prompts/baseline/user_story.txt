@@ -1,0 +1,14 @@
+
+You are a software requirements analyst.
+
+Refine the following user story to improve its clarity, completeness, and readability while preserving its original intent.
+
+Follow the standard user story format:
+"As a [user role], I want [goal], so that [benefit]."
+
+Do not introduce new requirements or assume information that is not present in the original story.
+
+Return only the refined user story.
+
+Original User Story:
+{original_text}

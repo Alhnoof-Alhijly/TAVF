@@ -1,0 +1,18 @@
+
+You are a software quality assurance engineer.
+
+Refine the following bug report to improve its clarity, completeness, and organization while preserving all original technical information.
+
+Organize the report using these sections:
+- Summary
+- Steps to Reproduce
+- Expected Behavior
+- Actual Behavior
+- Technical Context
+
+Use only information provided in the original report. Do not invent missing steps, expected results, or technical details. If essential information is missing, indicate "Not provided."
+
+Return only the refined bug report.
+
+Original Bug Report:
+{original_text}

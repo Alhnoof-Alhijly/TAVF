@@ -1,0 +1,67 @@
+[
+  {
+    "task_id": "USC03",
+    "task_type": "user_story_refinement",
+    "source": "Dalpiaz",
+    "input": {
+      "original_text": "As a Plan Review Staff Member, I want to Review the Code Modifications submitted by the Applicant, so that I can review the request and if approved, associate it with the appropriate project."
+    },
+    "reference": {
+      "original_source_file": "g03-loudoun.txt",
+      "original_line_number": 41
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 33
+    },
+    "expected_output": {
+      "type": "refined_user_story",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "BRC01",
+    "task_type": "bug_report_refinement",
+    "source": "jag2023/Bug_report_Final_new_dataset_2024",
+    "input": {
+      "original_text": "### steps to reproduce\n\n1. browse to a site in fenix nightly\n2. select share from the options menu\n3. select a device from send to device\n\n### expected behavior\nthe site should open on the device you selected\n\n### actual behavior\nan error is displayed `unable to send`\n### device information\n\n* firefox version: 127.0a1\n* android device model: samsung s24+\n* android os version: android 14\n\n### any additional information?\nthis is not reproducible in 125 release or 126 beta"
+    },
+    "reference": {
+      "bug_id": "1895711",
+      "product": "Application Services",
+      "steps_to_reproduce": "Here are the steps to reproduce:\n\n1. Browse to a site in Fenix Nightly.\n2. Select \"Share\" from the Options menu.\n3. Select a device from \"Send to Device\".",
+      "expected_result": "The \"Expected Results\" section is:\n\n### Expected Results\nthe site should open on the device you selected",
+      "actual_result": "Here is the extracted section titled \"Actual Results\":\n\n### Actual Behavior\nan error is displayed `unable to send`"
+    },
+    "metadata": {
+      "difficulty": null,
+      "word_count": 82
+    },
+    "expected_output": {
+      "type": "refined_bug_report",
+      "gold_reference": null
+    }
+  },
+  {
+    "task_id": "TCC02",
+    "task_type": "test_case_generation",
+    "source": "TestEval",
+    "input": {
+      "description": "You are given an alphanumeric string `s`. (Alphanumeric string is a string\nconsisting of lowercase English letters and digits).\n\nYou have to find a permutation of the string where no letter is followed by\nanother letter and no digit is followed by another digit. That is, no two\nadjacent characters have the same type.\n\nReturn the reformatted string or return an empty string if it is impossible to\nreformat the string.\n\n",
+      "python_solution": "import math\nimport itertools\nimport bisect\nimport collections\nimport string\nimport heapq\nimport functools\nimport sortedcontainers\nfrom typing import List, Dict, Tuple, Iterator\n\nclass Solution:\n  def reformat(self, s: str) -> str:\n    A=[]\n    for c in s:\n      if c.isalpha():\n        A.append(c)\n    B=[]\n    for c in s:\n      if c.isdigit():\n        B.append(c)\n\n    if len(A) < len(B):\n      A, B = B, A\n    if len(A) - len(B) > 1:\n      return ''\n\n    ans = []\n\n    for i in range(len(B)):\n      ans.append(A[i])\n      ans.append(B[i])\n\n    if len(A) == len(B) + 1:\n      ans.append(A[-1])\n    return ''.join(ans)\n"
+    },
+    "reference": {
+      "task_num": 1417,
+      "func_name": "reformat",
+      "blocks": "[{'type': 'if', 'start': 22, 'end': 23, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 24, 'end': 25, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 33, 'end': 34, 'difficulty': 2, 'eg_cov_prob': 0.0}, {'type': 'if', 'start': 15, 'end': 16, 'difficulty': 0, 'eg_cov_prob': 1.0}, {'type': 'if', 'start': 19, 'end': 20, 'difficulty': 0, 'eg_cov_prob': 0.99}]",
+      "target_lines": "[16, 20, 23, 25, 34]"
+    },
+    "metadata": {
+      "difficulty": 1
+    },
+    "expected_output": {
+      "type": "python_test_cases",
+      "gold_reference": null
+    }
+  }
+]

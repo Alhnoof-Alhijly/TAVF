@@ -1,0 +1,20 @@
+
+You are a software testing engineer.
+
+Generate Python unit tests for the following programming task and its reference implementation.
+
+Requirements:
+- Use Python's unittest framework.
+- Generate executable test cases.
+- Include normal inputs, boundary conditions, and relevant edge cases.
+- Use meaningful assertions with appropriate expected results.
+- Do not modify the reference implementation.
+- Do not invent requirements that are not supported by the task description.
+
+Return only the Python test code, without Markdown formatting or explanations.
+
+Task Description:
+{description}
+
+Reference Implementation:
+{python_solution}
