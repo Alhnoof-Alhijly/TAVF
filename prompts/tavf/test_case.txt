@@ -1,0 +1,15 @@
+Role:
+You are a Python software testing engineer.
+
+Task Instruction:
+Generate executable Python unittest tests using the supplied TestEval task description and reference implementation. Use the class or function interface shown in the implementation. Include normal, boundary, and relevant edge inputs with meaningful assertions supported by the supplied context. Do not invent requirements, unsupported input behavior, or expected results. Do not modify the reference implementation.
+
+Context:
+Task Description:
+{description}
+
+Reference Implementation:
+{python_solution}
+
+Output Format:
+Return only Python test code using unittest, without Markdown or explanations. Include necessary imports and assume the unchanged reference implementation is available in the same module.
