@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import time
 from uuid import uuid4
 
 from jsonschema import Draft202012Validator
@@ -41,7 +42,18 @@ def _save(path, value):
         handle.write("\n")
         handle.flush()
         os.fsync(handle.fileno())
-    os.replace(temporary, path)
+    # Retry only the atomic rename, never generation or the surrounding save.
+    # Windows readers may briefly deny delete-sharing on the destination.
+    for attempt in range(6):
+        try:
+            os.replace(temporary, path)
+            break
+        except OSError as error:
+            if (sys.platform != "win32" or getattr(error, "winerror", None) not in {5, 32, 33}
+                    or attempt == 5):
+                # Keep the fully flushed temporary file for reconciliation.
+                raise
+            time.sleep(0.05 * (2 ** attempt))
 
 
 @contextmanager
