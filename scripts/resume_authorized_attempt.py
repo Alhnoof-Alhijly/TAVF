@@ -31,8 +31,13 @@ def verify_preserved(plan):
             raise RuntimeError("Original completed artifact integrity failure")
 
 
-def prepare(*, user_stories_only=False, supersede_prepared=False):
+def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=False, supersede_prepared=False):
     """Offline only: preserve history and prepare a single-use session."""
+    if sum((user_stories_only, bug_reports_only, test_cases_only)) > 1:
+        raise ValueError("Select exactly one task scope")
+    task_type = ("test_case_generation" if test_cases_only else
+                 "bug_report_refinement" if bug_reports_only else
+                 "user_story_refinement" if user_stories_only else None)
     with main.driver._lock(D):
         main.driver.run_experiment(main.driver.load_tasks(), D)  # Read-only manifest check.
         summary = read(D / "run_summary.json")
@@ -59,7 +64,7 @@ def prepare(*, user_stories_only=False, supersede_prepared=False):
         else:
             saved = {(read(q)["task"]["task_id"], read(q)["method"]) for q in results}
             remaining = [(task, method) for task in main.driver.load_tasks()
-                         if not user_stories_only or task["task_type"] == "user_story_refinement"
+                         if task_type is None or task["task_type"] == task_type
                          for method in ("baseline", "tavf") if (task["task_id"], method) not in saved]
             if not remaining:
                 raise RuntimeError("Requested scope is already complete")
@@ -81,10 +86,10 @@ def prepare(*, user_stories_only=False, supersede_prepared=False):
             if state == "prepared":
                 validate_session(q.parent)
                 prepared.append(q.parent)
-        if user_stories_only:
-            story_ids = {t["task_id"] for t in main.driver.load_tasks() if t["task_type"] == "user_story_refinement"}
+        if task_type is not None:
+            story_ids = {t["task_id"] for t in main.driver.load_tasks() if t["task_type"] == task_type}
             if len(story_ids) != 500 or (unknown is not None and unknown["task_id"] not in story_ids):
-                raise RuntimeError("User Story scope does not match the uncertain task")
+                raise RuntimeError("Selected scope does not match the uncertain task")
         old_hashes = {q.relative_to(source_session).as_posix(): sha(q)
                       for q in source_session.rglob("*") if q.is_file()}
         # Check unique logical outputs and response identities before preparing.
@@ -113,9 +118,9 @@ def prepare(*, user_stories_only=False, supersede_prepared=False):
                 "preserved_result_sha256": {q.name: sha(q) for q in results},
                 "preserved_request_sha256": {key + ".json": sha(D / "requests" / (key + ".json")) for key in completed},
                 "output_identity": "Existing task_id/method result slot; attempt IDs never add output slots",
-                "final_evaluation": "not_run"}
-        if user_stories_only:
-            plan.update(task_types=["user_story_refinement"], target_outputs_per_method=500,
+                "final_evaluation": "not_run", "docker_execution": False}
+        if task_type is not None:
+            plan.update(task_types=[task_type], target_outputs_per_method=500,
                         scope_expected_outputs=1000, supersedes_prepared_sessions=[q.name for q in prepared])
         main.SAVE(new_session / "plan.json", plan)
         main.SAVE(new_session / "status.json", {"status": "prepared", "api_requests": 0})
@@ -137,24 +142,27 @@ class ScopeComplete(Exception):
 
 class UserStoryBoundary:
     """Launcher-only boundary; full manifest and framework stay unchanged."""
-    def __init__(self, tasks, results):
-        self.tasks = {t["task_id"]: t for t in tasks if t["task_type"] == "user_story_refinement"}
+    def __init__(self, tasks, results, task_type="user_story_refinement"):
+        if task_type not in {"user_story_refinement", "bug_report_refinement", "test_case_generation"}:
+            raise ValueError("Unsupported execution scope")
+        self.task_type = task_type
+        self.tasks = {t["task_id"]: t for t in tasks if t["task_type"] == task_type}
         if len(self.tasks) != 500:
-            raise RuntimeError("Expected exactly 500 manifest User Story inputs")
+            raise RuntimeError("Expected exactly 500 manifest inputs for selected scope")
         self.saved = set()
         for record in results:
-            if record["task"]["task_type"] == "user_story_refinement":
+            if record["task"]["task_type"] == task_type:
                 self.check_identity(record["task"]["task_id"], record["method"])
                 if record["task"] != self.tasks[record["task"]["task_id"]]:
-                    raise RuntimeError("Saved User Story input differs from manifest")
+                    raise RuntimeError("Saved scoped input differs from manifest")
                 key = (record["task"]["task_id"], record["method"])
                 if key in self.saved:
-                    raise RuntimeError("Duplicate User Story output")
+                    raise RuntimeError("Duplicate scoped output")
                 self.saved.add(key)
 
     def check_identity(self, task_id, method):
         if task_id not in self.tasks or method not in {"baseline", "tavf"}:
-            raise RuntimeError("User Story session refuses out-of-scope generation or output")
+            raise RuntimeError("Session refuses out-of-scope generation or output")
 
     def before_save(self, path, value):
         if path.parent == D / "requests":
@@ -167,7 +175,7 @@ class UserStoryBoundary:
             return
         self.check_identity(task_id, method)
         if (task_id, method) in self.saved:
-            raise RuntimeError("Completed User Story output must not be repeated")
+            raise RuntimeError("Completed scoped output must not be repeated")
 
     def after_save(self, path, value):
         if path.parent == D / "results":
@@ -215,8 +223,9 @@ def run(session_id):
         historical_unknowns.append({"attempt_id": prior_id, "outcome": "unknown",
                                    "audit": str(SESSION.relative_to(D) / "original_uncertain_request.json")})
     scope = None
-    if plan.get("task_types") == ["user_story_refinement"]:
-        scope = UserStoryBoundary(main.driver.load_tasks(), [read(q) for q in (D / "results").glob("*.json")])
+    if plan.get("task_types") in (["user_story_refinement"], ["bug_report_refinement"], ["test_case_generation"]):
+        scope = UserStoryBoundary(main.driver.load_tasks(), [read(q) for q in (D / "results").glob("*.json")],
+                                  task_type=plan["task_types"][0])
         original_run = main.driver.run_experiment
 
         def scoped_run(tasks, directory, **kwargs):
@@ -224,11 +233,11 @@ def run(session_id):
                 return original_run(tasks, directory, **kwargs)
             before = len(scope.saved)
             if scope.complete:
-                return {"status": "completed", "scope": "user_story_refinement", "saved": 0, "skipped": 1000}
+                return {"status": "completed", "scope": scope.task_type, "saved": 0, "skipped": 1000}
             try:
                 return original_run(tasks, directory, **kwargs)
             except ScopeComplete:
-                return {"status": "completed", "scope": "user_story_refinement", "saved": len(scope.saved) - before, "skipped": before}
+                return {"status": "completed", "scope": scope.task_type, "saved": len(scope.saved) - before, "skipped": before}
 
         main.driver.run_experiment = scoped_run
 
@@ -277,7 +286,7 @@ def run(session_id):
                        connection_failure_count=plan["historical_connection_failures"] + len(list((SESSION / "errors").glob("*.json"))),
                        pacing="Single in-flight request; response rate limits, reset headers and Retry-After")
         if scope is not None:
-            summary.update(active_task_types=["user_story_refinement"], scope_expected_outputs=1000,
+            summary.update(active_task_types=[scope.task_type], scope_expected_outputs=1000,
                            target_outputs_per_method=500)
         if Decimal(summary["spent_plus_reserved_usd"]) + old_spent() > Decimal("5.00"):
             raise RuntimeError("Aggregate cost plus reserves exceeds $5")
@@ -340,11 +349,16 @@ if __name__ == "__main__":
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--prepare-only", action="store_true", help="Finalize and prepare offline; never send requests")
     mode.add_argument("--session", help="Execute exactly one previously prepared session")
-    parser.add_argument("--user-stories-only", action="store_true", help="Prepare a User Story-only session, 500 outputs per method")
+    scope_args = parser.add_mutually_exclusive_group()
+    scope_args.add_argument("--user-stories-only", action="store_true", help="Prepare a User Story-only session, 500 outputs per method")
+    scope_args.add_argument("--bug-reports-only", action="store_true", help="Prepare a Bug Report-only session, 500 outputs per method")
+    scope_args.add_argument("--test-cases-only", action="store_true", help="Prepare a Test Case-only session, 500 outputs per method; no Docker or Final Evaluation")
     parser.add_argument("--supersede-prepared", action="store_true", help="Preserve and stop older unused prepared sessions")
     args = parser.parse_args()
     if args.prepare_only:
         print(json.dumps({"prepared_session": prepare(user_stories_only=args.user_stories_only,
+                                                    bug_reports_only=args.bug_reports_only,
+                                                    test_cases_only=args.test_cases_only,
                                                     supersede_prepared=args.supersede_prepared).name, "api_requests": 0}))
     else:
         run(args.session)
