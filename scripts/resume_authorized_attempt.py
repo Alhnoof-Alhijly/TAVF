@@ -10,6 +10,7 @@ import os
 
 import resume_build as paced
 from connection_diagnostics import describe, redact
+from scoped_generation import ProviderRejected, is_invalid_prompt, run_scoped, save_rejection
 
 main = paced.main
 D = main.DIRECTORY
@@ -29,6 +30,9 @@ def verify_preserved(plan):
     for folder, field in (("results", "preserved_result_sha256"), ("requests", "preserved_request_sha256")):
         if any(sha(D / folder / name) != digest for name, digest in plan[field].items()):
             raise RuntimeError("Original completed artifact integrity failure")
+    for name, digest in plan.get("preserved_rejected_request_sha256", {}).items():
+        if sha(D / "requests" / name) != digest:
+            raise RuntimeError("Preserved provider rejection changed")
 
 
 def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=False, supersede_prepared=False):
@@ -50,7 +54,8 @@ def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=
         if len(results) != summary["final_outputs_saved"]:
             raise RuntimeError("Unexpected completed output count")
         records = {q.stem: read(q) for q in (D / "requests").glob("*.json")}
-        pending = [key for key, r in records.items() if r["state"] != "completed"]
+        rejected = {key: r for key, r in records.items() if r["state"] == "provider_rejected"}
+        pending = [key for key, r in records.items() if r["state"] not in {"completed", "provider_rejected"}]
         if len(pending) > 1:
             raise RuntimeError("Multiple unfinished requests require reconciliation")
         path, unknown = None, None
@@ -63,6 +68,7 @@ def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=
                 raise RuntimeError("Unknown attempt differs from audited checkpoint")
         else:
             saved = {(read(q)["task"]["task_id"], read(q)["method"]) for q in results}
+            saved.update((r["task_id"], r["method"]) for r in rejected.values())
             remaining = [(task, method) for task in main.driver.load_tasks()
                          if task_type is None or task["task_type"] == task_type
                          for method in ("baseline", "tavf") if (task["task_id"], method) not in saved]
@@ -72,6 +78,9 @@ def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=
             key = main.driver._hash([next_task["task_id"], next_method, 0])
         reserve = Decimal(summary["reserved_unknown_cost_usd"])
         expected = Decimal(original["historical_reserve_usd"])
+        for rejected_key, r in rejected.items():
+            if rejected_key + ".json" not in original.get("preserved_rejected_request_sha256", {}):
+                expected += Decimal(r["reserved_cost_usd"])
         if unknown is not None:
             expected += main.cost_tracker.calculate_cost(len(unknown["prompt"].encode("utf-8")) + 512,
                                                          main.driver.MAX_OUTPUT_TOKENS)
@@ -117,6 +126,8 @@ def prepare(*, user_stories_only=False, bug_reports_only=False, test_cases_only=
                 "manifest_sha256": sha(D / "manifest.json"), "run_config_sha256": sha(D / "run_config.json"),
                 "preserved_result_sha256": {q.name: sha(q) for q in results},
                 "preserved_request_sha256": {key + ".json": sha(D / "requests" / (key + ".json")) for key in completed},
+                "preserved_rejected_request_sha256": {key + ".json": sha(D / "requests" / (key + ".json")) for key in rejected},
+                "provider_rejection_policy": "Skip terminal method tasks; continue only explicit HTTP 400 invalid_prompt; retain full reserves and evidence; never retry",
                 "output_identity": "Existing task_id/method result slot; attempt IDs never add output slots",
                 "final_evaluation": "not_run", "docker_execution": False}
         if task_type is not None:
@@ -150,6 +161,7 @@ class UserStoryBoundary:
         if len(self.tasks) != 500:
             raise RuntimeError("Expected exactly 500 manifest inputs for selected scope")
         self.saved = set()
+        self.rejected = set()
         for record in results:
             if record["task"]["task_type"] == task_type:
                 self.check_identity(record["task"]["task_id"], record["method"])
@@ -174,7 +186,7 @@ class UserStoryBoundary:
         else:
             return
         self.check_identity(task_id, method)
-        if (task_id, method) in self.saved:
+        if (task_id, method) in self.saved or (task_id, method) in self.rejected:
             raise RuntimeError("Completed scoped output must not be repeated")
 
     def after_save(self, path, value):
@@ -185,7 +197,7 @@ class UserStoryBoundary:
 
     @property
     def complete(self):
-        return all(sum(method == m for _, method in self.saved) == 500 for m in ("baseline", "tavf"))
+        return all(sum(method == m for _, method in self.saved | self.rejected) == 500 for m in ("baseline", "tavf"))
 
 
 def validate_session(session):
@@ -200,7 +212,7 @@ def validate_session(session):
             or read(D / "run_summary.json")["reserved_unknown_cost_usd"] != plan["historical_reserve_usd"]):
         raise RuntimeError("Prepared checkpoint, settings or reserves changed")
     if plan["source_checkpoint_sha256"] is None and any(
-            read(q)["state"] != "completed" for q in (D / "requests").glob("*.json")):
+            read(q)["state"] not in {"completed", "provider_rejected"} for q in (D / "requests").glob("*.json")):
         raise RuntimeError("New unfinished request appeared after preparation")
     main.driver.run_experiment(main.driver.load_tasks(), D)
     return plan
@@ -235,6 +247,8 @@ def run(session_id):
             if scope.complete:
                 return {"status": "completed", "scope": scope.task_type, "saved": 0, "skipped": 1000}
             try:
+                if plan.get("provider_rejection_policy"):
+                    return run_scoped(tasks, directory, scope, kwargs["client"])
                 return original_run(tasks, directory, **kwargs)
             except ScopeComplete:
                 return {"status": "completed", "scope": scope.task_type, "saved": len(scope.saved) - before, "skipped": before}
@@ -263,7 +277,12 @@ def run(session_id):
     original_summary = main.refresh_summary
     old_spent = main.cost_tracker.calculate_spent
     # Both existing budget guards retain every historical reservation.
-    main.cost_tracker.calculate_spent = lambda: old_spent() + reserve
+    def new_rejection_reserves():
+        return sum((Decimal(r["reserved_cost_usd"]) for key, r in main.REQUESTS.items()
+                    if r["state"] == "provider_rejected"
+                    and key + ".json" not in plan.get("preserved_rejected_request_sha256", {})), Decimal(0))
+
+    main.cost_tracker.calculate_spent = lambda: old_spent() + reserve + new_rejection_reserves()
     main.driver.calculate_spent = main.cost_tracker.calculate_spent
 
     def refresh():
@@ -273,8 +292,9 @@ def run(session_id):
             raise RuntimeError("Original completed request changed")
         summary = original_summary()
         pending = sum((main.cost_tracker.calculate_cost(len(r["prompt"].encode("utf-8")) + 512,
-                        main.driver.MAX_OUTPUT_TOKENS) for r in main.REQUESTS.values()
-                       if r["state"] != "completed" and r.get("attempt_id") != prior_id), Decimal(0))
+                        main.driver.MAX_OUTPUT_TOKENS) for key, r in main.REQUESTS.items()
+                       if r["state"] != "completed" and r.get("attempt_id") != prior_id
+                       and key + ".json" not in plan.get("preserved_rejected_request_sha256", {})), Decimal(0))
         total_reserve = reserve + pending
         summary.update(original_43_outputs_unchanged=True,
                        preserved_outputs_unchanged=True, preserved_output_count=plan.get("preserved_output_count", 43),
@@ -288,6 +308,14 @@ def run(session_id):
         if scope is not None:
             summary.update(active_task_types=[scope.task_type], scope_expected_outputs=1000,
                            target_outputs_per_method=500)
+        rejections = [{"request": key, **{k: r.get(k) for k in (
+                      "attempt_id", "task_id", "method", "http_status", "provider_code", "request_id", "reserved_cost_usd")}}
+                      for key, r in main.REQUESTS.items() if r["state"] == "provider_rejected"]
+        summary.update(provider_rejected_requests=rejections, provider_rejection_count=len(rejections),
+                       provider_rejection_counts_by_method={m: sum(r["method"] == m for r in rejections) for m in ("baseline", "tavf")})
+        summary["unresolved_requests"] = [r for r in summary["unresolved_requests"] if r["state"] != "provider_rejected"]
+        summary["connection_failure_count"] = plan["historical_connection_failures"] + sum(
+            read(q)["error_type"] in {"APIConnectionError", "APITimeoutError"} for q in (SESSION / "errors").glob("*.json"))
         if Decimal(summary["spent_plus_reserved_usd"]) + old_spent() > Decimal("5.00"):
             raise RuntimeError("Aggregate cost plus reserves exceeds $5")
         main.SAVE(D / "run_summary.json", summary)
@@ -323,12 +351,18 @@ def run(session_id):
             main.SAVE(SESSION / "dispatch" / (current["id"] + ".json"), {
                       "attempt_id": current["id"], "logical_request": current["key"],
                       "entered_provider_utc": datetime.now(timezone.utc).isoformat()})
+            previous_limits = self.headers, self.last_status, self.received_at
             try:
                 return super().generate(prompt)
             except Exception as error:
                 diagnostic = describe(error)
                 diagnostic.update(attempt_id=current["id"], logical_request=current["key"], headers=self.headers)
                 main.SAVE(SESSION / "errors" / (current["id"] + ".json"), diagnostic)
+                if plan.get("provider_rejection_policy") and is_invalid_prompt(error):
+                    save_rejection(D, SESSION, current["key"], current["id"], error, main.driver._save)
+                    # A 400 may omit rate headers; retain the last known limits.
+                    self.headers, self.last_status, self.received_at = previous_limits
+                    raise ProviderRejected() from None
                 raise
 
     main.ObservedClient = Client
