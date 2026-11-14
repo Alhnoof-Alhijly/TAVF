@@ -1,6 +1,6 @@
 """Resumable opt-in TestEval evaluation; never reads private method labels."""
 import argparse
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 from copy import deepcopy
 import hashlib
 import json
@@ -17,9 +17,11 @@ from run_experiment import _lock, _save
 from tavf.validators.test_case import validate_test_case
 from tavf.validators import execution
 from tavf.evaluation import line_coverage, branch_coverage, path_coverage
+from testeval_diagnostics import capture
+from testeval_module_harness import VERSION as HARNESS_VERSION, ALIASES, build_harnesses
 
 VERIFIED_IMAGE = "sha256:acd3865aef3c1877be238341570499fb39ff2c72a2877a4b75649a9b9a00c1df"
-VERSION = "testeval_final_adapter_v1"
+VERSION = "testeval_final_adapter_v2"
 COVERAGE = {"line": line_coverage.evaluate_line_target,
             "branch": branch_coverage.evaluate_branch_target, "path": path_coverage.evaluate_path_target}
 
@@ -53,7 +55,7 @@ def load_manifest(path, expected_count=999):
 
 
 @contextmanager
-def selected_image(image, commands):
+def selected_image(image, commands, diagnostics=None):
     """Change only the Docker run image; preserve existing evaluator transports.
 
     Module-local subprocess proxies avoid altering the process-wide subprocess
@@ -74,12 +76,47 @@ def selected_image(image, commands):
             return getattr(subprocess, name)
 
         def run(self, args, **kwargs):
-            return subprocess.run(command(args), **kwargs)
+            selected = command(args)
+            if diagnostics is not None and selected[:2] == ["docker", "run"]:
+                payload = kwargs.get("input", "")
+                if isinstance(payload, str):
+                    payload = payload.encode("utf-8")
+                try:
+                    transport, detail = capture(selected, payload, kwargs["timeout"])
+                except OSError as error:
+                    diagnostics.append({"phase": "execution", "exit_code": None, "stdout": "", "stderr": str(error),
+                                        "error_type": type(error).__name__, "failure_category": "infrastructure_failure"})
+                    raise
+                diagnostics.append({"phase": "execution", **detail})
+                if transport["timed_out"]:
+                    raise subprocess.TimeoutExpired(selected, kwargs["timeout"])
+                return subprocess.CompletedProcess(selected, transport["exit_code"])
+            return subprocess.run(selected, **kwargs)
 
         def Popen(self, args, **kwargs):
             return subprocess.Popen(command(args), **kwargs)
 
-    with patch.object(execution, "subprocess", Proxy()), patch.object(line_coverage, "subprocess", Proxy()):
+    def coverage_transport(args, payload):
+        try:
+            transport, detail = capture(command(args), payload, line_coverage.TIMEOUT_SECONDS,
+                                        combined_limit=line_coverage.MAX_OUTPUT_BYTES)
+        except OSError as error:
+            diagnostics.append({"phase": "coverage", "exit_code": None, "stdout": "", "stderr": str(error),
+                                "error_type": type(error).__name__, "failure_category": "infrastructure_failure"})
+            raise
+        diagnostics.append({"phase": "coverage", **detail})
+        return transport
+
+    with ExitStack() as stack:
+        harnesses = build_harnesses(execution._HARNESS, line_coverage._COVERAGE_HARNESS,
+                                    path_coverage._PATH_HARNESS, path_coverage._PATH_TEST_HARNESS)
+        stack.enter_context(patch.object(execution, "_HARNESS", harnesses["execution"]))
+        stack.enter_context(patch.object(line_coverage, "_COVERAGE_HARNESS", harnesses["line"]))
+        stack.enter_context(patch.object(path_coverage, "_PATH_HARNESS", harnesses["path"]))
+        stack.enter_context(patch.object(execution, "subprocess", Proxy()))
+        stack.enter_context(patch.object(line_coverage, "subprocess", Proxy()))
+        if diagnostics is not None:
+            stack.enter_context(patch.object(line_coverage, "_run_container", coverage_transport))
         yield
 
 
@@ -98,6 +135,7 @@ def annotate_image(value, image):
 def evaluate_one(row, image):
     """Evaluate fresh artifact text, never consume saved internal validations."""
     commands = []
+    diagnostics = []
     # Reuse only the existing syntax check, with execution explicitly disabled.
     static = validate_test_case(row["artifact"], row["task"]["input"], execute=False)
     syntax = deepcopy(next(e for e in static["evidence"] if e["check"] == "Syntax Validity"))
@@ -105,18 +143,28 @@ def evaluate_one(row, image):
                  "trusted_oracle": None}
     executed = {"status": "not_verified", "message": "Skipped because syntax did not pass."}
     coverage = {"status": "not_verified", "message": "Skipped because syntax or execution did not pass."}
-    with selected_image(image, commands):
+    with selected_image(image, commands, diagnostics):
         if syntax["status"] == "passed":
             executed = execution.validate_execution(row["artifact"], row["task"]["input"]["python_solution"])
             if executed["status"] == "passed":
                 coverage = COVERAGE[row["task"]["reference"]["target_type"]](row["artifact"], deepcopy(row["task"]))
     annotate_image(executed, image)
     annotate_image(coverage, image)
+    execution_detail = next((d for d in diagnostics if d["phase"] == "execution"), None)
+    if execution_detail is not None:
+        if executed["status"] == "not_verified":
+            execution_detail["failure_category"] = "infrastructure_failure"
+        executed.update(diagnostics=execution_detail, failure_category=execution_detail["failure_category"],
+                        output="bounded stdout/stderr in diagnostics")
+    coverage_detail = next((d for d in diagnostics if d["phase"] == "coverage"), None)
+    if coverage_detail is not None:
+        coverage["diagnostics"] = coverage_detail
     return {"artifact_id": row["artifact_id"], "pair_id": row["pair_id"], "task": deepcopy(row["task"]),
             "artifact_sha256": digest(row["artifact"].encode()), "metrics": {
                 "Syntax": syntax, "Execution": executed, "Assertion Correctness": assertion,
                 "Target Coverage": {"target_type": row["task"]["reference"]["target_type"], **coverage}},
-            "execution_evidence": {"image_id": image, "commands": commands},
+            "execution_evidence": {"image_id": image, "commands": commands, "docker_diagnostics": diagnostics,
+                                   "harness_version": HARNESS_VERSION, "target_module_aliases": list(ALIASES)},
             "infrastructure_stop": syntax["status"] == "passed" and (
                 executed["status"] == "not_verified" or "cleanup_error" in coverage.get("evidence", {}))}
 
@@ -125,8 +173,11 @@ def configuration(manifest_hash, image):
     source_paths = [Path(__file__), ROOT / "src/tavf/validators/test_case.py", ROOT / "src/tavf/validators/assertions.py",
                     ROOT / "src/tavf/validators/execution.py", ROOT / "src/tavf/evaluation/line_coverage.py",
                     ROOT / "src/tavf/evaluation/branch_coverage.py", ROOT / "src/tavf/evaluation/path_coverage.py"]
+    source_paths.append(Path(__file__).with_name("testeval_diagnostics.py"))
+    source_paths.append(Path(__file__).with_name("testeval_module_harness.py"))
     instrumentation = path_coverage.INSTRUMENTED_DATA
-    return {"procedure": VERSION, "manifest_sha256": manifest_hash, "image_id": image,
+    return {"procedure": VERSION, "harness_version": HARNESS_VERSION, "target_module_aliases": list(ALIASES),
+            "manifest_sha256": manifest_hash, "image_id": image,
             "assertion_oracle": None, "source_sha256": {p.relative_to(ROOT).as_posix(): digest(p.read_bytes()) for p in source_paths},
             "instrumentation_sha256": digest(instrumentation.read_bytes()) if instrumentation.exists() else None,
             "network": "none", "read_only": True, "cpus": 0.5, "memory_bytes": 134217728,
@@ -205,7 +256,7 @@ def run(manifest, output, *, execute=False, image=VERIFIED_IMAGE, limit=None, ex
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=ROOT / "results/final_evaluation/blinded_manifest/evaluator/artifacts.jsonl")
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "results/final_evaluation/testeval_metrics_v1")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "results/final_evaluation/testeval_metrics_v2")
     parser.add_argument("--image", default=VERIFIED_IMAGE)
     parser.add_argument("--execute", action="store_true", help="Explicitly authorize generated code inside isolated Docker")
     parser.add_argument("--limit", type=int, help="Stop after this many newly saved artifact evaluations")
